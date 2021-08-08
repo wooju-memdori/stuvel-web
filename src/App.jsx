@@ -1,16 +1,18 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
 import Home from './components/Home';
-import RoomContainer from './components/RoomContainer';
+import RoomContainer from './containers/RoomContainer';
 
 const App = () => (
-  <BrowserRouter>
-    <Switch>
-      <Route path="/" component={Home} exact />
-      <Route path="/room" component={RoomContainer} exact />
-      <Route path="/room:roomId" component={RoomContainer} exact />
-    </Switch>
-  </BrowserRouter>
+  <RecoilRoot>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" component={Home} exact />
+        <Route path="/room" component={RoomContainer} exact />
+      </Switch>
+    </BrowserRouter>
+  </RecoilRoot>
 );
 
 export default App;
