@@ -4,5 +4,5 @@ module.exports = {
     es6: true,
     node: true,
   },
-  extends: ['airbnb'],
+  extends: ['airbnb', 'plugin:prettier/recommended'],
 };
