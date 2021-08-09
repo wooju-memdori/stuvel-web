@@ -1,9 +1,8 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import VideoItem from '../components/Video';
-import { localStream } from '../state/room';
+import { localStream } from '../state/atom';
 
-// 8시: => 2시간 공부..
 const VideoContainer = () => {
   const [localStreamValue, setLocalStream] = useRecoilState(localStream);
 
