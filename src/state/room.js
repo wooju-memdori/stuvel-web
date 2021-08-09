@@ -14,8 +14,3 @@ export const localStream = atom({
   key: 'localStream',
   default: null,
 });
-
-export const localIsOpen = atom({
-  key: 'localIsOpen',
-  default: true,
-});

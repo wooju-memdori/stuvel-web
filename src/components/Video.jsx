@@ -9,9 +9,9 @@ const VideoItem = ({ stream }) => {
     viewRef.current.srcObject = stream || null;
   }, [stream]);
 
-  console.log(stream);
   return <video ref={viewRef} muted autoPlay controls />;
 };
+
 VideoItem.propTypes = {
   stream: objectOf(MediaStream),
 };
