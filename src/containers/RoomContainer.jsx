@@ -3,7 +3,11 @@ import { useRecoilValueLoadable } from 'recoil';
 import { roomId } from '../state/atom';
 import Room from '../components/Room';
 
-const RoomContainer = () => {
+const RoomContainer = ({ match }) => {
+  if (match.params.roomId) {
+    return <Room roomId={match.params.roomId} />;
+  }
+
   const roomIdLoadable = useRecoilValueLoadable(roomId());
 
   switch (roomIdLoadable.state) {

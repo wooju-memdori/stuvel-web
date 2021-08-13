@@ -10,6 +10,7 @@ const App = () => (
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/room" component={RoomContainer} exact />
+        <Route path="/room/:roomId" component={RoomContainer} exact />
       </Switch>
     </BrowserRouter>
   </RecoilRoot>
