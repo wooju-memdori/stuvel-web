@@ -19,13 +19,16 @@ const useSocket = (roomId, userId) => {
   const socketCommincation = () => {
     onUserConnectedSocket((otherId) => {
       console.log(`${otherId} joined the room`);
+      setPeersInfo({
+        ...peersInfo,
+        [otherId]: null,
+      });
       setUsers((oldUsers) => [...oldUsers, otherId]);
     });
 
     // otherId가 stream open했다는 소켓 메시지
     onStreamOpenedSocket((otherId) => {
       console.log(`${otherId}'s stream opened`);
-      // 전화받기
       listenPeer(otherId);
     });
 
@@ -38,7 +41,9 @@ const useSocket = (roomId, userId) => {
   const listenPeer = (otherId) => {
     onCallPeer((call) => {
       console.log('onCallPeer');
+
       call.on('stream', (userVideoStream) => {
+        console.log(`onStream`);
         setPeersInfo({
           ...peersInfo,
           [otherId]: {
@@ -48,16 +53,14 @@ const useSocket = (roomId, userId) => {
         });
         console.log(`${otherId}의 stream을 추가하였습니다.`);
       });
-
-      call.on('close', () => {});
     });
   };
 
   useEffect(() => {
     initSocket(roomId, (id) => {
       setUser(id);
-      console.log(`user is setted ${user}, ${id}`);
       getSocket().emit('join-room', roomId, id);
+      listenPeer();
     });
     socketCommincation();
     return () => {
