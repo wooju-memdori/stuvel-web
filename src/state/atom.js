@@ -1,14 +1,29 @@
 import axios from 'axios';
 import { atom, selectorFamily } from 'recoil';
 
-export const usersState = atom({
-  key: 'usersState',
-  default: [],
+export const micStatusState = atom({
+  key: 'micStatusState',
+  default: true,
 });
 
-export const peersInfoState = atom({
-  key: 'peersInfoState',
-  default: {},
+export const camStatusState = atom({
+  key: 'micStatusState',
+  default: true,
+});
+
+export const streamingState = atom({
+  key: 'streamingState',
+  default: false,
+});
+
+export const userDetailsState = atom({
+  key: 'userDetailsState',
+  default: null,
+});
+
+export const displayStreamState = atom({
+  key: 'displayStreamState',
+  default: false,
 });
 
 export const roomId = selectorFamily({
@@ -19,19 +34,4 @@ export const roomId = selectorFamily({
     console.log(response);
     return response.data;
   },
-});
-
-export const userState = atom({
-  key: 'user',
-  default: '',
-});
-
-export const socket = atom({
-  key: 'socket',
-  default: null,
-});
-
-export const localStream = atom({
-  key: 'localStream',
-  default: null,
 });
