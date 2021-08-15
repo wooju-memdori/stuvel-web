@@ -1,19 +1,28 @@
-import React, { useRef, useEffect, useState, useLayoutEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 import { createSocketConnectionInstance } from '../socketConnection';
 import { string } from 'prop-types';
-import { Layout, Button, Spin } from 'antd';
+import { Layout, Spin } from 'antd';
 import 'antd/dist/antd.css';
 import UserPopup from './UserPopup';
 import styled from 'styled-components';
+import FootBar from './FootBar';
 import { LoadingOutlined } from '@ant-design/icons';
+import {
+  micStatusState,
+  camStatusState,
+  streamingState,
+  userDetailsState,
+  displayStreamState,
+} from '../state/atom';
 
 export default function Room({ roomId }) {
   let socketInstance = useRef(null);
-  const [micStatus, setMicStatus] = useState(true);
-  const [camStatus, setCamStatus] = useState(true);
-  const [streaming, setStreaming] = useState(false);
-  const [userDetails, setUserDetails] = useState(null);
-  const [displayStream, setDisplayStream] = useState(false);
+  const [micStatus, setMicStatus] = useRecoilState(micStatusState);
+  const [camStatus, setCamStatus] = useRecoilState(camStatusState);
+  const [streaming, setStreaming] = useRecoilState(streamingState);
+  const [userDetails, setUserDetails] = useRecoilState(userDetailsState);
+  const [displayStream, setDisplayStream] = useRecoilState(displayStreamState);
 
   useEffect(() => {
     return () => {
@@ -25,12 +34,9 @@ export default function Room({ roomId }) {
     startConnection();
   }, []);
 
-  // invoke the connection class to start the call
   const startConnection = () => {
-    let params = { quality: 12 };
     socketInstance.current = createSocketConnectionInstance({
       updateInstance: updateFromInstance,
-      params,
       userDetails,
       roomId: roomId,
     });
@@ -39,11 +45,6 @@ export default function Room({ roomId }) {
   const updateFromInstance = (key, value) => {
     if (key === 'streaming') setStreaming(value);
     if (key === 'displayStreaming') setDisplayStream(value);
-  };
-
-  const handleDisconnect = () => {
-    socketInstance.current?.destroyConnection();
-    props.history.push('/');
   };
 
   const handleMyCam = () => {
@@ -80,23 +81,12 @@ export default function Room({ roomId }) {
       >
         <RoomContainer id="room-container"></RoomContainer>
         <Layout.Footer>
-          <div>
-            {streaming && (
-              <>
-                <Button onClick={handleMyCam}>
-                  {camStatus ? 'Disable Cam' : 'Enable Cam'}
-                </Button>
-                <Button onClick={toggleScreenShare}>
-                  {displayStream ? 'Stop Screen Share' : 'Share Screen'}
-                </Button>
-                {camStatus ? (
-                  <div>your cam is on</div>
-                ) : (
-                  <div>your cam is off</div>
-                )}
-              </>
-            )}
-          </div>
+          {streaming && (
+            <FootBar
+              handleMyCam={handleMyCam}
+              toggleScreenShare={toggleScreenShare}
+            />
+          )}
         </Layout.Footer>
         <UserPopup submitHandle={handleUserDetails}></UserPopup>
       </Spin>
