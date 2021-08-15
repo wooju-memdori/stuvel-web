@@ -1,15 +1,17 @@
 import React, { useRef, useEffect } from 'react';
 import { objectOf } from 'prop-types';
 
-const VideoItem = ({ stream }) => {
+const VideoItem = ({ stream, key }) => {
   const viewRef = useRef();
 
   useEffect(() => {
+    console.log(stream);
+
     if (!viewRef.current) return;
     viewRef.current.srcObject = stream || null;
   }, [stream]);
 
-  return <video ref={viewRef} muted autoPlay controls />;
+  return <video key={key} ref={viewRef} muted autoPlay controls />;
 };
 
 VideoItem.propTypes = {

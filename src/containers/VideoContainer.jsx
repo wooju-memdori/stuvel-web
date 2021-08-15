@@ -36,19 +36,17 @@ const VideoContainer = ({ roomId }) => {
         console.log(user);
         socket.emit('stream-opened', roomId, user);
 
-        for (let otherId in users) {
-          myPeer.call(otherId, stream);
-          console.log('called');
-          /*
-          let call = peersInfoState[otherId]
-            ? peersInfoState[otherId].call
-            : null;
-          if (call) {
-            call.answer(stream);
-            console.log('answered');
-          } else {
+        console.log(Object.keys(peersInfo));
+
+        if (peersInfo) {
+          for (let otherId in peersInfo) {
+            const call = myPeer.call(otherId, stream);
+            setPeersInfo({
+              ...peersInfo,
+              [otherId]: { call: call, stream: null },
+            });
+            console.log(`${user} called to ${otherId}`);
           }
-          */
         }
       });
   }
@@ -62,7 +60,7 @@ const VideoContainer = ({ roomId }) => {
         카메라 키기
       </button>
       {localStreamValue ? (
-        <VideoItem stream={localStreamValue} />
+        <VideoItem key="myVideo" stream={localStreamValue} />
       ) : (
         <div>카메라 꺼짐</div>
       )}

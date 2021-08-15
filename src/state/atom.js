@@ -21,11 +21,9 @@ export const roomId = selectorFamily({
   },
 });
 
-export const user = atom({
+export const userState = atom({
   key: 'user',
-  default: {
-    userId: 'userId',
-  },
+  default: '',
 });
 
 export const socket = atom({
