@@ -6,6 +6,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import styled from 'styled-components';
 import Footer from './Footer';
+// eslint-disable-next-line
 import { createSocketConnectionInstance } from '../utils/socketConnection';
 
 import {
@@ -55,7 +56,6 @@ export default function Room({ roomId }) {
       setCamStatus(newStatus);
       toggleVideoTrack({ video: newStatus, audio: micStatus });
     }
-    console.log('camStatus', camStatus, 'micStatus', micStatus);
   };
 
   const handleMyMic = () => {
