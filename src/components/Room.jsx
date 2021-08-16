@@ -1,10 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { createSocketConnectionInstance } from '../socketConnection';
 import { string } from 'prop-types';
 import { Layout, Spin } from 'antd';
 import 'antd/dist/antd.css';
-import UserPopup from './UserPopup';
 import styled from 'styled-components';
 import FootBar from './FootBar';
 import { LoadingOutlined } from '@ant-design/icons';
@@ -21,6 +20,7 @@ export default function Room({ roomId }) {
   const [micStatus, setMicStatus] = useRecoilState(micStatusState);
   const [camStatus, setCamStatus] = useRecoilState(camStatusState);
   const [streaming, setStreaming] = useRecoilState(streamingState);
+  // 추후 로그인 기능을 위한 userDetails
   const [userDetails, setUserDetails] = useRecoilState(userDetailsState);
   const [displayStream, setDisplayStream] = useRecoilState(displayStreamState);
 
@@ -50,13 +50,19 @@ export default function Room({ roomId }) {
   const handleMyCam = () => {
     if (!displayStream) {
       const { toggleVideoTrack } = socketInstance.current;
-      setCamStatus(!camStatus);
-      toggleVideoTrack({ video: camStatus, audio: micStatus });
+      const newStatus = !camStatus;
+      setCamStatus(newStatus);
+      toggleVideoTrack({ video: newStatus, audio: micStatus });
     }
   };
 
-  const handleUserDetails = (userDetails) => {
-    setUserDetails(userDetails);
+  const handleMyMic = () => {
+    if (!displayStream) {
+      const { toggleVideoTrack } = socketInstance.current;
+      const newStatus = !micStatus;
+      setMicStatus(newStatus);
+      toggleVideoTrack({ video: camStatus, audio: newStatus });
+    }
   };
 
   const toggleScreenShare = () => {
@@ -84,11 +90,11 @@ export default function Room({ roomId }) {
           {streaming && (
             <FootBar
               handleMyCam={handleMyCam}
+              handleMyMic={handleMyMic}
               toggleScreenShare={toggleScreenShare}
             />
           )}
         </Layout.Footer>
-        <UserPopup submitHandle={handleUserDetails}></UserPopup>
       </Spin>
     </>
   );

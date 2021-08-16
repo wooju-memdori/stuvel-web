@@ -230,7 +230,7 @@ class SocketConnection {
 
   toggleVideoTrack = (status) => {
     const myVideo = this.getMyVideo();
-    console.log('getMyVideo');
+    console.log('getMyVideo', myVideo);
     console.log('status', status);
     if (myVideo && !status.video) {
       myVideo.srcObject?.getVideoTracks().forEach((track) => {
