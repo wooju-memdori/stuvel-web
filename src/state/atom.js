@@ -7,7 +7,7 @@ export const micStatusState = atom({
 });
 
 export const camStatusState = atom({
-  key: 'micStatusState',
+  key: 'camStatusState',
   default: true,
 });
 
