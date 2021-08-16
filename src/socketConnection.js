@@ -154,7 +154,6 @@ class SocketConnection {
       };
       const roomContainer = document.getElementById('room-container');
       const videoContainer = document.createElement('div');
-      videoContainer.id = createObj.id;
       const video = document.createElement('video');
       video.srcObject = this.videoContainer[createObj.id].stream;
       video.id = createObj.id;
@@ -198,9 +197,10 @@ class SocketConnection {
     console.log('removeVideo', id);
     delete this.videoContainer[id];
     const video = document.getElementById(id);
-    if (video) video.remove();
-    const videoContainer = document.getElementById(id);
-    if (videoContainer) videoContainer.remove();
+    if (video) {
+      video.closest('div').remove();
+      video.remove();
+    }
   };
 
   destroyConnection = () => {
@@ -230,8 +230,6 @@ class SocketConnection {
 
   toggleVideoTrack = (status) => {
     const myVideo = this.getMyVideo();
-    console.log('getMyVideo', myVideo);
-    console.log('status', status);
     if (myVideo && !status.video) {
       myVideo.srcObject?.getVideoTracks().forEach((track) => {
         if (track.kind === 'video') {
@@ -286,9 +284,11 @@ const replaceStream = (mediaStream) => {
 };
 
 const checkAndAddClass = (video, type = 'userMedia') => {
-  if (video?.classList?.length === 0 && type === 'displayMedia')
+  if (video?.classList?.length === 0 && type === 'displayMedia') {
     video.classList.add('display-media');
-  else video.classList.remove('display-media');
+    return;
+  }
+  video.classList.remove('display-media');
 };
 
 export function createSocketConnectionInstance(settings = {}) {
