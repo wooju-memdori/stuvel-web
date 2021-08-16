@@ -5,18 +5,12 @@ let socketInstance = null;
 let peers = {};
 
 class SocketConnection {
-  videoContainer = {};
-  settings;
-  streaming = false;
-  myPeer;
-  socket;
-  isSocketConnected = false;
-  isPeersConnected = false;
-  myId = '';
-
   // 컴포넌트에서 SocketConnection을 생성할 때 파라미터로 settings 객체를 준다.
   constructor(settings) {
+    this.videoContainer = {};
     this.settings = settings;
+    this.streaming = false;
+    this.myId = '';
     this.myPeer = initializePeerConnection();
     this.socket = initializeSocketConnection();
     if (this.socket) this.isSocketConnected = true;
@@ -228,27 +222,25 @@ class SocketConnection {
     }
   };
 
-  toggleVideoTrack = (status) => {
+  toggleVideoTrack = ({ video, audio }) => {
     const myVideo = this.getMyVideo();
-    if (myVideo && !status.video) {
+    if (myVideo && !video) {
       myVideo.srcObject?.getVideoTracks().forEach((track) => {
         if (track.kind === 'video') {
-          !status.video && track.stop();
+          !video && track.stop();
         }
       });
     } else if (myVideo) {
-      this.reInitializeStream(status.video, status.audio);
+      this.reInitializeStream(video, audio);
     }
   };
 
-  toggleAudioTrack = (status) => {
+  toggleAudioTrack = ({ video, audio }) => {
     const myVideo = this.getMyVideo();
     if (myVideo)
       myVideo.srcObject?.getAudioTracks().forEach((track) => {
-        if (track.kind === 'audio') track.enabled = status.audio;
-        status.audio
-          ? this.reInitializeStream(status.video, status.audio)
-          : track.stop();
+        if (track.kind === 'audio') track.enabled = audio;
+        audio ? this.reInitializeStream(video, audio) : track.stop();
       });
   };
 }
@@ -291,6 +283,6 @@ const checkAndAddClass = (video, type = 'userMedia') => {
   video.classList.remove('display-media');
 };
 
-export function createSocketConnectionInstance(settings = {}) {
+export const createSocketConnectionInstance = (settings = {}) => {
   return (socketInstance = new SocketConnection(settings));
-}
+};
