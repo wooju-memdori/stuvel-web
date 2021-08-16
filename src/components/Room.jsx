@@ -1,12 +1,13 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { createSocketConnectionInstance } from '../socketConnection';
 import { string } from 'prop-types';
-import { Layout, Spin } from 'antd';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import styled from 'styled-components';
-import FootBar from './FootBar';
-import { LoadingOutlined } from '@ant-design/icons';
+import Footer from './Footer';
+import { createSocketConnectionInstance } from '../utils/socketConnection';
+
 import {
   micStatusState,
   camStatusState,
@@ -16,13 +17,26 @@ import {
 } from '../state/atom';
 
 export default function Room({ roomId }) {
-  let socketInstance = useRef(null);
+  const socketInstance = useRef(null);
   const [micStatus, setMicStatus] = useRecoilState(micStatusState);
   const [camStatus, setCamStatus] = useRecoilState(camStatusState);
   const [streaming, setStreaming] = useRecoilState(streamingState);
-  // 추후 로그인 기능을 위한 userDetails
-  const [userDetails, setUserDetails] = useRecoilState(userDetailsState);
+  // 추후 로그인 기능이 구현되면 userDetails에 로그인 유저 정보 넣을 것
+  const userDetails = useRecoilValue(userDetailsState);
   const [displayStream, setDisplayStream] = useRecoilState(displayStreamState);
+
+  const updateFromInstance = (key, value) => {
+    if (key === 'streaming') setStreaming(value);
+    if (key === 'displayStreaming') setDisplayStream(value);
+  };
+
+  const startConnection = () => {
+    socketInstance.current = createSocketConnectionInstance({
+      updateInstance: updateFromInstance,
+      userDetails,
+      roomId,
+    });
+  };
 
   useEffect(() => {
     return () => {
@@ -34,19 +48,6 @@ export default function Room({ roomId }) {
     startConnection();
   }, []);
 
-  const startConnection = () => {
-    socketInstance.current = createSocketConnectionInstance({
-      updateInstance: updateFromInstance,
-      userDetails,
-      roomId: roomId,
-    });
-  };
-
-  const updateFromInstance = (key, value) => {
-    if (key === 'streaming') setStreaming(value);
-    if (key === 'displayStreaming') setDisplayStream(value);
-  };
-
   const handleMyCam = () => {
     if (!displayStream) {
       const { toggleVideoTrack } = socketInstance.current;
@@ -54,20 +55,21 @@ export default function Room({ roomId }) {
       setCamStatus(newStatus);
       toggleVideoTrack({ video: newStatus, audio: micStatus });
     }
+    console.log('camStatus', camStatus, 'micStatus', micStatus);
   };
 
   const handleMyMic = () => {
     if (!displayStream) {
-      const { toggleVideoTrack } = socketInstance.current;
+      const { toggleAudioTrack } = socketInstance.current;
       const newStatus = !micStatus;
       setMicStatus(newStatus);
-      toggleVideoTrack({ video: camStatus, audio: newStatus });
+      toggleAudioTrack({ video: camStatus, audio: newStatus });
     }
   };
 
   const toggleScreenShare = () => {
     const { reInitializeStream, toggleVideoTrack } = socketInstance.current;
-    displayStream && toggleVideoTrack({ video: false, audio: true });
+    if (displayStream) toggleVideoTrack({ video: false, audio: true });
     reInitializeStream(
       false,
       true,
@@ -79,24 +81,21 @@ export default function Room({ roomId }) {
   };
 
   return (
-    <>
-      <Spin
-        indicator={<LoadingOutlined spin />}
-        size="large"
-        spinning={!streaming}
-      >
-        <RoomContainer id="room-container"></RoomContainer>
-        <Layout.Footer>
-          {streaming && (
-            <FootBar
-              handleMyCam={handleMyCam}
-              handleMyMic={handleMyMic}
-              toggleScreenShare={toggleScreenShare}
-            />
-          )}
-        </Layout.Footer>
-      </Spin>
-    </>
+    <Spin
+      indicator={<LoadingOutlined spin />}
+      size="large"
+      spinning={!streaming}
+    >
+      <RoomContainer id="room-container" />
+      {streaming && (
+        <Footer
+          handleMyCam={handleMyCam}
+          handleMyMic={handleMyMic}
+          toggleScreenShare={toggleScreenShare}
+          roomId={roomId}
+        />
+      )}
+    </Spin>
   );
 }
 

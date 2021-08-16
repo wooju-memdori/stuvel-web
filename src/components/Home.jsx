@@ -1,5 +1,4 @@
 import React from 'react';
-import UseRecoilState from 'recoil';
 
 const HomePage = () => {
   return (
