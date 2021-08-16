@@ -1,6 +1,11 @@
 import axios from 'axios';
 import { atom, selectorFamily } from 'recoil';
 
+export const collapsedState = atom({
+  key: 'collapsedState',
+  default: false,
+});
+
 export const micStatusState = atom({
   key: 'micStatusState',
   default: true,
@@ -29,9 +34,7 @@ export const displayStreamState = atom({
 export const roomId = selectorFamily({
   key: 'roomId',
   get: () => async () => {
-    const url = 'http://localhost:3000';
-    const response = await axios.get(`${url}/room/`);
-    console.log(response);
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/room/`);
     return response.data;
   },
 });
