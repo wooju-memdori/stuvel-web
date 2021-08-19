@@ -250,7 +250,7 @@ const initializePeerConnection = () => {
 };
 
 const initializeSocketConnection = () => {
-  return openSocket.connect('localhost:3000/room', {
+  return openSocket.connect(`${process.env.REACT_APP_API_URL}/room`, {
     secure: true,
     reconnection: true,
     rejectUnauthorized: false,
