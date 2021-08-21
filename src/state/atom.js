@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { atom, selectorFamily } from 'recoil';
+import axios from '../utils/axios';
 
 export const collapsedState = atom({
   key: 'collapsedState',
@@ -34,7 +34,7 @@ export const displayStreamState = atom({
 export const roomId = selectorFamily({
   key: 'roomId',
   get: () => async () => {
-    const response = await axios.get(`${process.env.REACT_APP_API_URL}/room/`);
+    const response = await axios.get(`/room/`);
     return response.data;
   },
 });
