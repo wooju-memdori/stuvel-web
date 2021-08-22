@@ -10,6 +10,12 @@ Check out the Backend code! -> https://github.com/wooju-memdori/stuvel-api
 
 ![stuvel](https://user-images.githubusercontent.com/50407047/128682790-6f71fb03-0208-42bc-a408-acce99ad325f.png)
 
+
+## Architecture Diagram
+
+![image](https://user-images.githubusercontent.com/50407047/130344458-ca4f1edf-48c4-4b58-aa87-53df593654ec.png)
+
+
 ## Feature
 - [ ] Video chat using SocketIO and PeerJS 
 - [ ] Real time messaging using Socket IO
