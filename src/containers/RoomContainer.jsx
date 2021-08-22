@@ -1,7 +1,8 @@
 import React from 'react';
-import { useRecoilValueLoadable } from 'recoil';
-import { roomId } from '../state/atom';
+import { useRecoilValueLoadable, useRecoilValue } from 'recoil';
+import { roomId, roomConfirmed } from '../state/atom';
 import Room from '../components/Room';
+import RoomPreview from '../components/RoomPreview';
 
 const RoomContainer = ({ match }) => {
   if (match.params.roomId) {
@@ -9,6 +10,7 @@ const RoomContainer = ({ match }) => {
   }
 
   const roomIdLoadable = useRecoilValueLoadable(roomId());
+  const roomConfirmedValue = useRecoilValue(roomConfirmed);
 
   switch (roomIdLoadable.state) {
     case 'loading':
@@ -16,7 +18,11 @@ const RoomContainer = ({ match }) => {
     case 'hasError':
       return <div>잘못된 접근입니다..</div>;
     default: {
-      return <Room roomId={roomIdLoadable.contents} />;
+      return roomConfirmedValue ? (
+        <Room roomId={roomIdLoadable.contents} />
+      ) : (
+        <RoomPreview roomId={roomIdLoadable.contents} />
+      );
     }
   }
 };
