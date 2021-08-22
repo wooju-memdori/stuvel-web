@@ -38,3 +38,16 @@ export const roomId = selectorFamily({
     return response.data;
   },
 });
+
+export const roomConfirmed = atom({
+  key: 'roomConfirmed',
+  default: false,
+});
+
+export const roomUsersInfo = selectorFamily({
+  key: 'roomUsersInfo',
+  get: (params) => async () => {
+    const response = await axios.get(`room/${params}/users`);
+    return response.data.users;
+  },
+});
