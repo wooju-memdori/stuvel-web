@@ -1,5 +1,6 @@
 import openSocket from 'socket.io-client';
 import Peer from 'peerjs';
+import axios from '../utils/axios';
 
 let socketInstance = null;
 let peers = {};
@@ -44,7 +45,7 @@ class SocketConnection {
   };
 
   initializePeersEvents = (roomId) => {
-    this.myPeer.on('open', (id) => {
+    this.myPeer.on('open', async (id) => {
       const { userDetails } = this.settings;
       this.myId = id;
       const userData = {
@@ -53,7 +54,8 @@ class SocketConnection {
         ...userDetails,
       };
       console.log('peers established and joined room', userData);
-      this.socket.emit('join-room', roomId, id);
+      const response = await axios.post(`./room/${roomId}`);
+      this.socket.emit('join-room', roomId, id, response.data.userId);
       this.setNavigatorToStream();
     });
     this.myPeer.on('error', (err) => {
