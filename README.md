@@ -12,9 +12,7 @@ Check out the Backend code! -> https://github.com/wooju-memdori/stuvel-api
 
 
 ## Architecture Diagram
-
-![image](https://user-images.githubusercontent.com/50407047/130344458-ca4f1edf-48c4-4b58-aa87-53df593654ec.png)
-
+<p align="center"><image src="https://user-images.githubusercontent.com/50407047/130344458-ca4f1edf-48c4-4b58-aa87-53df593654ec.png"/></p>
 
 ## Feature
 - [ ] Video chat using SocketIO and PeerJS 
