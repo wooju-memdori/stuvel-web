@@ -32,9 +32,7 @@ const RoomPreview = ({ roomId }) => {
               </div>
             );
           })}
-          <Button type="default" size="large" as={Link} to="/">
-            돌아가기
-          </Button>
+          <Link to="/">돌아가기</Link>
           <Button
             type="default"
             size="large"
