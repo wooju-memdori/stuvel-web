@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilState, useRecoilValueLoadable } from 'recoil';
-import { Modal } from 'antd';
+import { Modal, Tabs } from 'antd';
 import UserList from './UserList';
 
 import {
@@ -8,6 +8,8 @@ import {
   followersState,
   followingsState,
 } from '../state/atom';
+
+const { TabPane } = Tabs;
 
 export default function Friends() {
   const [isModalVisible, setIsModalVisible] =
@@ -30,10 +32,19 @@ export default function Friends() {
       onOk={handleOk}
       onCancel={handleCancel}
     >
-      <h3>Followers</h3>
-      {followers.state === 'hasValue' && <UserList list={followings} />}
-      <h3>Followings</h3>
-      {followings.state === 'hasValue' && <UserList list={followings} />}
+      {followers.state === 'hasValue' && followings.state === 'hasValue' && (
+        <Tabs type="card">
+          <TabPane tab={`팔로워(${followers.contents.length}명)`} key="1">
+            <UserList list={followers.contents} />
+          </TabPane>
+          <TabPane tab={`팔로잉(${followings.contents.length}명)`} key="2">
+            <UserList list={followings.contents} />
+          </TabPane>
+          <TabPane tab="나와 비행한 여행자" key="3">
+            개발 중입니다~
+          </TabPane>
+        </Tabs>
+      )}
     </Modal>
   );
 }
