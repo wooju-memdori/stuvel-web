@@ -31,25 +31,30 @@ export const displayStreamState = atom({
   default: false,
 });
 
-export const roomId = atom({
-  key: 'roomId',
+export const roomIdState = atom({
+  key: 'roomIdState',
   default: null,
 });
 
-export const refresh = atom({
-  key: 'refresh',
+export const refreshState = atom({
+  key: 'refreshState',
   default: false,
 });
 
-export const roomConfirmed = atom({
-  key: 'roomConfirmed',
+export const roomConfirmedState = atom({
+  key: 'roomConfirmedState',
   default: false,
 });
 
-export const roomUsersInfo = selectorFamily({
-  key: 'roomUsersInfo',
+export const roomUsersInfoState = selectorFamily({
+  key: 'roomUsersInfoState',
   get: (params) => async () => {
     const response = await axios.get(`room/${params}/users`);
     return response.data.users;
   },
+});
+
+export const streamInstanceState = atom({
+  key: 'streamInstanceState',
+  default: null,
 });
