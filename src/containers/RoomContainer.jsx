@@ -15,8 +15,6 @@ const RoomContainer = ({ match }) => {
   const roomConfirmedValue = useRecoilValue(roomConfirmed);
   const refreshState = useRecoilValue(refresh);
 
-  console.log(refreshState);
-
   const getNewRoomId = async () => {
     const response = await axios.get(`/room/`);
     setRoomId(response.data);
