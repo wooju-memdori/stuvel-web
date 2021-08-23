@@ -31,12 +31,14 @@ export const displayStreamState = atom({
   default: false,
 });
 
-export const roomId = selectorFamily({
+export const roomId = atom({
   key: 'roomId',
-  get: () => async () => {
-    const response = await axios.get(`/room/`);
-    return response.data;
-  },
+  default: null,
+});
+
+export const refresh = atom({
+  key: 'refresh',
+  default: false,
 });
 
 export const roomConfirmed = atom({
