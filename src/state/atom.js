@@ -1,6 +1,11 @@
 import { atom, selectorFamily } from 'recoil';
 import axios from '../utils/axios';
 
+export const isModalVisibleState = atom({
+  key: 'isModalVisibleState',
+  default: false,
+});
+
 export const collapsedState = atom({
   key: 'collapsedState',
   default: false,
@@ -36,5 +41,21 @@ export const roomId = selectorFamily({
   get: () => async () => {
     const response = await axios.get(`/room/`);
     return response.data;
+  },
+});
+
+export const followersState = selectorFamily({
+  key: 'followersState',
+  get: () => async () => {
+    const response = await axios.get(`/followers`);
+    return response.data.data;
+  },
+});
+
+export const followingsState = selectorFamily({
+  key: 'followersState',
+  get: () => async () => {
+    const response = await axios.get(`/followings`);
+    return response.data.data;
   },
 });
