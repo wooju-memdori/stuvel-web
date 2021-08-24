@@ -15,9 +15,14 @@ import {
   streamingState,
   userDetailsState,
   displayStreamState,
+  roomIdState,
 } from '../state/atom';
 
-export default function Room({ roomId }) {
+export default function Room({ paramRoomId }) {
+  const [roomId, setRoomId] = useRecoilState(roomIdState);
+  if (paramRoomId) {
+    setRoomId(paramRoomId);
+  }
   const socketInstance = useRef(null);
   const [micStatus, setMicStatus] = useRecoilState(micStatusState);
   const [camStatus, setCamStatus] = useRecoilState(camStatusState);
@@ -36,17 +41,18 @@ export default function Room({ roomId }) {
       updateInstance: updateFromInstance,
       userDetails,
       roomId,
+      camStatus,
+      micStatus,
+      streaming,
+      displayStream,
     });
   };
 
   useEffect(() => {
+    startConnection();
     return () => {
       socketInstance.current.destroyConnection();
     };
-  }, []);
-
-  useEffect(() => {
-    startConnection();
   }, []);
 
   const handleMyCam = () => {
@@ -100,7 +106,7 @@ export default function Room({ roomId }) {
 }
 
 Room.propTypes = {
-  roomId: string.isRequired,
+  paramRoomId: string.isRequired,
 };
 
 const RoomContainer = styled.div`
