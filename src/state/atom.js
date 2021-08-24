@@ -38,3 +38,23 @@ export const roomId = selectorFamily({
     return response.data;
   },
 });
+
+export const genderOrInterestState = atom({
+  key: 'genderOrInterestState',
+  default: 'gender',
+});
+
+export const requiredOrOptionState = atom({
+  key: 'requiredOrOptionState',
+  default: 'required',
+});
+
+export const userInfoState = atom({
+  key: 'userInfoState',
+  default: null,
+});
+
+export const signUpDone = atom({
+  key: 'signUpDone',
+  default: false,
+});
