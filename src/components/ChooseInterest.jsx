@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Checkbox } from 'antd';
 import { useRecoilState } from 'recoil';
 import { userInfoState, signUpDoneState } from '../state/atom';
-import atom from '../utils/axios';
+import axios from '../utils/axios';
 
 const ChooseInterest = () => {
   const [interests, setInterests] = useState(null);
@@ -22,7 +22,7 @@ const ChooseInterest = () => {
 
   if (signUpDone) {
     console.log(userInfo);
-    Axios.post('/users/signup', userInfo).then((response) => {
+    axios.post('/users/signup', userInfo).then((response) => {
       console.log(response.data);
     });
   }
