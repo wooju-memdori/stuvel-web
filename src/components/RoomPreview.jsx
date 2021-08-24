@@ -25,6 +25,11 @@ const RoomPreview = () => {
     if (key === 'displayStreaming') setDisplayStream(value);
   };
 
+  console.log('micStatus : ', micStatus);
+  console.log('camStatus : ', camStatus);
+  console.log('streaming : ', streaming);
+  console.log('displayStream : ', displayStream);
+
   const startStream = () => {
     streamInstance.current = createStreamInstance({
       updateInstance: updateFromInstance,
@@ -76,7 +81,10 @@ const RoomPreview = () => {
         size="large"
         spinning={!streaming}
       >
-        <RoomContainer id="room-container" />
+        <RoomContainer id="room-container">
+          <div id="video-container" />
+        </RoomContainer>
+
         {streaming && (
           <MyCamFooter
             handleMyCam={handleMyCam}
