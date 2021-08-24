@@ -8,7 +8,7 @@ class StreamInstance {
     this.videoContainer = {};
     this.settings = settings;
     this.streaming = false;
-    this.myId = '';
+    this.myId = '0';
     this.setNavigatorToStream();
   }
 
@@ -47,15 +47,13 @@ class StreamInstance {
       this.videoContainer[createObj.id] = {
         ...createObj,
       };
-      const roomContainer = document.getElementById('room-container');
-      const videoContainer = document.createElement('div');
+      const videoContainer = document.getElementById('video-container');
       const video = document.createElement('video');
       video.srcObject = this.videoContainer[createObj.id].stream;
       video.id = createObj.id;
       video.autoplay = true;
       if (this.myId === createObj.id) video.muted = true;
       videoContainer.appendChild(video);
-      roomContainer.append(videoContainer);
     } else {
       if (document.getElementById(createObj.id)) {
         document.getElementById(createObj.id).srcObject = createObj.stream;
@@ -81,7 +79,6 @@ class StreamInstance {
         }
         checkAndAddClass(myVideo, type);
         this.createVideo({ id: this.myId, stream });
-        replaceStream(stream);
         resolve(true);
       });
     });
@@ -142,23 +139,6 @@ class StreamInstance {
       });
   };
 }
-
-const replaceStream = (mediaStream) => {
-  Object.values(peers).map((peer) => {
-    peer.peerConnection?.getSenders().map((sender) => {
-      if (sender.track.kind == 'audio') {
-        if (mediaStream.getAudioTracks().length > 0) {
-          sender.replaceTrack(mediaStream.getAudioTracks()[0]);
-        }
-      }
-      if (sender.track.kind == 'video') {
-        if (mediaStream.getVideoTracks().length > 0) {
-          sender.replaceTrack(mediaStream.getVideoTracks()[0]);
-        }
-      }
-    });
-  });
-};
 
 const checkAndAddClass = (video, type = 'userMedia') => {
   if (video?.classList?.length === 0 && type === 'displayMedia') {

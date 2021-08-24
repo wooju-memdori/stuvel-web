@@ -41,17 +41,18 @@ export default function Room({ paramRoomId }) {
       updateInstance: updateFromInstance,
       userDetails,
       roomId,
+      camStatus,
+      micStatus,
+      streaming,
+      displayStream,
     });
   };
 
   useEffect(() => {
+    startConnection();
     return () => {
       socketInstance.current.destroyConnection();
     };
-  }, []);
-
-  useEffect(() => {
-    startConnection();
   }, []);
 
   const handleMyCam = () => {
