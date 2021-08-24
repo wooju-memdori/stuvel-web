@@ -54,7 +54,7 @@ export const userInfoState = atom({
   default: null,
 });
 
-export const signUpDone = atom({
-  key: 'signUpDone',
+export const signUpDoneState = atom({
+  key: 'signUpDoneState',
   default: false,
 });

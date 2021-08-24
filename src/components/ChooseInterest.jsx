@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Checkbox } from 'antd';
 import { useRecoilState } from 'recoil';
-import { userInfoState } from '../state/atom';
+import { userInfoState, signUpDoneState } from '../state/atom';
+import atom from '../utils/axios';
 
 const ChooseInterest = () => {
   const [interests, setInterests] = useState(null);
@@ -9,14 +10,22 @@ const ChooseInterest = () => {
   const onChange = (checkedValues) => {
     setInterests(checkedValues);
   };
-
+  const [signUpDone, setSignUpDone] = useRecoilState(signUpDoneState);
   const addInterests = () => {
     const newUserInfo = {
       ...userInfo,
-      tag: interests,
+      // tag: interests,
     };
+    console.log(interests);
     setUserInfo(newUserInfo);
   };
+
+  if (signUpDone) {
+    console.log(userInfo);
+    Axios.post('/users/signup', userInfo).then((response) => {
+      console.log(response.data);
+    });
+  }
 
   const options = [
     { label: 'Pregnancy', value: 'Apple' },
@@ -80,6 +89,7 @@ const ChooseInterest = () => {
           type="primary"
           onClick={() => {
             addInterests();
+            setSignUpDone(true);
           }}
         >
           선택완료
