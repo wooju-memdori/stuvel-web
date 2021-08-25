@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { Link, Route } from 'react-router-dom';
 import { Form, Input, Button /* , Checkbox */ } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import axios from '../utils/axios';
+import SignUpContainer from '../containers/SignUpContainer';
 
 const LoggedOut = () => {
   const [loginResult, setLoginResult] = useState('');
@@ -73,9 +75,8 @@ const LoggedOut = () => {
             <a className="login-form-forgot" href="http://localhost:3000">
               비밀번호 찾기
             </a>
-            <a className="login-form-forgot" href="http://localhost:3000">
-              회원가입
-            </a>
+            <Link to="/signup">회원가입</Link>
+            <Route path="/signup" component={SignUpContainer} exact />
           </Form.Item>
 
           <Form.Item>

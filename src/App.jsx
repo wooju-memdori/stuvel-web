@@ -13,7 +13,7 @@ const App = () => {
         <BrowserRouter>
           <Switch>
             <Route path="/" component={LoggedOut} exact />
-            <Route path="/signUp" component={SignUpContainer} exact />
+            <Route path="/signup" component={SignUpContainer} exact />
           </Switch>
         </BrowserRouter>
       </RecoilRoot>
