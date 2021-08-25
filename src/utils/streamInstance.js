@@ -1,6 +1,6 @@
 import axios from './axios';
 
-let streamInstance = null;
+let streamInstance = null;   
 
 class StreamInstance {
   // 컴포넌트에서 SocketConnection을 생성할 때 파라미터로 settings 객체를 준다.
@@ -10,6 +10,11 @@ class StreamInstance {
     this.streaming = false;
     this.myId = '0';
     this.setNavigatorToStream();
+
+
+    
+
+
   }
 
   setNavigatorToStream = () => {
@@ -26,7 +31,7 @@ class StreamInstance {
   };
 
   getVideoAudioStream = (video = true, audio = true) => {
-    const myNavigator =
+    const myNavigator =     
       navigator.mediaDevices.getUserMedia ||
       navigator.mediaDevices.webkitGetUserMedia ||
       navigator.mediaDevices.mozGetUserMedia ||
