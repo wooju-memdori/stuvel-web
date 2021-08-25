@@ -4,6 +4,7 @@ import { RecoilRoot } from 'recoil';
 import RoomContainer from './containers/RoomContainer';
 import HomeContainer from './containers/HomeContainer';
 import LoggedOut from './components/LoggedOut';
+import SignUpContainer from './containers/SignUpContainer';
 
 const App = () => {
   if (!window.sessionStorage.getItem('userInfo')) {
@@ -12,6 +13,7 @@ const App = () => {
         <BrowserRouter>
           <Switch>
             <Route path="/" component={LoggedOut} exact />
+            <Route path="/signUp" component={SignUpContainer} exact />
           </Switch>
         </BrowserRouter>
       </RecoilRoot>
