@@ -10,6 +10,25 @@ body {
   background: linear-gradient(to bottom, #480088 0%, #0e032c 100%);
 }
 
+input {
+  background-color: rgba(0, 0, 0, 0) !important;
+  background-image: none !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  background-color: rgba(0, 0, 0, 0) !important;
+  background-image: none !important;
+  -webkit-text-fill-color: white;
+  transition: background-color 5000s ease-in-out 0s;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
