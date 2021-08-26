@@ -5,6 +5,8 @@ import RoomContainer from './containers/RoomContainer';
 import HomeContainer from './containers/HomeContainer';
 import LoggedOut from './components/LoggedOut';
 import SignUpContainer from './containers/SignUpContainer';
+import 'antd/dist/antd.less';
+import './index.less';
 
 const App = () => {
   if (!window.sessionStorage.getItem('userInfo')) {
