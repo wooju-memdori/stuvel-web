@@ -4,7 +4,7 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import styled from 'styled-components';
 import axios from '../utils/axios';
 import SignUpContainer from '../containers/SignUpContainer';
-import { BigLogoIcon } from './Icon';
+import { BigLogoIcon, LeftBackgroundIcon, RightBackgroundIcon } from './Icon';
 
 const LoggedOut = () => {
   const [loginResult, setLoginResult] = useState('');
@@ -92,10 +92,23 @@ const LoggedOut = () => {
   const Background = styled.div`
     width: 100%;
     height: 100%;
+    .background-left {
+      position: absolute;
+      width: 33%;
+      top: -2%;
+    }
+    .background-right {
+      position: absolute;
+      width: 33%;
+      bottom: 0%;
+      right: 0%;
+    }
   `;
 
   return (
     <Background>
+      <LeftBackgroundIcon className="background-left" />
+      <RightBackgroundIcon className="background-right" />
       <LoginForm>
         <div id="title">
           <BigLogoIcon id="logo" />
