@@ -122,18 +122,18 @@ const LoggedOut = () => {
         >
           <Form.Item
             name="email"
-            rules={[{ required: true, message: 'Please input your Email!' }]}
+            rules={[{ required: true, message: '이메일을 입력해주세요!' }]}
           >
             <Input className="input-box" placeholder="이메일을 입력해주세요" />
           </Form.Item>
           <Form.Item
             name="password"
-            rules={[{ required: true, message: 'Please input your Password!' }]}
+            rules={[{ required: true, message: '비밀번호를 입력해주세요!' }]}
           >
             <Input
               className="input-box"
               type="password"
-              placeholder="비밀번호"
+              placeholder="비밀번호를 입력해주세요"
             />
           </Form.Item>
 
@@ -145,7 +145,7 @@ const LoggedOut = () => {
             >
               로그인
             </Button>
-            <Checkbox className="remember">Remember me</Checkbox>
+            <Checkbox className="remember">이메일 상태 유지</Checkbox>
             <p>{loginResult}</p>
             <div className="link">
               <a
