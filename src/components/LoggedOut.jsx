@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Route } from 'react-router-dom';
-import { Form, Input, Button /* , Checkbox */ } from 'antd';
+import { Form, Input, Button, Checkbox } from 'antd';
 import styled from 'styled-components';
 import axios from '../utils/axios';
 import SignUpContainer from '../containers/SignUpContainer';
@@ -66,7 +66,6 @@ const LoggedOut = () => {
       width: 100%;
     }
     .input-box {
-      background-color: rgba(0, 0, 0, 0);
       height: 3.286em;
     }
     .login-form-button {
@@ -75,6 +74,18 @@ const LoggedOut = () => {
     }
     .ant-row {
       margin-bottom: 0.571em;
+    }
+    .link {
+      display: flex;
+    }
+    .remember {
+      margin: 0.7em 0;
+    }
+    .link .child {
+      flex: 1;
+      text-align: center;
+      margin: 0 1.2em;
+      color: white;
     }
   `;
 
@@ -121,14 +132,27 @@ const LoggedOut = () => {
             >
               로그인
             </Button>
+            <Checkbox className="remember">Remember me</Checkbox>
             <p>{loginResult}</p>
-            <a className="login-form-forgot" href="http://localhost:3000">
-              아이디 찾기
-            </a>
-            <a className="login-form-forgot" href="http://localhost:3000">
-              비밀번호 찾기
-            </a>
-            <Link to="/signup">회원가입</Link>
+            <div className="link">
+              <a
+                className="login-form-forgot child"
+                href="http://localhost:3000"
+              >
+                아이디 찾기
+              </a>
+              |
+              <a
+                className="login-form-forgot child"
+                href="http://localhost:3000"
+              >
+                비밀번호 찾기
+              </a>
+              |
+              <Link className="child" to="/signup">
+                회원가입
+              </Link>
+            </div>
             <Route path="/signup" component={SignUpContainer} exact />
           </Form.Item>
         </Form>
