@@ -220,6 +220,84 @@ const FriendsSvg = () => (
   </svg>
 );
 
+const LeftBackgroundSvg = () => (
+  <svg
+    width="43.764em"
+    height="25.616em"
+    viewBox="0 0 43.764em 25.616em"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect
+      x="55.6064"
+      y="358.629"
+      width="101.411"
+      height="350.418"
+      rx="50.7057"
+      transform="rotate(-153.308 55.6064 358.629)"
+      fill="white"
+      fillOpacity="0.27"
+    />
+    <rect
+      x="273.774"
+      y="318.101"
+      width="101.411"
+      height="305.057"
+      rx="50.7057"
+      transform="rotate(-153.308 273.774 318.101)"
+      fill="white"
+      fillOpacity="0.27"
+    />
+    <rect
+      x="532.146"
+      y="137.52"
+      width="101.411"
+      height="101.411"
+      rx="50.7057"
+      transform="rotate(-153.308 532.146 137.52)"
+      fill="#7A11FF"
+    />
+  </svg>
+);
+
+const RightBackgroundSvg = () => (
+  <svg
+    width="613"
+    height="351"
+    viewBox="0 0 613 351"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect
+      x="522.092"
+      width="101.411"
+      height="350.418"
+      rx="50.7057"
+      transform="rotate(26.6924 522.092 0)"
+      fill="#7A11FF"
+    />
+    <rect
+      x="303.926"
+      y="40.5273"
+      width="101.411"
+      height="305.057"
+      rx="50.7057"
+      transform="rotate(26.6924 303.926 40.5273)"
+      fill="#7A11FF"
+    />
+    <rect
+      x="45.5547"
+      y="221.109"
+      width="101.411"
+      height="101.411"
+      rx="50.7057"
+      transform="rotate(26.6924 45.5547 221.109)"
+      fill="white"
+      fillOpacity="0.35"
+    />
+  </svg>
+);
+
 /*eslint-disable */
 export const LogoIcon = (props) => <Icon component={LogoSvg} {...props} />;
 export const BigLogoIcon = (props) => (
@@ -232,4 +310,10 @@ export const SettingsIcon = (props) => (
 );
 export const FriendsIcon = (props) => (
   <Icon component={FriendsSvg} {...props} />
+);
+export const LeftBackgroundIcon = (props) => (
+  <Icon component={LeftBackgroundSvg} {...props} />
+);
+export const RightBackgroundIcon = (props) => (
+  <Icon component={RightBackgroundSvg} {...props} />
 );
