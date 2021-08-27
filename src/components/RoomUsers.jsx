@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValueLoadable } from 'recoil';
+import styled from 'styled-components';
 import { string } from 'prop-types';
 import { Button } from 'antd';
 import { Link } from 'react-router-dom';
@@ -40,14 +41,14 @@ const RoomUsers = () => {
           <h1>이곳은 {nowRoomId}번 행성입니다.</h1>
           {roomUsers.map((user) => {
             return (
-              <div>
+              <UserInfo>
                 <img src={user.image} alt="" width="100px" />
-                <h3>{user.nickname}</h3>
+                <p className="nickname">{user.nickname}</p>
                 <p>성별 {user.gender}</p>
                 <p>태그 {user.tag}</p>
                 <p>lv. {user.level}</p>
                 <p>score {user.mobum_score}</p>
-              </div>
+              </UserInfo>
             );
           })}
           <Link to="/">돌아가기</Link>
@@ -74,6 +75,23 @@ const RoomUsers = () => {
     }
   }
 };
+
+const UserInfo = styled.div`
+  width: 40.5em;
+  height: 10.286em;
+  background: rgba(39, 35, 51, 0.97);
+  border: 1px solid #ffffff;
+  border-radius: 0.571em;
+  padding: 0.714em;
+  img {
+    position: absolute;
+    border-radius: 9.985em;
+    float: left;
+  }
+  .nickname {
+    position: absolute;
+  }
+`;
 
 RoomUsers.propTypes = {
   roomId: string.isRequired,

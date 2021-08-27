@@ -31,80 +31,6 @@ const LoggedOut = () => {
       });
   };
 
-  const LoginForm = styled.div`
-    max-width: 31.25em;
-    width: 25.714em;
-    height: 36.143em;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin-left: -12.875em;
-    margin-top: -18.0715em;
-    #title {
-      width: 100%;
-      height: 13.571em;
-      position: relative;
-    }
-    h1 {
-      color: white;
-      bottom: 0%;
-      position: absolute;
-      left: 50%;
-      margin-left: -5.405em;
-      margin-bottom: 0;
-      font-size: 2em;
-    }
-    #logo {
-      position: absolute;
-      top: 0%;
-      left: 50%;
-      margin-left: -4.9125em;
-    }
-    .login-form {
-      position: absolute;
-      top: 250px;
-      width: 100%;
-    }
-    .input-box {
-      height: 3.286em;
-    }
-    .login-form-button {
-      width: 100%;
-      height: 3.571em;
-    }
-    .ant-row {
-      margin-bottom: 0.571em;
-    }
-    .link {
-      display: flex;
-    }
-    .remember {
-      margin: 0.7em 0;
-    }
-    .link .child {
-      flex: 1;
-      text-align: center;
-      margin: 0 1.2em;
-      color: white;
-    }
-  `;
-
-  const Background = styled.div`
-    width: 100%;
-    height: 100%;
-    .background-left {
-      position: absolute;
-      width: 33%;
-      top: -2%;
-    }
-    .background-right {
-      position: absolute;
-      width: 33%;
-      bottom: 0%;
-      right: 0%;
-    }
-  `;
-
   return (
     <Background>
       <LeftBackgroundIcon className="background-left" />
@@ -173,5 +99,79 @@ const LoggedOut = () => {
     </Background>
   );
 };
+
+const LoginForm = styled.div`
+  max-width: 31.25em;
+  width: 25.714em;
+  height: 36.143em;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -12.875em;
+  margin-top: -18.0715em;
+  #title {
+    width: 100%;
+    height: 13.571em;
+    position: relative;
+  }
+  h1 {
+    color: white;
+    bottom: 0%;
+    position: absolute;
+    left: 50%;
+    margin-left: -5.405em;
+    margin-bottom: 0;
+    font-size: 2em;
+  }
+  #logo {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    margin-left: -4.9125em;
+  }
+  .login-form {
+    position: absolute;
+    top: 250px;
+    width: 100%;
+  }
+  .input-box {
+    height: 3.286em;
+  }
+  .login-form-button {
+    width: 100%;
+    height: 3.571em;
+  }
+  .ant-row {
+    margin-bottom: 0.571em;
+  }
+  .link {
+    display: flex;
+  }
+  .remember {
+    margin: 0.7em 0;
+  }
+  .link .child {
+    flex: 1;
+    text-align: center;
+    margin: 0 1.2em;
+    color: white;
+  }
+`;
+
+const Background = styled.div`
+  width: 100%;
+  height: 100%;
+  .background-left {
+    position: absolute;
+    width: 33%;
+    top: -2%;
+  }
+  .background-right {
+    position: absolute;
+    width: 33%;
+    bottom: 0%;
+    right: 0%;
+  }
+`;
 
 export default LoggedOut;
