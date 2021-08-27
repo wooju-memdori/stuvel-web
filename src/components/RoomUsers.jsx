@@ -37,21 +37,27 @@ const RoomUsers = () => {
     default: {
       const roomUsers = usersInfo.contents;
       return (
-        <div>
-          <h1>이곳은 {nowRoomId}번 행성입니다.</h1>
+        <RoomInfo>
           {roomUsers.map((user) => {
             return (
-              <UserInfo>
-                <img src={user.image} alt="" width="100px" />
-                <p className="nickname">{user.nickname}</p>
-                <p>성별 {user.gender}</p>
-                <p>태그 {user.tag}</p>
-                <p>lv. {user.level}</p>
-                <p>score {user.mobum_score}</p>
-              </UserInfo>
+              <>
+                <h3>Room style</h3>
+                <h3>행성 방문자</h3>
+                <div className="user-info">
+                  <div className="profile">
+                    <img src={user.image} alt="" width="100px" />
+                    <div className="defaultInfo">
+                      <p>{user.nickname}</p>
+                      <p>성별 {user.gender}</p>
+                      <p>score {user.mobum_score}</p>
+                    </div>
+                  </div>
+                  <p>태그 {user.tag}</p>
+                </div>
+              </>
             );
           })}
-          <Link to="/">돌아가기</Link>
+          <Link to="/">나가기</Link>
           <Button
             type="default"
             size="large"
@@ -59,7 +65,7 @@ const RoomUsers = () => {
               setRefresh(!refresh);
             }}
           >
-            다른 행성 찾아보기
+            다른 행성 찾기
           </Button>
           <Button
             type="primary"
@@ -68,28 +74,43 @@ const RoomUsers = () => {
               setConfirmed(true);
             }}
           >
-            착륙하기
+            행성 착륙하기
           </Button>
-        </div>
+        </RoomInfo>
       );
     }
   }
 };
 
-const UserInfo = styled.div`
-  width: 40.5em;
-  height: 10.286em;
-  background: rgba(39, 35, 51, 0.97);
-  border: 1px solid #ffffff;
-  border-radius: 0.571em;
-  padding: 0.714em;
-  img {
+const RoomInfo = styled.div`
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -40%;
+  margin-top: -40%;
+  .user-info {
+    height: 10.286em;
+    background: rgba(39, 35, 51, 0.97);
+    border: 1px solid #ffffff;
+    border-radius: 0.571em;
+  }
+  .profile {
+    float: left;
+    width: 40%;
+    height: 100%;
+    border-right: 1px solid #ffffff;
+    padding: 1em;
+  }
+  .profile img {
     position: absolute;
     border-radius: 9.985em;
     float: left;
   }
-  .nickname {
-    position: absolute;
+  .profile .defaultInfo {
+    width: 43%;
+    float: right;
   }
 `;
 
