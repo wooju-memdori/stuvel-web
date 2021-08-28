@@ -1,10 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-import RoomContainer from './containers/RoomContainer';
-import HomeContainer from './containers/HomeContainer';
 import LoggedOut from './components/LoggedOut';
 import SignUpContainer from './containers/SignUpContainer';
+import IndexContainer from './containers/IndexContainer';
 import 'antd/dist/antd.less';
 import './index.less';
 
@@ -24,11 +23,7 @@ const App = () => {
   return (
     <RecoilRoot>
       <BrowserRouter>
-        <Switch>
-          <Route path="/" component={HomeContainer} exact />
-          <Route path="/room" component={RoomContainer} exact />
-          <Route path="/room/:roomId" component={RoomContainer} exact />
-        </Switch>
+        <IndexContainer />
       </BrowserRouter>
     </RecoilRoot>
   );
