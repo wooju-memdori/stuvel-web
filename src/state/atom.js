@@ -1,6 +1,11 @@
 import { atom, selectorFamily } from 'recoil';
 import axios from '../utils/axios';
 
+export const isModalVisibleState = atom({
+  key: 'isModalVisibleState',
+  default: false,
+});
+
 export const collapsedState = atom({
   key: 'collapsedState',
   default: false,
@@ -76,4 +81,20 @@ export const userInfoState = atom({
 export const signUpDoneState = atom({
   key: 'signUpDoneState',
   default: false,
+});
+
+export const followersState = selectorFamily({
+  key: 'followersState',
+  get: () => async () => {
+    const response = await axios.get(`/followers`);
+    return response.data.data;
+  },
+});
+
+export const followingsState = selectorFamily({
+  key: 'followersState',
+  get: () => async () => {
+    const response = await axios.get(`/followings`);
+    return response.data.data;
+  },
 });
