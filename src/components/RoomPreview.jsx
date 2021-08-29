@@ -1,16 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useRecoilValue } from 'recoil';
+// import { useRecoilValue } from 'recoil';
 import RoomUsers from './RoomUsers';
 import PreviewMyCam from './PreivewMyCam';
-import { roomIdState } from '../state/atom';
+// import { roomIdState } from '../state/atom';
+import { RoomPlanetIcon } from './Icon';
 
 const RoomPreview = () => {
-  const nowRoomId = useRecoilValue(roomIdState);
+  // const nowRoomId = useRecoilValue(roomIdState);
   return (
     <RoomPreviewPage>
       <div className="mycam">
-        <h1>행성 {nowRoomId}을 찾았습니다.</h1>
+        <div className="room-id">
+          <RoomPlanetIcon />
+          행성 A-3923을 찾았습니다.
+        </div>
         <PreviewMyCam />
       </div>
       <div className="room-info">
@@ -25,23 +29,26 @@ const RoomPreviewPage = styled.div`
   height: 100%;
   .mycam {
     float: left;
-    width: 40%;
+    width: 43.5%;
     height: 100%;
+    padding: 4.3%;
+  }
+  .room-id {
+    font-size: 1.714em;
+    margin-bottom: 2.15em;
+  }
+  .room-id .anticon {
+    top: 1em;
+    position: relative;
+    margin-right: 0.7em;
   }
   .room-info {
     float: right;
-    width: 60%;
+    width: 56.5%;
     height: 100%;
     border-left: 1px solid #ffffff;
     background: #0b0016;
-    padding: 5em;
     position: relative;
-  }
-  .room-users {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin-left: -20.25em;
   }
 `;
 

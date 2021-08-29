@@ -25,9 +25,11 @@ module.exports = {
               '@layout-body-background':
                 'linear-gradient(to bottom, #170428 0%, #1C013F 100%)',
               '@heading-color': '#fff',
-              '@border-color-base': '#D300FF',
+              '@border-color-base': '#fff',
               '@btn-default-bg': 'rgba(255, 255, 255, 0.1)',
               '@btn-default-border': '#D300FF',
+              '@btn-border-width': '0.15em',
+              '@layout-footer-background': 'rgba(0, 0, 0, 0)',
             },
             javascriptEnabled: true,
           },
