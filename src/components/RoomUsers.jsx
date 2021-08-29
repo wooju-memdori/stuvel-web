@@ -167,7 +167,7 @@ const RoomInfo = styled.div`
   .user-info .no-record {
     position: absolute;
     top: 50%;
-    margin-top: -0.9em;
+    margin-top: -1.188em;
     width: 100%;
     text-align: center;
     font-weight: 900;
