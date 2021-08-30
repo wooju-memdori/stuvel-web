@@ -70,7 +70,7 @@ const RoomUsers = () => {
                           <div className="default-info">
                             <h3>{user.nickname}</h3>
                             <div className="gender">
-                              gender
+                              <span className="gender-txt">gender</span>
                               {user.gender === 0 ? (
                                 <FemaleIcon className="gender-img" />
                               ) : (
@@ -78,7 +78,7 @@ const RoomUsers = () => {
                               )}
                             </div>
                             <div className="score">
-                              score
+                              <span className="score-txt">score</span>
                               <Rate disabled defaultValue={user.mobum_score} />
                             </div>
                           </div>
@@ -184,10 +184,22 @@ const RoomInfo = styled.div`
     font-size: 1.5em;
     font-weight: 700;
   }
+  .gender-img {
+    position: relative;
+    left: 0.7em;
+  }
+  .gender-txt {
+    position: relative;
+    bottom: 0.5em;
+  }
+  .ant-rate {
+    position: relative;
+    left: 1.2em;
+  }
   .user-info .no-record {
     position: absolute;
     top: 50%;
-    margin-top: -1.188em;
+    margin-top: -1em;
     width: 100%;
     text-align: center;
     font-weight: 900;
