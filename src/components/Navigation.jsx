@@ -1,5 +1,4 @@
 import React from 'react';
-import { func } from 'prop-types';
 import { useRecoilValue } from 'recoil';
 import { Layout, Menu } from 'antd';
 import styled from 'styled-components';
@@ -77,10 +76,6 @@ const Navigation = ({ onCollapse }) => {
       </Menu>
     </Sider>
   );
-};
-
-Navigation.propTypes = {
-  onCollapse: func.isRequired,
 };
 
 export default Navigation;
