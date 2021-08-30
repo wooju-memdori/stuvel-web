@@ -97,16 +97,29 @@ const PreviweMyCam = () => {
 };
 
 const PreviewCam = styled.div`
-  #video-container {
+  height: 50%;
+  .ant-spin-nested-loading {
     height: 100%;
+  }
+  .ant-spin-container {
+    height: 100%;
+  }
+  #room-container {
+    width: 100%;
     overflow: hidden;
+  }
+  #video-container {
+    position: relative;
+    padding-bottom: 56.2%;
   }
   video {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
+    border-radius: 0.5em;
+    position: absolute;
+    object-fit: cover;
     width: 100%;
     height: 100%;
-    border-radius: 0.5em;
   }
 `;
 
