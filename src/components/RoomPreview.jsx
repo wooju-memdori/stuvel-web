@@ -46,7 +46,7 @@ const RoomPreviewPage = styled.div`
   }
   .room-id {
     font-size: 1.714em;
-    height: 20%;
+    height: 5em;
   }
   .room-id .anticon {
     top: 1em;
