@@ -24,11 +24,11 @@ const HomePage = () => {
         />
         <p>coming soon</p>
       </div>
-      <img
+      {/* <img
         id="background-img"
         alt="home background"
         src={`${window.location.href}homeBackground.png`}
-      />
+      /> */}
     </Home>
   );
 };
