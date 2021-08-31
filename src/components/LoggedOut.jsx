@@ -159,6 +159,7 @@ const LoginForm = styled.div`
 `;
 
 const Background = styled.div`
+  background: linear-gradient(to bottom, #480088 0%, #0e032c 100%);
   width: 100%;
   height: 100%;
   .background-left {
