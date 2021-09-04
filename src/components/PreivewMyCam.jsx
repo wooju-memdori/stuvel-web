@@ -74,15 +74,15 @@ const PreviweMyCam = () => {
   };
 
   return (
-    <div>
+    <PreviewCam>
       <Spin
         indicator={<LoadingOutlined spin />}
         size="large"
         spinning={!streaming}
       >
-        <RoomContainer id="room-container">
+        <div id="room-container">
           <div id="video-container" />
-        </RoomContainer>
+        </div>
 
         {streaming && (
           <MyCamFooter
@@ -92,14 +92,32 @@ const PreviweMyCam = () => {
           />
         )}
       </Spin>
-    </div>
+    </PreviewCam>
   );
 };
 
-const RoomContainer = styled.div`
+const PreviewCam = styled.div`
+  height: 50%;
+  .ant-spin-nested-loading {
+    height: 100%;
+  }
+  .ant-spin-container {
+    height: 100%;
+  }
+  #room-container {
+    width: 100%;
+    overflow: hidden;
+  }
+  #video-container {
+    position: relative;
+    padding-bottom: 56.2%;
+  }
   video {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
+    border-radius: 0.5em;
+    position: absolute;
+    object-fit: cover;
     width: 100%;
     height: 100%;
   }
