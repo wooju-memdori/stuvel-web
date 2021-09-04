@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { Layout, Menu } from 'antd';
 import styled from 'styled-components';
 import { collapsedState, isModalVisibleState } from '../state/atom';
@@ -11,76 +11,81 @@ import {
   ChatBubbleIcon,
   FriendsIcon,
 } from './Icon';
+import Friends from './Friends';
 
 const Navigation = ({ onCollapse }) => {
   const collapsed = useRecoilValue(collapsedState);
-  const setIsModalVisible = useSetRecoilState(isModalVisibleState);
+  const [isModalVisible, setIsModalVisible] =
+    useRecoilState(isModalVisibleState);
   const showModal = () => {
     setIsModalVisible(true);
-    console.log(true);
   };
 
-  console.log(showModal);
   return (
-    <Sider
-      collapsible
-      collapsed={collapsed}
-      onCollapse={onCollapse}
-      trigger={null}
-    >
-      <LogowithDotIcon id="logo" />
-      <Menu theme="dark" mode="inline">
-        <Menu.Item
-          key="1"
-          className={window.location.pathname === '/room' ? 'active' : ''}
-        >
-          <a href="/room">
-            <SingleUserIcon />
-            <span>My Page</span>
-          </a>
-        </Menu.Item>
-        <Menu.Item
-          key="2"
-          className={window.location.pathname === '/social' ? 'active' : ''}
-        >
-          <a href="/social">
-            <FriendsIcon />
-            <span>Social</span>
-          </a>
-        </Menu.Item>
-        <Menu.Item
-          key="3"
-          className={window.location.pathname === '/chat' ? 'active' : ''}
-        >
-          <a href="/chat">
-            <ChatBubbleIcon />
-            <span>Chat</span>
-          </a>
-        </Menu.Item>
-        <Menu.Item
-          key="4"
-          className={window.location.pathname === '/settings' ? 'active' : ''}
-        >
-          <a href="/settings">
-            <SettingsIcon />
-            <span>Settings</span>
-          </a>
-        </Menu.Item>
-        <Menu.Item
-          key="5"
-          className={window.location.pathname === '/sailing' ? 'active' : ''}
-        >
-          <a href="/sailing">
-            <PlanetIcon />
-            {window.location.pathname === '/sailing' ? (
-              <span>Sailing</span>
-            ) : (
-              <span>Off</span>
-            )}
-          </a>
-        </Menu.Item>
-      </Menu>
-    </Sider>
+    <>
+      <Sider
+        collapsible
+        collapsed={collapsed}
+        onCollapse={onCollapse}
+        trigger={null}
+      >
+        <LogowithDotIcon id="logo" />
+        <Menu theme="dark" mode="inline">
+          <Menu.Item
+            key="1"
+            className={window.location.pathname === '/room' ? 'active' : ''}
+          >
+            <a href="/room">
+              <SingleUserIcon />
+              <span>My Page</span>
+            </a>
+          </Menu.Item>
+          <Menu.Item
+            key="2"
+            className={window.location.pathname === '/social' ? 'active' : ''}
+            onClick={showModal}
+          >
+            {/* eslint-disable-next-line */}
+            <a>
+              <FriendsIcon />
+              <span>Social</span>
+            </a>
+          </Menu.Item>
+          <Menu.Item
+            key="3"
+            className={window.location.pathname === '/chat' ? 'active' : ''}
+          >
+            <a href="/chat">
+              <ChatBubbleIcon />
+              <span>Chat</span>
+            </a>
+          </Menu.Item>
+          <Menu.Item
+            key="4"
+            className={window.location.pathname === '/settings' ? 'active' : ''}
+          >
+            <a href="/settings">
+              <SettingsIcon />
+              <span>Settings</span>
+            </a>
+          </Menu.Item>
+          <Menu.Item
+            key="5"
+            className={window.location.pathname === '/sailing' ? 'active' : ''}
+          >
+            <a href="/sailing">
+              <PlanetIcon />
+              {window.location.pathname === '/sailing' ? (
+                <span>Sailing</span>
+              ) : (
+                <span>Off</span>
+              )}
+            </a>
+          </Menu.Item>
+        </Menu>
+      </Sider>
+      {isModalVisible && <Friends />}
+    </>
   );
 };
 
