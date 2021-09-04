@@ -1,4 +1,5 @@
 import React from 'react';
+// import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { Layout, Menu } from 'antd';
 import styled from 'styled-components';
@@ -11,70 +12,80 @@ import {
   ChatBubbleIcon,
   FriendsIcon,
 } from './Icon';
+import MyPage from './MyPage';
 
 const Navigation = ({ onCollapse }) => {
   const collapsed = useRecoilValue(collapsedState);
+  // const [showModal, setShowModal] = useState(false);
 
   return (
-    <Sider
-      collapsible
-      collapsed={collapsed}
-      onCollapse={onCollapse}
-      trigger={null}
-    >
-      <LogowithDotIcon id="logo" />
-      <Menu theme="dark" mode="inline">
-        <Menu.Item
-          key="1"
-          className={window.location.pathname === '/room' ? 'active' : ''}
-        >
-          <a href="/room">
-            <SingleUserIcon />
-            <span>My Page</span>
-          </a>
-        </Menu.Item>
-        <Menu.Item
-          key="2"
-          className={window.location.pathname === '/social' ? 'active' : ''}
-        >
-          <a href="/social">
-            <FriendsIcon />
-            <span>Social</span>
-          </a>
-        </Menu.Item>
-        <Menu.Item
-          key="3"
-          className={window.location.pathname === '/chat' ? 'active' : ''}
-        >
-          <a href="/chat">
-            <ChatBubbleIcon />
-            <span>Chat</span>
-          </a>
-        </Menu.Item>
-        <Menu.Item
-          key="4"
-          className={window.location.pathname === '/settings' ? 'active' : ''}
-        >
-          <a href="/settings">
-            <SettingsIcon />
-            <span>Settings</span>
-          </a>
-        </Menu.Item>
-        <Menu.Item
-          key="5"
-          className={window.location.pathname === '/sailing' ? 'active' : ''}
-        >
-          <a href="/sailing">
-            <PlanetIcon />
-            {window.location.pathname === '/sailing' ? (
-              <span>Sailing</span>
-            ) : (
-              <span>Off</span>
-            )}
-          </a>
-        </Menu.Item>
-      </Menu>
-    </Sider>
+    <>
+      <Sider
+        collapsible
+        collapsed={collapsed}
+        onCollapse={onCollapse}
+        trigger={null}
+      >
+        <a href="/">
+          <LogowithDotIcon id="logo" />
+        </a>
+        <Menu theme="dark" mode="inline">
+          <Menu.Item
+            key="1"
+            className={window.location.pathname === '/room' ? 'active' : ''}
+            onClick={console.log('')}
+          >
+            <a href="/room">
+              <SingleUserIcon />
+              <span>My Page</span>
+            </a>
+          </Menu.Item>
+          <Menu.Item
+            key="2"
+            className={window.location.pathname === '/social' ? 'active' : ''}
+          >
+            <a href="/social">
+              <FriendsIcon />
+              <span>Social</span>
+            </a>
+          </Menu.Item>
+          <Menu.Item
+            key="3"
+            className={window.location.pathname === '/chat' ? 'active' : ''}
+          >
+            <a href="/chat">
+              <ChatBubbleIcon />
+              <span>Chat</span>
+            </a>
+          </Menu.Item>
+          <Menu.Item
+            key="4"
+            className={window.location.pathname === '/settings' ? 'active' : ''}
+          >
+            <a href="/settings">
+              <SettingsIcon />
+              <span>Settings</span>
+            </a>
+          </Menu.Item>
+          <Menu.Item
+            key="5"
+            className={window.location.pathname === '/sailing' ? 'active' : ''}
+          >
+            <a href="/sailing">
+              <PlanetIcon />
+              {window.location.pathname === '/sailing' ? (
+                <span>Sailing</span>
+              ) : (
+                <span>Off</span>
+              )}
+            </a>
+          </Menu.Item>
+        </Menu>
+      </Sider>
+      {/* {showModal ? <NavbarMenuContainer /> : ''} */}
+
+      <MyPage />
+    </>
   );
 };
 
