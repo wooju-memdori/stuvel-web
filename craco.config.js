@@ -1,4 +1,6 @@
+const { FallOutlined } = require('@ant-design/icons');
 const CracoLessPlugin = require('craco-less');
+const { withTheme } = require('styled-components');
 
 module.exports = {
   plugins: [
@@ -18,6 +20,7 @@ module.exports = {
               '@warning-color': '@gold-6',
               '@normal-color': '#D300FF',
               '@text-color': '#fff',
+              '@text-color-secondary': 'fade(@white, 60%)',
               '@component-background': 'rgba(0, 0, 0, 0)',
               '@border-radius-base': '0.571em',
               '@btn-font-weight': '700',
