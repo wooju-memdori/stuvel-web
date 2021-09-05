@@ -29,7 +29,6 @@ const Navigation = ({ onCollapse }) => {
 
   const onModalClose = useCallback(() => {
     setShowModalMenu(false);
-
     setCurrentHeader('');
   }, []);
 

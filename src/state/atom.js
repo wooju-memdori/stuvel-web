@@ -1,6 +1,11 @@
 import { atom, selectorFamily } from 'recoil';
 import axios from '../utils/axios';
 
+export const isModalVisibleState = atom({
+  key: 'isModalVisibleState',
+  default: false,
+});
+
 export const collapsedState = atom({
   key: 'collapsedState',
   default: false,
