@@ -822,6 +822,44 @@ const DefaultProfileSvg = () => (
     </defs>
   </svg>
 );
+
+const PlusButtonSvg = () => (
+  <svg
+    width="25"
+    height="25"
+    viewBox="0 0 25 25"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect
+      x="0.855"
+      y="0.855"
+      width="23.29"
+      height="23.29"
+      rx="11.645"
+      stroke="white"
+      strokeWidth="1.71"
+    />
+    <rect
+      x="11.2129"
+      y="6.052"
+      width="2.57891"
+      height="12.8946"
+      rx="1.28946"
+      fill="white"
+    />
+    <rect
+      x="18.9482"
+      y="11.2104"
+      width="2.57891"
+      height="12.8946"
+      rx="1.28946"
+      transform="rotate(90 18.9482 11.2104)"
+      fill="white"
+    />
+  </svg>
+);
+
 const CloseButtonSvg = () => (
   <svg
     width="34"
@@ -883,7 +921,6 @@ export const NoMicIcon = (props) => <Icon component={NoMicSvg} {...props} />;
 export const NoScreenShareIcon = (props) => (
   <Icon component={NoScreenShareSvg} {...props} />
 );
-
 export const FilterIcon = (props) => <Icon component={FilterSvg} {...props} />;
 export const StarIcon = (props) => <Icon component={StarSvg} {...props} />;
 export const StarFilledIcon = (props) => (
@@ -901,7 +938,9 @@ export const ChatBubbleIcon = (props) => (
 export const DefaultProfileIcon = (props) => (
   <Icon component={DefaultProfileSvg} {...props} />
 );
-
 export const CloseButtonIcon = (props) => (
   <Icon component={CloseButtonSvg} {...props} />
+);
+export const PlusButtonIcon = (props) => (
+  <Icon component={PlusButtonSvg} {...props} />
 );
