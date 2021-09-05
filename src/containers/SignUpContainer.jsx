@@ -1,16 +1,19 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { requiredOrOptionState } from '../state/atom';
+import { signUpProcessState } from '../state/atom';
 import ChooseOption from '../components/ChooseOption';
 import ChooseRequired from '../components/ChooseRequired';
+import FinishSignUp from '../components/FinishSignUp';
 
 const SignUpContainer = () => {
-    const requiredOrOption = useRecoilValue(requiredOrOptionState);
+    const signUpProcess = useRecoilValue(signUpProcessState);
 
-    switch (requiredOrOption) {
+    switch (signUpProcess) {
         case 'required':
             return <ChooseRequired />;
+        case 'finish':
+            return <FinishSignUp />;
         default:
             return <ChooseOption />;
     }

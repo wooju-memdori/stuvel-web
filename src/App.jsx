@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import LoggedOut from './components/LoggedOut';
+import FinishSignUp from './components/FinishSignUp';
 import SignUpContainer from './containers/SignUpContainer';
 import IndexContainer from './containers/IndexContainer';
 import 'antd/dist/antd.less';
@@ -15,6 +16,7 @@ const App = () => {
           <Switch>
             <Route path="/" component={LoggedOut} exact />
             <Route path="/signup" component={SignUpContainer} exact />
+            <Route path="/end" component={FinishSignUp} exact />
           </Switch>
         </BrowserRouter>
       </RecoilRoot>
