@@ -98,3 +98,19 @@ export const followingsState = selectorFamily({
     return response.data.data;
   },
 });
+
+export const currentUserInfoState = selectorFamily({
+  key: 'currentUserInfoState',
+  get: () => async () => {
+    const response = await axios.get(`/users`);
+    if (response.error) {
+      return response.error;
+    }
+    return response.data.data;
+  },
+});
+
+export const currentNavbarComponent = atom({
+  key: 'currentUserInfoState',
+  default: '',
+});

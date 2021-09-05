@@ -1,8 +1,8 @@
-import React from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import React, { useCallback, useState } from 'react';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { Layout, Menu } from 'antd';
 import styled from 'styled-components';
-import { collapsedState, isModalVisibleState } from '../state/atom';
+import { collapsedState, currentNavbarComponent } from '../state/atom';
 import {
   LogowithDotIcon,
   SettingsIcon,
@@ -12,75 +12,83 @@ import {
   FriendsIcon,
 } from './Icon';
 
+import NavbarMenuContainer from '../containers/NavbarMenuContainer';
+
 const Navigation = ({ onCollapse }) => {
   const collapsed = useRecoilValue(collapsedState);
-  const setIsModalVisible = useSetRecoilState(isModalVisibleState);
-  const showModal = () => {
-    setIsModalVisible(true);
-    console.log(true);
-  };
 
-  console.log(showModal);
+  const [currentHeader, setCurrentHeader] = useRecoilState(
+    currentNavbarComponent,
+  );
+
+  const [showModalMenu, setShowModalMenu] = useState(false);
+  const onModalShow = useCallback((key) => {
+    setShowModalMenu(true);
+    setCurrentHeader(key);
+  }, []);
+
+  const onModalClose = useCallback(() => {
+    setShowModalMenu(false);
+    setCurrentHeader('');
+  }, []);
+
   return (
-    <Sider
-      collapsible
-      collapsed={collapsed}
-      onCollapse={onCollapse}
-      trigger={null}
-    >
-      <LogowithDotIcon id="logo" />
-      <Menu theme="dark" mode="inline">
-        <Menu.Item
-          key="1"
-          className={window.location.pathname === '/room' ? 'active' : ''}
-        >
-          <a href="/room">
+    <>
+      {showModalMenu ? <NavbarMenuContainer onClose={onModalClose} /> : ''}
+
+      <Sider
+        collapsible
+        collapsed={collapsed}
+        onCollapse={onCollapse}
+        trigger={null}
+      >
+        <a href="/">
+          <LogowithDotIcon id="logo" />
+        </a>
+        <Menu theme="dark" mode="inline">
+          <Menu.Item
+            key="My Page"
+            className={currentHeader === 'My Page' ? 'active' : ''}
+            onClick={({ key }) => onModalShow(key)}
+          >
             <SingleUserIcon />
             <span>My Page</span>
-          </a>
-        </Menu.Item>
-        <Menu.Item
-          key="2"
-          className={window.location.pathname === '/social' ? 'active' : ''}
-        >
-          <a href="/social">
+          </Menu.Item>
+          <Menu.Item
+            key="Social"
+            className={currentHeader === 'Social' ? 'active' : ''}
+            onClick={({ key }) => onModalShow(key)}
+          >
             <FriendsIcon />
             <span>Social</span>
-          </a>
-        </Menu.Item>
-        <Menu.Item
-          key="3"
-          className={window.location.pathname === '/chat' ? 'active' : ''}
-        >
-          <a href="/chat">
+          </Menu.Item>
+          <Menu.Item
+            key="Chat"
+            className={currentHeader === 'Chat' ? 'active' : ''}
+            onClick={({ key }) => onModalShow(key)}
+          >
             <ChatBubbleIcon />
             <span>Chat</span>
-          </a>
-        </Menu.Item>
-        <Menu.Item
-          key="4"
-          className={window.location.pathname === '/settings' ? 'active' : ''}
-        >
-          <a href="/settings">
+          </Menu.Item>
+          <Menu.Item
+            key="Settings"
+            className={currentHeader === 'Settings' ? 'active' : ''}
+            onClick={({ key }) => onModalShow(key)}
+          >
             <SettingsIcon />
             <span>Settings</span>
-          </a>
-        </Menu.Item>
-        <Menu.Item
-          key="5"
-          className={window.location.pathname === '/sailing' ? 'active' : ''}
-        >
-          <a href="/sailing">
+          </Menu.Item>
+          <Menu.Item key="Sailing">
             <PlanetIcon />
             {window.location.pathname === '/sailing' ? (
               <span>Sailing</span>
             ) : (
               <span>Off</span>
             )}
-          </a>
-        </Menu.Item>
-      </Menu>
-    </Sider>
+          </Menu.Item>
+        </Menu>
+      </Sider>
+    </>
   );
 };
 
@@ -91,6 +99,7 @@ const Sider = styled(Layout.Sider)`
   min-width: 80px !important;
   max-width: 80px !important;
   text-align: center;
+  color: #ebebeb;
   #logo {
     padding-top: 15px;
   }
@@ -99,6 +108,10 @@ const Sider = styled(Layout.Sider)`
   }
   .ant-menu {
     background-color: transparent;
+  }
+  .ant-menu-item-active,
+  .ant-menu-item-selected {
+    background-color: transparent !important;
   }
   .ant-menu-item {
     flex-direction: column;
@@ -127,20 +140,18 @@ const Sider = styled(Layout.Sider)`
     }
     & .ant-menu-title-content {
       display: flex;
-      & a {
-        position: relative;
-        bottom: 10px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        padding-bottom: 5px;
-        line-height: 1;
-        margin-left: 0 !important;
-        & span:last-child {
-          text-align: center;
-          margin: 0;
-          margin-top: 5px;
-        }
+      position: relative;
+      bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: 5px;
+      line-height: 1;
+      margin-left: 0 !important;
+      & span:last-child {
+        text-align: center;
+        margin: 0;
+        margin-top: 5px;
       }
     }
   }
@@ -148,7 +159,7 @@ const Sider = styled(Layout.Sider)`
     position: absolute;
     bottom: 0;
     border-bottom: 5px solid transparent;
-    & .ant-menu-title-content a {
+    & .ant-menu-title-content {
       bottom: 5px;
       & svg {
         margin-top: 0;
@@ -156,7 +167,6 @@ const Sider = styled(Layout.Sider)`
       }
     }
     &:hover,
-    &:active,
     &.active {
       border-bottom: 5px solid #bd01e4;
     }
@@ -165,6 +175,9 @@ const Sider = styled(Layout.Sider)`
     svg path {
       fill: rgba(255, 255, 255, 0.5);
       transition: 0.25s;
+    }
+    span {
+      color: rgba(255, 255, 255, 0.5) !important;
     }
   }
 `;
