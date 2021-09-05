@@ -634,6 +634,7 @@ const NoScreenShareSvg = () => (
     />
   </svg>
 );
+
 const FilterSvg = () => (
   <svg
     width="1.813em"
@@ -791,6 +792,28 @@ const DefaultProfileSvg = () => (
     </defs>
   </svg>
 );
+const CloseButtonSvg = () => (
+  <svg
+    width="34"
+    height="35"
+    viewBox="0 0 34 35"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M8.18652 9.4585L25.1866 26.4586"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <path
+      d="M25.1865 8.83057L8.18644 25.8307"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+  </svg>
+);
 
 /*eslint-disable */
 export const LogoIcon = (props) => <Icon component={LogoSvg} {...props} />;
@@ -842,4 +865,8 @@ export const ChatBubbleIcon = (props) => (
 );
 export const DefaultProfileIcon = (props) => (
   <Icon component={DefaultProfileSvg} {...props} />
+);
+
+export const CloseButtonIcon = (props) => (
+  <Icon component={CloseButtonSvg} {...props} />
 );
