@@ -16,7 +16,10 @@ import NavbarMenuContainer from '../containers/NavbarMenuContainer';
 
 const Navigation = ({ onCollapse }) => {
   const collapsed = useRecoilValue(collapsedState);
-  const setCurrentHeader = useRecoilState(currentNavbarComponent)[1];
+
+  const [currentHeader, setCurrentHeader] = useRecoilState(
+    currentNavbarComponent,
+  );
 
   const [showModalMenu, setShowModalMenu] = useState(false);
   const onModalShow = useCallback((key) => {
@@ -26,6 +29,8 @@ const Navigation = ({ onCollapse }) => {
 
   const onModalClose = useCallback(() => {
     setShowModalMenu(false);
+
+    setCurrentHeader('');
   }, []);
 
   return (
@@ -44,7 +49,7 @@ const Navigation = ({ onCollapse }) => {
         <Menu theme="dark" mode="inline">
           <Menu.Item
             key="My Page"
-            className={window.location.pathname === '/room' ? 'active' : ''}
+            className={currentHeader === 'My Page' ? 'active' : ''}
             onClick={({ key }) => onModalShow(key)}
           >
             <SingleUserIcon />
@@ -52,7 +57,7 @@ const Navigation = ({ onCollapse }) => {
           </Menu.Item>
           <Menu.Item
             key="Social"
-            className={window.location.pathname === '/social' ? 'active' : ''}
+            className={currentHeader === 'Social' ? 'active' : ''}
             onClick={({ key }) => onModalShow(key)}
           >
             <FriendsIcon />
@@ -60,7 +65,7 @@ const Navigation = ({ onCollapse }) => {
           </Menu.Item>
           <Menu.Item
             key="Chat"
-            className={window.location.pathname === '/chat' ? 'active' : ''}
+            className={currentHeader === 'Chat' ? 'active' : ''}
             onClick={({ key }) => onModalShow(key)}
           >
             <ChatBubbleIcon />
@@ -68,16 +73,13 @@ const Navigation = ({ onCollapse }) => {
           </Menu.Item>
           <Menu.Item
             key="Settings"
-            className={window.location.pathname === '/settings' ? 'active' : ''}
+            className={currentHeader === 'Settings' ? 'active' : ''}
             onClick={({ key }) => onModalShow(key)}
           >
             <SettingsIcon />
             <span>Settings</span>
           </Menu.Item>
-          <Menu.Item
-            key="Sailing"
-            className={window.location.pathname === '/sailing' ? 'active' : ''}
-          >
+          <Menu.Item key="Sailing">
             <PlanetIcon />
             {window.location.pathname === '/sailing' ? (
               <span>Sailing</span>
@@ -98,6 +100,7 @@ const Sider = styled(Layout.Sider)`
   min-width: 80px !important;
   max-width: 80px !important;
   text-align: center;
+  color: #ebebeb;
   #logo {
     padding-top: 15px;
   }
@@ -106,6 +109,10 @@ const Sider = styled(Layout.Sider)`
   }
   .ant-menu {
     background-color: transparent;
+  }
+  .ant-menu-item-active,
+  .ant-menu-item-selected {
+    background-color: transparent !important;
   }
   .ant-menu-item {
     flex-direction: column;
@@ -134,21 +141,18 @@ const Sider = styled(Layout.Sider)`
     }
     & .ant-menu-title-content {
       display: flex;
-      &,
-      & a {
-        position: relative;
-        bottom: 10px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        padding-bottom: 5px;
-        line-height: 1;
-        margin-left: 0 !important;
-        & span:last-child {
-          text-align: center;
-          margin: 0;
-          margin-top: 5px;
-        }
+      position: relative;
+      bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: 5px;
+      line-height: 1;
+      margin-left: 0 !important;
+      & span:last-child {
+        text-align: center;
+        margin: 0;
+        margin-top: 5px;
       }
     }
   }
@@ -156,8 +160,7 @@ const Sider = styled(Layout.Sider)`
     position: absolute;
     bottom: 0;
     border-bottom: 5px solid transparent;
-    & .ant-menu-title-content,
-    & .ant-menu-title-content a {
+    & .ant-menu-title-content {
       bottom: 5px;
       & svg {
         margin-top: 0;
@@ -165,7 +168,6 @@ const Sider = styled(Layout.Sider)`
       }
     }
     &:hover,
-    &:active,
     &.active {
       border-bottom: 5px solid #bd01e4;
     }
@@ -174,6 +176,9 @@ const Sider = styled(Layout.Sider)`
     svg path {
       fill: rgba(255, 255, 255, 0.5);
       transition: 0.25s;
+    }
+    span {
+      color: rgba(255, 255, 255, 0.5) !important;
     }
   }
 `;
