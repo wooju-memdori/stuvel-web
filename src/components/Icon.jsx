@@ -634,6 +634,7 @@ const NoScreenShareSvg = () => (
     />
   </svg>
 );
+
 const FilterSvg = () => (
   <svg
     width="1.813em"
@@ -747,6 +748,88 @@ const ChatBubbleSvg = () => (
   </svg>
 );
 
+const DefaultProfileSvg = () => (
+  <svg
+    width="138"
+    height="138"
+    viewBox="0 0 138 138"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <mask
+      id="mask0"
+      maskUnits="userSpaceOnUse"
+      x="0"
+      y="0"
+      width="138"
+      height="138"
+    >
+      <circle cx="69" cy="69" r="69" fill="#C4C4C4" />
+    </mask>
+    <g mask="url(#mask0)">
+      <path d="M0 0H138V138H0V0Z" fill="#A0A0A0" />
+      <path
+        d="M37.9502 60.3754C37.9502 55.1356 42.1979 50.8879 47.4377 50.8879H90.5627C95.8025 50.8879 100.05 55.1356 100.05 60.3754V107.813C100.05 113.053 95.8025 117.3 90.5627 117.3H47.4377C42.1979 117.3 37.9502 113.053 37.9502 107.813V60.3754Z"
+        fill="#CECECE"
+      />
+      <path
+        d="M37.9502 60.3754C37.9502 55.1356 42.1979 50.8879 47.4377 50.8879H90.5627C95.8025 50.8879 100.05 55.1356 100.05 60.3754V107.813C100.05 113.053 95.8025 117.3 90.5627 117.3H47.4377C42.1979 117.3 37.9502 113.053 37.9502 107.813V60.3754Z"
+        fill="url(#paint0_radial)"
+      />
+      <path
+        d="M36.2246 48.2378C36.2246 32.076 49.3263 18.9744 65.488 18.9744H72.5112C88.6729 18.9744 101.775 32.076 101.775 48.2378V55.261C101.775 71.4227 88.6729 84.5244 72.5112 84.5244H65.488C49.3263 84.5244 36.2246 71.4227 36.2246 55.261V48.2378Z"
+        fill="#EBEBEB"
+      />
+      <path
+        d="M46 41.452C46 39.9413 46.5987 38.4886 47.8864 37.6986C50.8208 35.8983 57.4874 33 69.996 33C82.5045 33 89.1712 35.8983 92.1056 37.6986C93.3933 38.4886 93.992 39.9413 93.992 41.452V63.4855C93.992 65.6341 92.7903 67.5705 90.7254 68.1641C87.215 69.1732 80.6543 70.4571 69.996 70.4571C59.3376 70.4571 52.777 69.1732 49.2666 68.1641C47.2016 67.5705 46 65.6341 46 63.4855V41.452Z"
+        fill="#C4C4C4"
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M45.2839 87.9746C32.7808 87.9746 22.0662 96.915 19.8272 109.216L14.5879 138H123.414L118.175 109.216C115.936 96.915 105.222 87.9746 92.7184 87.9746H45.2839Z"
+        fill="#EBEBEB"
+      />
+    </g>
+    <defs>
+      <radialGradient
+        id="paint0_radial"
+        cx="0"
+        cy="0"
+        r="1"
+        gradientUnits="userSpaceOnUse"
+        gradientTransform="translate(69.0002 84.0942) rotate(90) scale(33.2062 31.05)"
+      >
+        <stop stopColor="#C2C2C2" />
+        <stop offset="0.822917" stopColor="#CBCBCB" stopOpacity="0.937857" />
+        <stop offset="1" stopColor="#CECECE" stopOpacity="0.91" />
+      </radialGradient>
+    </defs>
+  </svg>
+);
+const CloseButtonSvg = () => (
+  <svg
+    width="34"
+    height="35"
+    viewBox="0 0 34 35"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M8.18652 9.4585L25.1866 26.4586"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <path
+      d="M25.1865 8.83057L8.18644 25.8307"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
 /*eslint-disable */
 export const LogoIcon = (props) => <Icon component={LogoSvg} {...props} />;
 export const BigLogoIcon = (props) => (
@@ -795,4 +878,11 @@ export const SingleUserIcon = (props) => (
 );
 export const ChatBubbleIcon = (props) => (
   <Icon component={ChatBubbleSvg} {...props} />
+);
+export const DefaultProfileIcon = (props) => (
+  <Icon component={DefaultProfileSvg} {...props} />
+);
+
+export const CloseButtonIcon = (props) => (
+  <Icon component={CloseButtonSvg} {...props} />
 );
