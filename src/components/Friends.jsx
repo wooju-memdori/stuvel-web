@@ -18,11 +18,11 @@ export default function Friends() {
   const followers = useRecoilValueLoadable(followersState());
   const followings = useRecoilValueLoadable(followingsState());
 
-  const handleOk = () => {
+  const handleModalOk = () => {
     setIsModalVisible(false);
   };
 
-  const handleCancel = () => {
+  const handleModalCancel = () => {
     setIsModalVisible(false);
   };
 
@@ -32,8 +32,8 @@ export default function Friends() {
     <Modal
       title="Followers"
       visible={isModalVisible}
-      onOk={handleOk}
-      onCancel={handleCancel}
+      onOk={handleModalOk}
+      onCancel={handleModalCancel}
       style={{ backgroundColor: '#290054' }}
     >
       <Search
