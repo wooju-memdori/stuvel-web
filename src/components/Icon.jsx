@@ -669,6 +669,21 @@ const StarSvg = () => (
   </svg>
 );
 
+const StarFilledSvg = () => (
+  <svg
+    width="28"
+    height="27"
+    viewBox="0 0 28 27"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M13.0489 1.63408C13.3483 0.712768 14.6517 0.712771 14.9511 1.63408L17.3677 9.07178C17.5016 9.4838 17.8855 9.76276 18.3188 9.76276H26.1392C27.1079 9.76276 27.5107 11.0024 26.727 11.5718L20.4001 16.1685C20.0496 16.4232 19.903 16.8745 20.0369 17.2866L22.4535 24.7242C22.7529 25.6456 21.6984 26.4117 20.9147 25.8423L14.5878 21.2455C14.2373 20.9909 13.7627 20.9909 13.4122 21.2455L7.08533 25.8423C6.30162 26.4117 5.24714 25.6456 5.54649 24.7243L7.96315 17.2866C8.09702 16.8745 7.95036 16.4232 7.59987 16.1685L1.27299 11.5718C0.489277 11.0024 0.892056 9.76276 1.86078 9.76276H9.68123C10.1145 9.76276 10.4984 9.4838 10.6323 9.07178L13.0489 1.63408Z"
+      fill="#FFECA8"
+    />
+  </svg>
+);
+
 const AstronautSvg = () => (
   <svg
     width="61"
@@ -868,8 +883,12 @@ export const NoMicIcon = (props) => <Icon component={NoMicSvg} {...props} />;
 export const NoScreenShareIcon = (props) => (
   <Icon component={NoScreenShareSvg} {...props} />
 );
+
 export const FilterIcon = (props) => <Icon component={FilterSvg} {...props} />;
 export const StarIcon = (props) => <Icon component={StarSvg} {...props} />;
+export const StarFilledIcon = (props) => (
+  <Icon component={StarFilledSvg} {...props} />
+);
 export const AstronautIcon = (props) => (
   <Icon component={AstronautSvg} {...props} />
 );

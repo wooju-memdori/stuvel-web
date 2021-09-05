@@ -40,7 +40,8 @@ export default NavbarMenuContainer;
 const LayoutContainer = styled.div`
   position: fixed;
   left: 80px;
-  width: 573px;
+  width: 34%;
+  // width: 573px;
   height: 100%;
   z-index: 3;
   background-color: #200040;
