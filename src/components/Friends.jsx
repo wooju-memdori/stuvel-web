@@ -43,7 +43,7 @@ export default function Friends() {
         style={{ marginBottom: '1rem' }}
       />
       {followers.state === 'hasValue' && followings.state === 'hasValue' && (
-        <Tabs tabBarStyle={{ color: 'white' }}>
+        <Tabs>
           <TabPane tab={`팔로워(${followers.contents.length}명)`} key="1">
             <UserList list={followers.contents} />
           </TabPane>
