@@ -1,10 +1,11 @@
 /* eslint-disable */
 
 import React from 'react';
-import { List, Avatar, Badge } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { List, Avatar, Badge, Popover } from 'antd';
+import { UserOutlined, EllipsisOutlined } from '@ant-design/icons';
 import { arrayOf } from 'prop-types';
 import styled from 'styled-components';
+import { ChatSmallIcon, PlusIcon } from './Icon';
 
 import 'antd/dist/antd.css';
 
@@ -19,33 +20,49 @@ export default function UserList({ list }) {
           <List.Item.Meta
             style={{ color: 'white' }}
             avatar={
-              <>
-                <Badge
-                  dot
-                  offset={[-7, 45]}
-                  style={{
-                    width: '0.9em',
-                    height: '0.9em',
-                    background: '#FB95FD',
-                    zIndex: 2,
-                  }}
-                >
-                  <StyledAvatar src={item.image} icon={<UserOutlined />} />
-                </Badge>
-              </>
+              <Badge
+                dot
+                offset={[-7, 45]}
+                style={{
+                  width: '0.9em',
+                  height: '0.9em',
+                  background: '#FB95FD',
+                  zIndex: 2,
+                }}
+              >
+                <StyledAvatar src={item.image} icon={<UserOutlined />} />
+              </Badge>
             }
             title={item.nickname}
             description={
               item.roomId ? `${item.roomId} 행성에서 공부중` : '오프라인'
             }
+          />
+          <PlusIcon style={{ marginRight: '1em' }} />
+          <ChatSmallIcon style={{ marginRight: '0.8em' }} />
+          <Popover
+            placement="bottomRight"
+            content={
+              <StyledDiv>
+                <ul>
+                  <li>팔로우</li>
+                  <li>차단</li>
+                </ul>
+              </StyledDiv>
+            }
+            trigger="click"
           >
-            <div>안녕</div>
-          </List.Item.Meta>
+            <EllipsisOutlined style={{ fontSize: '2.5em' }} />
+          </Popover>
         </List.Item>
       )}
     />
   );
 }
+
+const StyledDiv = styled.div`
+  background-color: black;
+`;
 
 const StyledAvatar = styled(Avatar)`
   & {
