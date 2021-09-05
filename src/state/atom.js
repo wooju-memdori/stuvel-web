@@ -77,3 +77,35 @@ export const signUpDoneState = atom({
   key: 'signUpDoneState',
   default: false,
 });
+
+export const followersState = selectorFamily({
+  key: 'followersState',
+  get: () => async () => {
+    const response = await axios.get(`/followers`);
+    return response.data.data;
+  },
+});
+
+export const followingsState = selectorFamily({
+  key: 'followersState',
+  get: () => async () => {
+    const response = await axios.get(`/followings`);
+    return response.data.data;
+  },
+});
+
+export const currentUserInfoState = selectorFamily({
+  key: 'currentUserInfoState',
+  get: () => async () => {
+    const response = await axios.get(`/users`);
+    if (response.error) {
+      return response.error;
+    }
+    return response.data.data;
+  },
+});
+
+export const currentNavbarComponent = atom({
+  key: 'currentUserInfoState',
+  default: '',
+});

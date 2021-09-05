@@ -1,8 +1,7 @@
 import React from 'react';
 import { useRecoilValueLoadable } from 'recoil';
 import styled from 'styled-components';
-import { MaleIcon, FemaleIcon } from './Icon';
-import NavbarMenuContainer from '../containers/NavbarMenuContainer';
+import { MaleIcon, FemaleIcon, DefaultProfileIcon } from './Icon';
 import { currentUserInfoState } from '../state/atom';
 
 const MyPage = () => {
@@ -35,40 +34,43 @@ const MyPage = () => {
   console.log(currentUserInfo);
 
   return (
-    <NavbarMenuContainer>
-      <Profile>
-        {sampleUserInfo.user.image ? (
-          <ProfileImage
-            style={{
-              backgroundImage: `url(${sampleUserInfo.user.image})`,
-            }}
-          />
-        ) : (
-          <ProfileImage>empty</ProfileImage>
-        )}
+    <Profile>
+      {currentUserInfo.contents.image ? (
+        <ProfileImage
+          style={{
+            backgroundImage: `url(${currentUserInfo.contents.image})`,
+          }}
+        />
+      ) : (
+        <ProfileImage>
+          <DefaultProfileIcon />
+        </ProfileImage>
+      )}
 
-        <InfoDetails>
-          <div>{sampleUserInfo.user.nickname}</div>
-          <div>
-            <span>gender</span>{' '}
-            {sampleUserInfo.user.gender === 0 ? <MaleIcon /> : <FemaleIcon />}
-          </div>
-
-          <div>
-            <span>Score</span>
-
-            {sampleUserInfo.user.mobumScore}
-          </div>
-        </InfoDetails>
-        <InterestTags>
-          {sampleUserInfo.user.tag.map((tag) => (
-            <button type="button" key={tag}>
-              {tag}
-            </button>
-          ))}
-        </InterestTags>
-      </Profile>
-    </NavbarMenuContainer>
+      <InfoDetails>
+        <div>{currentUserInfo.contents.nickname}</div>
+        <div>
+          <span>gender</span>{' '}
+          {currentUserInfo.contents.gender === 0 ? (
+            <MaleIcon />
+          ) : (
+            <FemaleIcon />
+          )}
+        </div>
+        <div>
+          <span>Score</span>
+          {currentUserInfo.contents.mobumScore}
+        </div>
+      </InfoDetails>
+      <InterestTags>
+        {/* TODO */}
+        {sampleUserInfo.user.tag.map((tag) => (
+          <button type="button" key={tag}>
+            {tag}
+          </button>
+        ))}
+      </InterestTags>
+    </Profile>
   );
 };
 
@@ -81,18 +83,9 @@ const Profile = styled.div`
 const ProfileImage = styled.div`
   width: 138px;
   height: 138px;
-
-  background-color: lightgray;
   margin-top: 0.75rem;
   border-radius: 50%;
   background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .fa-paw {
-    font-size: 10rem;
-    color: ${({ theme }) => theme.beige};
-  }
 `;
 
 const InterestTags = styled.div`

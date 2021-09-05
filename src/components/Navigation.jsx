@@ -1,9 +1,8 @@
-import React from 'react';
-// import React, { useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import React, { useCallback, useState } from 'react';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { Layout, Menu } from 'antd';
 import styled from 'styled-components';
-import { collapsedState } from '../state/atom';
+import { collapsedState, currentNavbarComponent } from '../state/atom';
 import {
   LogowithDotIcon,
   SettingsIcon,
@@ -12,14 +11,27 @@ import {
   ChatBubbleIcon,
   FriendsIcon,
 } from './Icon';
-import MyPage from './MyPage';
+
+import NavbarMenuContainer from '../containers/NavbarMenuContainer';
 
 const Navigation = ({ onCollapse }) => {
   const collapsed = useRecoilValue(collapsedState);
-  // const [showModal, setShowModal] = useState(false);
+  const setCurrentHeader = useRecoilState(currentNavbarComponent)[1];
+
+  const [showModalMenu, setShowModalMenu] = useState(false);
+  const onModalShow = useCallback((key) => {
+    setShowModalMenu(true);
+    setCurrentHeader(key);
+  }, []);
+
+  const onModalClose = useCallback(() => {
+    setShowModalMenu(false);
+  }, []);
 
   return (
     <>
+      {showModalMenu ? <NavbarMenuContainer onClose={onModalClose} /> : ''}
+
       <Sider
         collapsible
         collapsed={collapsed}
@@ -31,60 +43,50 @@ const Navigation = ({ onCollapse }) => {
         </a>
         <Menu theme="dark" mode="inline">
           <Menu.Item
-            key="1"
+            key="My Page"
             className={window.location.pathname === '/room' ? 'active' : ''}
-            onClick={console.log('')}
+            onClick={({ key }) => onModalShow(key)}
           >
-            <a href="/room">
-              <SingleUserIcon />
-              <span>My Page</span>
-            </a>
+            <SingleUserIcon />
+            <span>My Page</span>
           </Menu.Item>
           <Menu.Item
-            key="2"
+            key="Social"
             className={window.location.pathname === '/social' ? 'active' : ''}
+            onClick={({ key }) => onModalShow(key)}
           >
-            <a href="/social">
-              <FriendsIcon />
-              <span>Social</span>
-            </a>
+            <FriendsIcon />
+            <span>Social</span>
           </Menu.Item>
           <Menu.Item
-            key="3"
+            key="Chat"
             className={window.location.pathname === '/chat' ? 'active' : ''}
+            onClick={({ key }) => onModalShow(key)}
           >
-            <a href="/chat">
-              <ChatBubbleIcon />
-              <span>Chat</span>
-            </a>
+            <ChatBubbleIcon />
+            <span>Chat</span>
           </Menu.Item>
           <Menu.Item
-            key="4"
+            key="Settings"
             className={window.location.pathname === '/settings' ? 'active' : ''}
+            onClick={({ key }) => onModalShow(key)}
           >
-            <a href="/settings">
-              <SettingsIcon />
-              <span>Settings</span>
-            </a>
+            <SettingsIcon />
+            <span>Settings</span>
           </Menu.Item>
           <Menu.Item
-            key="5"
+            key="Sailing"
             className={window.location.pathname === '/sailing' ? 'active' : ''}
           >
-            <a href="/sailing">
-              <PlanetIcon />
-              {window.location.pathname === '/sailing' ? (
-                <span>Sailing</span>
-              ) : (
-                <span>Off</span>
-              )}
-            </a>
+            <PlanetIcon />
+            {window.location.pathname === '/sailing' ? (
+              <span>Sailing</span>
+            ) : (
+              <span>Off</span>
+            )}
           </Menu.Item>
         </Menu>
       </Sider>
-      {/* {showModal ? <NavbarMenuContainer /> : ''} */}
-
-      <MyPage />
     </>
   );
 };
@@ -132,6 +134,7 @@ const Sider = styled(Layout.Sider)`
     }
     & .ant-menu-title-content {
       display: flex;
+      &,
       & a {
         position: relative;
         bottom: 10px;
@@ -153,6 +156,7 @@ const Sider = styled(Layout.Sider)`
     position: absolute;
     bottom: 0;
     border-bottom: 5px solid transparent;
+    & .ant-menu-title-content,
     & .ant-menu-title-content a {
       bottom: 5px;
       & svg {
