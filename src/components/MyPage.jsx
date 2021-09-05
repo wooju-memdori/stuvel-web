@@ -1,7 +1,13 @@
 import React from 'react';
 import { useRecoilValueLoadable } from 'recoil';
 import styled from 'styled-components';
-import { MaleIcon, FemaleIcon, DefaultProfileIcon } from './Icon';
+import {
+  MaleIcon,
+  FemaleIcon,
+  DefaultProfileIcon,
+  StarFilledIcon,
+  StarIcon,
+} from './Icon';
 import { currentUserInfoState } from '../state/atom';
 
 const MyPage = () => {
@@ -35,34 +41,86 @@ const MyPage = () => {
 
   return (
     <Profile>
-      {currentUserInfo.contents.image ? (
-        <ProfileImage
-          style={{
-            backgroundImage: `url(${currentUserInfo.contents.image})`,
-          }}
-        />
-      ) : (
-        <ProfileImage>
-          <DefaultProfileIcon />
-        </ProfileImage>
-      )}
-
-      <InfoDetails>
-        <div>{currentUserInfo.contents.nickname}</div>
-        <div>
-          <span>gender</span>{' '}
-          {currentUserInfo.contents.gender === 0 ? (
-            <MaleIcon />
-          ) : (
-            <FemaleIcon />
-          )}
-        </div>
-        <div>
-          <span>Score</span>
-          {currentUserInfo.contents.mobumScore}
-        </div>
-      </InfoDetails>
+      <div id="top">
+        {currentUserInfo?.contents.image ? (
+          <ProfileImage
+            style={{
+              backgroundImage: `url(${currentUserInfo?.contents.image})`,
+            }}
+          />
+        ) : (
+          <ProfileImage>
+            <DefaultProfileIcon />
+          </ProfileImage>
+        )}
+        <InfoDetails>
+          <div id="nickname">{currentUserInfo?.contents.nickname}</div>
+          <div id="gender">
+            <span className="field">gender</span>{' '}
+            {currentUserInfo?.contents.gender === 0 ? (
+              <MaleIcon />
+            ) : (
+              <FemaleIcon />
+            )}
+          </div>
+          <div id="score">
+            <span className="field">Score</span>
+            <span>
+              {
+                {
+                  5: (
+                    <>
+                      <StarFilledIcon />
+                      <StarFilledIcon />
+                      <StarFilledIcon />
+                      <StarFilledIcon />
+                      <StarFilledIcon />
+                    </>
+                  ),
+                  4: (
+                    <>
+                      <StarFilledIcon /> <StarFilledIcon />
+                      <StarFilledIcon />
+                      <StarFilledIcon />
+                      <StarIcon />
+                    </>
+                  ),
+                  3: (
+                    <>
+                      <StarFilledIcon />
+                      <StarFilledIcon />
+                      <StarFilledIcon />
+                      <StarIcon />
+                      <StarIcon />
+                    </>
+                  ),
+                  2: (
+                    <>
+                      <StarFilledIcon />
+                      <StarFilledIcon />
+                      <StarIcon />
+                      <StarIcon />
+                      <StarIcon />
+                    </>
+                  ),
+                  1: (
+                    <>
+                      <StarFilledIcon />
+                      <StarIcon />
+                      <StarIcon />
+                      <StarIcon />
+                      <StarIcon />
+                    </>
+                  ),
+                }[currentUserInfo?.contents.mobumScore]
+              }
+            </span>
+          </div>
+        </InfoDetails>
+      </div>
       <InterestTags>
+        <h1>내 관심사 설정 </h1>
+
         {/* TODO */}
         {sampleUserInfo.user.tag.map((tag) => (
           <button type="button" key={tag}>
@@ -76,8 +134,14 @@ const MyPage = () => {
 
 const Profile = styled.div`
   width: 100%;
-  padding: 10px;
+  // padding: 10px;
+  color: #e5e5e5;
   display: flex;
+  flex-direction: column;
+  #top {
+    display: flex;
+    flex-direction: row;
+  }
 `;
 
 const ProfileImage = styled.div`
@@ -88,17 +152,51 @@ const ProfileImage = styled.div`
   background-size: cover;
 `;
 
+const InfoDetails = styled.div`
+  margin-left: 2.5rem;
+  font-size: 1rem;
+  #nickname {
+    font-size: 2rem;
+    font-weight: bold;
+    padding-bottom: 0.5rem;
+  }
+  #score {
+    svg {
+      padding-right: 0.25rem;
+      margin: 0;
+    }
+  }
+  #gender {
+    .anticon {
+      position: relative;
+      left: -5px;
+      bottom: -6px;
+    }
+  }
+  #gender,
+  #score {
+    padding-bottom: 1rem;
+    .field {
+      display: inline-block;
+      width: 4rem;
+    }
+  }
+`;
 const InterestTags = styled.div`
+  margin-top: 3rem;
+  h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #e5e5e5;
+  }
   button {
-    font-size: 0.75rem;
+    margin: 0.25rem;
+    font-size: 1rem;
     color: black;
-    background-color: white;
+    background-color: #ebebeb;
     border-radius: 25px;
-
     border: none;
   }
 `;
-
-const InfoDetails = styled.div``;
 
 export default MyPage;
