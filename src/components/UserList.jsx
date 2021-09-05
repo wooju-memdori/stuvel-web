@@ -41,14 +41,16 @@ export default function UserList({ list }) {
           <PlusIcon style={{ marginRight: '1em' }} />
           <ChatSmallIcon style={{ marginRight: '0.8em' }} />
           <Popover
+            style={{ borderRadius: 0 }}
             placement="bottomRight"
             content={
-              <StyledDiv>
-                <ul>
-                  <li>팔로우</li>
-                  <li>차단</li>
-                </ul>
-              </StyledDiv>
+              <List split={false} size="small">
+                {item.roomId && <List.Item>비행 따라가기</List.Item>}
+                {item.following && <List.Item>언팔로우</List.Item>}
+                <List.Item>차단</List.Item>
+                <List.Item>신고</List.Item>
+                <List.Item>초대</List.Item>
+              </List>
             }
             trigger="click"
           >
@@ -59,10 +61,6 @@ export default function UserList({ list }) {
     />
   );
 }
-
-const StyledDiv = styled.div`
-  background-color: black;
-`;
 
 const StyledAvatar = styled(Avatar)`
   & {

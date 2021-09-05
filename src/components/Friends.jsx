@@ -51,7 +51,7 @@ export default function Friends() {
             <UserList list={followings.contents} />
           </TabPane>
           <TabPane tab="나와 비행한 여행자" key="3">
-            개발 중입니다~
+            Coming Soon
           </TabPane>
         </Tabs>
       )}
