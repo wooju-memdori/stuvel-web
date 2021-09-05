@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { currentNavbarComponent } from '../state/atom';
 import MyPage from '../components/MyPage';
+import { CloseButtonIcon } from '../components/Icon';
 
 const NavbarMenuContainer = ({ onClose }) => {
   const currentHeader = useRecoilValue(currentNavbarComponent);
@@ -14,7 +15,7 @@ const NavbarMenuContainer = ({ onClose }) => {
         <Header>
           {currentHeader}
           <button type="button" onClick={onClose} onKeyDown={onClose}>
-            X
+            <CloseButtonIcon />
           </button>
         </Header>
         <Content>
@@ -43,15 +44,25 @@ const LayoutContainer = styled.div`
   height: 100%;
   z-index: 3;
   background-color: #200040;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 `;
 
 const Header = styled.div`
   font-size: 1.25rem;
-  font-weight: 400;
+  font-weight: bold;
   text-align: left;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #ebebeb;
+  padding: 0.5rem;
+  & button {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 0;
+    padding-right: 1rem;
+    cursor: pointer;
+  }
 `;
-
 const Content = styled.div`
   margin-top: 2rem;
   z-index: 1000;
