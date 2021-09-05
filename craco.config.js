@@ -33,6 +33,8 @@ module.exports = {
               '@btn-default-border': '#D300FF',
               '@btn-border-width': '0.15em',
               '@layout-footer-background': 'rgba(0, 0, 0, 0)',
+              '@popover-arrow-width': '0',
+              '@popover-bg': '#7D54B5',
             },
             javascriptEnabled: true,
           },
