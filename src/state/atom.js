@@ -114,3 +114,14 @@ export const currentNavbarComponent = atom({
   key: 'currentUserInfoState',
   default: '',
 });
+
+// export const userUpdateState = selectorFamily({
+//   key: 'userUpdateState',
+//   get: (body) => async () => {
+//     const response = await axios.patch(`/users/me`, body);
+//     if (response.error) {
+//       return response.error;
+//     }
+//     return response.data.data;
+//   },
+// });
