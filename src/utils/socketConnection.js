@@ -12,6 +12,7 @@ class SocketConnection {
     this.settings = settings;
     this.streaming = false;
     this.myId = '';
+    this.myUserInfo = null; // stuvel에서 사용하는 userId
     this.myPeer = initializePeerConnection();
     this.socket = initializeSocketConnection();
     if (this.socket) this.isSocketConnected = true;
@@ -55,7 +56,9 @@ class SocketConnection {
       };
       console.log('peers established and joined room', userData);
       const response = await axios.post(`./room/${roomId}`);
-      this.socket.emit('join-room', roomId, id, response.data.userId);
+      this.myUserInfo = response.data.userInfo;
+      console.log(this.myUserInfo);
+      this.socket.emit('join-room', roomId, id, this.myUserInfo);
       this.setNavigatorToStream();
     });
     this.myPeer.on('error', (err) => {
@@ -72,7 +75,7 @@ class SocketConnection {
         this.streaming = true;
         this.settings.updateInstance('streaming', true);
         // stream과 id로 비디오 element 생성
-        this.createVideo({ id: this.myId, stream });
+        this.createVideo({ id: this.myId, userInfo: null, stream });
         // peer 이벤트 리스너
         // 다른 유저가 보낸 stream을 듣고 peer.answer(stream)으로 로컬 스트림 응답함
         this.setPeersListeners(stream);
@@ -103,7 +106,11 @@ class SocketConnection {
     this.myPeer.on('call', (call) => {
       call.answer(stream);
       call.on('stream', (userVideoStream) => {
-        this.createVideo({ id: call.metadata.id, stream: userVideoStream });
+        this.createVideo({
+          id: call.metadata.id,
+          userInfo: call.metadata.userInfo,
+          stream: userVideoStream,
+        });
       });
       call.on('close', () => {
         console.log('closing peers listeners', call.metadata.id);
@@ -119,28 +126,33 @@ class SocketConnection {
 
   newUserConnection = (stream) => {
     console.log('newUserConnection');
-    this.socket.on('user-connected', (userId) => {
-      console.log('New User Connected', userId);
-      this.connectToNewUser(userId, stream);
+    this.socket.on('user-connected', (peerId, userInfo) => {
+      console.log('New User Connected', peerId, userInfo);
+      console.log('userID 가져왔어요~', userInfo);
+      this.connectToNewUser(peerId, userInfo, stream);
     });
   };
 
-  connectToNewUser(userId, stream) {
-    const call = this.myPeer.call(userId, stream, {
-      metadata: { id: this.myId },
+  connectToNewUser(peerId, userInfo, stream) {
+    const call = this.myPeer.call(peerId, stream, {
+      metadata: { id: this.myId, userInfo: this.myUserInfo },
     });
     call.on('stream', (userVideoStream) => {
-      this.createVideo({ id: userId, stream: userVideoStream });
+      this.createVideo({
+        id: peerId,
+        userInfo: userInfo,
+        stream: userVideoStream,
+      });
     });
     call.on('close', () => {
-      console.log('closing new user', userId);
-      this.removeVideo(userId);
+      console.log('closing new user', peerId);
+      this.removeVideo(peerId);
     });
     call.on('error', () => {
       console.log('peer error ------');
-      this.removeVideo(userId);
+      this.removeVideo(peerId);
     });
-    peers[userId] = call;
+    peers[peerId] = call;
   }
 
   createVideo = (createObj) => {
@@ -157,11 +169,35 @@ class SocketConnection {
       if (this.myId === createObj.id) video.muted = true;
       videoContainer.appendChild(video);
       roomContainer.append(videoContainer);
+      if (createObj.userInfo) {
+        const userInfoDiv = document.createElement('div');
+        this.createUserInfo(userInfoDiv, createObj.userInfo);
+        videoContainer.appendChild(userInfoDiv);
+      }
     } else {
       if (document.getElementById(createObj.id)) {
         document.getElementById(createObj.id).srcObject = createObj.stream;
       }
     }
+  };
+
+  createUserInfo = (userInfoDiv, userInfo) => {
+    userInfoDiv.className = 'userInfo';
+    const nickname = document.createElement('p');
+    nickname.innerText = userInfo.nickname;
+    const gender = document.createElement('p');
+    gender.innerText = userInfo.gender;
+    const image = document.createElement('img');
+    image.src = userInfo.image;
+    const tag = document.createElement('p');
+    tag.innerText = userInfo.tag;
+    const mobumScore = document.createElement('p');
+    mobumScore.innerText = userInfo.mobumScore;
+    userInfoDiv.appendChild(nickname);
+    userInfoDiv.appendChild(gender);
+    userInfoDiv.appendChild(image);
+    userInfoDiv.appendChild(tag);
+    userInfoDiv.appendChild(mobumScore);
   };
 
   // 화면 공유를 위해 현재 stream을 화면 공유 stream으로 변경
