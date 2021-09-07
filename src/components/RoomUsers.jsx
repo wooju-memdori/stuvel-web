@@ -174,7 +174,7 @@ const RoomInfo = styled.div`
   .user-info {
     height: 10.75em;
     width: 100%;
-    background: rgba(39, 35, 51, 0.97);
+    background: rgba(39, 35, 51, 0.97);s
     border: 1px solid #ffffff;
     border-radius: 0.571em;
     margin: 2% 0;
