@@ -4,6 +4,10 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { currentNavbarComponent } from '../state/atom';
 import MyPage from '../components/MyPage';
+<<<<<<< Updated upstream
+=======
+import Settings from '../components/Settings';
+>>>>>>> Stashed changes
 import { CloseButtonIcon } from '../components/Icon';
 
 const NavbarMenuContainer = ({ onClose }) => {
