@@ -94,9 +94,9 @@ class SocketConnection {
     return myNavigator({
       video: video
         ? {
-            frameRate: 12,
-            noiseSuppression: true,
-          }
+          frameRate: 12,
+          noiseSuppression: true,
+        }
         : false,
       audio: audio,
     });
@@ -161,19 +161,24 @@ class SocketConnection {
         ...createObj,
       };
       const roomContainer = document.getElementById('room-container');
+      const userContainer = document.createElement('div');
+      userContainer.className = 'user-container';
       const videoContainer = document.createElement('div');
+      videoContainer.className = 'video-container';
       const video = document.createElement('video');
       video.srcObject = this.videoContainer[createObj.id].stream;
       video.id = createObj.id;
       video.autoplay = true;
       if (this.myId === createObj.id) video.muted = true;
       videoContainer.appendChild(video);
-      roomContainer.append(videoContainer);
+      userContainer.appendChild(videoContainer);
       if (createObj.userInfo) {
         const userInfoDiv = document.createElement('div');
+        userContainer.className += 'oher;   
         this.createUserInfo(userInfoDiv, createObj.userInfo);
-        videoContainer.appendChild(userInfoDiv);
+        userContainer.appendChild(userInfoDiv);
       }
+      roomContainer.appendChild(userContainer);
     } else {
       if (document.getElementById(createObj.id)) {
         document.getElementById(createObj.id).srcObject = createObj.stream;
@@ -182,7 +187,7 @@ class SocketConnection {
   };
 
   createUserInfo = (userInfoDiv, userInfo) => {
-    userInfoDiv.className = 'userInfo';
+    userInfoDiv.className = 'user-info';
     const nickname = document.createElement('p');
     nickname.innerText = userInfo.nickname;
     const gender = document.createElement('p');

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValueLoadable } from 'recoil';
 import styled from 'styled-components';
@@ -10,7 +11,7 @@ import {
   roomIdState,
 } from '../state/atom';
 import axios from '../utils/axios';
-import { ExitIcon, FemaleIcon, MaleIcon } from './Icon';
+import { ToHomeIcon, FemaleIcon, MaleIcon } from './Icon';
 
 const RoomUsers = () => {
   const [nowRoomId, setRoomId] = useRecoilState(roomIdState);
@@ -68,57 +69,57 @@ const RoomUsers = () => {
                 </div>
               </div>
             ) : (
-              usersList.map((user) => {
-                return (
-                  <div className="user-info">
-                    <img
-                      className="right-up-nemo"
-                      alt=""
-                      src={`${window.location.href}/../nemo1.png`}
-                    />
-                    <img
-                      className="left-down-nemo"
-                      alt=""
-                      src={`${window.location.href}/../nemo1.png`}
-                    />
-                    {user.nickname ? (
-                      <>
-                        <div className="profile">
-                          <div className="profile-img">
-                            {user.image ? (
-                              <img src={user.image} alt="" />
-                            ) : (
-                              <img
-                                src={`${window.location.href}/../defaultProfile.png`}
-                                alt=""
-                              />
-                            )}
-                          </div>
-                          <div className="default-info">
-                            <h3>{user.nickname}</h3>
-                            <div className="gender">
-                              <span className="gender-txt">gender</span>
-                              {user.gender === 0 ? (
-                                <FemaleIcon className="gender-img" />
+                usersList.map((user) => {
+                  return (
+                    <div className="user-info">
+                      <img
+                        className="right-up-nemo"
+                        alt=""
+                        src={`${window.location.href}/../nemo1.png`}
+                      />
+                      <img
+                        className="left-down-nemo"
+                        alt=""
+                        src={`${window.location.href}/../nemo1.png`}
+                      />
+                      {user.nickname ? (
+                        <>
+                          <div className="profile">
+                            <div className="profile-img">
+                              {user.image ? (
+                                <img src={user.image} alt="" />
                               ) : (
-                                <MaleIcon className="gender-img" />
-                              )}
+                                  <img
+                                    src={`${window.location.href}/../defaultProfile.png`}
+                                    alt=""
+                                  />
+                                )}
                             </div>
-                            <div className="score">
-                              <span className="score-txt">score</span>
-                              <Rate disabled defaultValue={user.mobum_score} />
+                            <div className="default-info">
+                              <h3>{user.nickname}</h3>
+                              <div className="gender">
+                                <span className="gender-txt">gender</span>
+                                {user.gender === 0 ? (
+                                  <FemaleIcon className="gender-img" />
+                                ) : (
+                                    <MaleIcon className="gender-img" />
+                                  )}
+                              </div>
+                              <div className="score">
+                                <span className="score-txt">score</span>
+                                <Rate disabled defaultValue={user.mobum_score} />
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <p>{user.tag}</p>
-                      </>
-                    ) : (
-                      <div className="no-record">No record</div>
-                    )}
-                  </div>
-                );
-              })
-            )}
+                          <p>{user.tag}</p>
+                        </>
+                      ) : (
+                          <div className="no-record">No record</div>
+                        )}
+                    </div>
+                  );
+                })
+              )}
             <div id="links">
               <Button
                 type="primary"
@@ -140,7 +141,7 @@ const RoomUsers = () => {
               </Button>
               <div id="exit">
                 <Link to="/">
-                  <ExitIcon />
+                  <ToHomeIcon />
                   <p>나가기</p>
                 </Link>
               </div>
