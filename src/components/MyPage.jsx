@@ -1,8 +1,5 @@
-// import React, { useState, useCallback } from 'react';
-import React from 'react';
-import { useRecoilValueLoadable } from 'recoil';
-
-// import { Input } from 'antd';
+import React, { useEffect } from 'react';
+import { useRecoilState, useRecoilValueLoadable } from 'recoil';
 import styled from 'styled-components';
 import {
   MaleIcon,
@@ -12,166 +9,128 @@ import {
   StarIcon,
   PlusButtonIcon,
 } from './Icon';
-// import { currentUserInfoState, userUpdateState } from '../state/atom';
-import { currentUserInfoState } from '../state/atom';
+import { currentUserInfoState, currentUserInfoFetchState } from '../state/atom';
 
 const MyPage = () => {
-  const currentUserInfo = useRecoilValueLoadable(currentUserInfoState());
-  // const [isError, setIsError] = useState(false);
-  // const [isChangingNickname, setIsChangingNickname] = useState(false);
-  // const [nickname, onChangeNickname] = useState(
-  //   currentUserInfo?.contents.nickname,
-  // );
-  // const changeNickname = useCallback(
-  //   (e) => onChangeNickname(e.target.value),
-  //   [],
-  // );
+  const currentUserFetchInfo = useRecoilValueLoadable(
+    currentUserInfoFetchState(),
+  );
 
-  // const onSubmit = useCallback(() => {
-  //   const body = {
-  //     nickname,
-  //   };
-  //   const userInfoUpdate = useRecoilValueLoadable(userUpdateState(body));
-  //   if (userInfoUpdate.error) {
-  //     setIsError(true);
-  //   } else {
-  //     setIsError(false);
-  //   }
-  //   setIsChangingNickname(false);
-  // }, [nickname]);
+  const [currentUserInfo, setCurrentUserInfo] =
+    useRecoilState(currentUserInfoState);
 
-  // const sampleUserInfo = {
-  //   user: {
-  //     id: 2,
-  //     email: 'gmlwls3520@naver.com',
-  //     nickname: '은근',
-  //     gender: 0,
-  //     password:
-  //       'oRv9NhjZO6Niei9POEpfym/33pxqel2MJdPdnVOa3GJ0squ8mRxwZ8epzIfvSlzjy1397CoMffckqBWiJzyEww==',
-  //     image:
-  //       'https://stuvelimg.s3.ap-northeast-2.amazonaws.com/img/1629643289663_unnamed.jpg',
-  //     tag: ['react', 'node'],
-  //     level: 1,
-  //     mobumScore: 1,
-  //     salt: 'ylu1wFPOiTHUJwXeb1Sba86DDWEPFTJs2JHu+wt2F4sHDjaEC7DZroh+fGelgIg7uve0UUtbyG7I2qpbgXrPgQ==',
-  //     roomId: null,
-  //     createdAt: '2021-08-22T14:41:29.000Z',
-  //     updatedAt: '2021-08-31T17:07:17.000Z',
-  //     room_id: null,
-  //   },
-  // };
+  useEffect(() => {
+    switch (currentUserFetchInfo.state) {
+      case 'hasValue':
+        setCurrentUserInfo(currentUserFetchInfo.contents);
+        break;
+      case 'hasError':
+        console.error(currentUserFetchInfo.contents.message);
+        break;
+      case 'loading':
+      default:
+        console.log('loading');
+    }
+  }, [currentUserFetchInfo]);
 
   return (
     <>
       {/* {isError ? <alert>ERROR!!!</alert> : ''} */}
-      <Profile>
-        <div id="top">
-          {currentUserInfo?.contents?.image ? (
-            <ProfileImage
-              style={{
-                backgroundImage: `url(${currentUserInfo.contents.image})`,
-              }}
-            />
-          ) : (
-            <ProfileImage>
-              <DefaultProfileIcon />
-            </ProfileImage>
-          )}
-          <InfoDetails>
-            <div
-              id="nickname"
-              className={
-                currentUserInfo?.contents?.nickname.length > 6 && 'small'
-              }
-            >
-              {/* {!isChangingNickname ? ( */}
-              {currentUserInfo?.contents?.nickname}
-              {/* ) : ( */}
-              {/* <Input.Search
-                  value={nickname}
-                  onChange={changeNickname}
-                  onSearch={onSubmit}
-                  addonBefore="Nickname"
-                  enterButton="Edit"
-                />
-              )} */}
-            </div>
-            <div id="gender">
-              <span className="field">gender</span>{' '}
-              {currentUserInfo?.contents?.gender === 0 ? (
-                <MaleIcon />
-              ) : (
-                <FemaleIcon />
-              )}
-            </div>
-            <div id="score">
-              <span className="field">Score</span>
-              <span>
-                {
+
+      {currentUserInfo && (
+        <Profile>
+          <div id="top">
+            {currentUserInfo.image ? (
+              <ProfileImage
+                style={{
+                  backgroundImage: `url(${currentUserInfo.image})`,
+                }}
+              />
+            ) : (
+              <ProfileImage>
+                <DefaultProfileIcon />
+              </ProfileImage>
+            )}
+            <InfoDetails>
+              <div
+                id="nickname"
+                className={currentUserInfo.nickname.length > 6 ? 'small' : ''}
+              >
+                {currentUserInfo.nickname}
+              </div>
+              <div id="gender">
+                <span className="field">gender</span>{' '}
+                {currentUserInfo?.gender === 0 ? <MaleIcon /> : <FemaleIcon />}
+              </div>
+              <div id="score">
+                <span className="field">Score</span>
+                <span>
                   {
-                    5: (
-                      <>
-                        <StarFilledIcon />
-                        <StarFilledIcon />
-                        <StarFilledIcon />
-                        <StarFilledIcon />
-                        <StarFilledIcon />
-                      </>
-                    ),
-                    4: (
-                      <>
-                        <StarFilledIcon />
-                        <StarFilledIcon />
-                        <StarFilledIcon />
-                        <StarFilledIcon />
-                        <StarIcon />
-                      </>
-                    ),
-                    3: (
-                      <>
-                        <StarFilledIcon />
-                        <StarFilledIcon />
-                        <StarFilledIcon />
-                        <StarIcon />
-                        <StarIcon />
-                      </>
-                    ),
-                    2: (
-                      <>
-                        <StarFilledIcon />
-                        <StarFilledIcon />
-                        <StarIcon />
-                        <StarIcon />
-                        <StarIcon />
-                      </>
-                    ),
-                    1: (
-                      <>
-                        <StarFilledIcon />
-                        <StarIcon />
-                        <StarIcon />
-                        <StarIcon />
-                        <StarIcon />
-                      </>
-                    ),
-                  }[currentUserInfo?.contents?.mobumScore]
-                }
-              </span>
-            </div>
-          </InfoDetails>
-        </div>
-        <InterestTags>
-          <h1>
-            내 관심사 설정 <PlusButtonIcon />{' '}
-          </h1>
-          {currentUserInfo.contents.tag &&
-            currentUserInfo.contents.tag.map((tag) => (
-              <button type="button" key={tag}>
-                {tag}
-              </button>
-            ))}
-        </InterestTags>
-      </Profile>
+                    {
+                      5: (
+                        <>
+                          <StarFilledIcon />
+                          <StarFilledIcon />
+                          <StarFilledIcon />
+                          <StarFilledIcon />
+                          <StarFilledIcon />
+                        </>
+                      ),
+                      4: (
+                        <>
+                          <StarFilledIcon />
+                          <StarFilledIcon />
+                          <StarFilledIcon />
+                          <StarFilledIcon />
+                          <StarIcon />
+                        </>
+                      ),
+                      3: (
+                        <>
+                          <StarFilledIcon />
+                          <StarFilledIcon />
+                          <StarFilledIcon />
+                          <StarIcon />
+                          <StarIcon />
+                        </>
+                      ),
+                      2: (
+                        <>
+                          <StarFilledIcon />
+                          <StarFilledIcon />
+                          <StarIcon />
+                          <StarIcon />
+                          <StarIcon />
+                        </>
+                      ),
+                      1: (
+                        <>
+                          <StarFilledIcon />
+                          <StarIcon />
+                          <StarIcon />
+                          <StarIcon />
+                          <StarIcon />
+                        </>
+                      ),
+                    }[currentUserInfo.mobumScore]
+                  }
+                </span>
+              </div>
+            </InfoDetails>
+          </div>
+          <InterestTags>
+            <h1>
+              내 관심사 설정 <PlusButtonIcon />{' '}
+            </h1>
+            {currentUserInfo.tag &&
+              currentUserInfo?.tag.map((tag) => (
+                <button type="button" key={tag}>
+                  {tag}
+                </button>
+              ))}
+          </InterestTags>
+        </Profile>
+      )}
     </>
   );
 };
@@ -204,7 +163,6 @@ const InfoDetails = styled.div`
     font-size: 2rem;
     font-weight: bold;
     padding-bottom: 0.5rem;
-
     word-wrap: break-word;
     &.small {
       font-size: 1.25rem;
