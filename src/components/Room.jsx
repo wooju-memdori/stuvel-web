@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { string } from 'prop-types';
+import { string, func } from 'prop-types';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
@@ -109,6 +109,12 @@ Room.propTypes = {
   paramRoomId: string.isRequired,
 };
 
+Footer.propTypes = {
+  handleMyCam: func.isRequired,
+  handleMyMic: func.isRequired,
+  toggleScreenShare: func.isRequired,
+};
+
 const RoomContainer = styled.div`
   background-color: black;
   display: grid;
@@ -119,6 +125,27 @@ const RoomContainer = styled.div`
   & > * {
     width: 100%;
     height: 100%;
+  }
+  .user-container div {
+    width: 150px;
+    height: 200px;
+    border: 1px solid #828282;
+    font-size: 35px;
+    backface-visibility: hidden;
+    transition: 1s;
+  }
+  .user-container .video-container {
+    position: absolute;
+    transform: rotateY(0deg);
+  }
+  .user-container:hover .video-container {
+    transform: rotateY(180deg);
+  }
+  .user-container .user-info {
+    transform: rotateY(-180deg);
+  }
+  .user-container:hover .user-info {
+    transform: rotateY(0deg);
   }
   video {
     -webkit-transform: scaleX(-1);
