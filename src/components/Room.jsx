@@ -126,7 +126,7 @@ const RoomContainer = styled.div`
     width: 100%;
     height: 100%;
   }
-  .user-container div {
+  .user-container.other div {
     width: 150px;
     height: 200px;
     border: 1px solid #828282;
@@ -158,3 +158,4 @@ const RoomContainer = styled.div`
     transform: scaleX(1);
   }
 `;
+et
