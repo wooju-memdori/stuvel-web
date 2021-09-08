@@ -1,0 +1,231 @@
++-----+------------------+---------------+---------------------+---------------------+
+| id  | name             | category      | created_at          | updated_at          |
++-----+------------------+---------------+---------------------+---------------------+
+|   1 | History          | Knowledge     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|   2 | Science          | Knowledge     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|   3 | Physics          | Knowledge     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|   4 | Math             | Knowledge     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|   5 | Psychology       | Knowledge     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|   6 | The Future       | Knowledge     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|   7 | Education        | Knowledge     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|   8 | Philosophy       | Knowledge     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|   9 | Space            | Knowledge     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  10 | Covid-19         | Knowledge     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  11 | Biology          | Knowledge     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  12 | Weights          | Wellness      | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  13 | Veganism         | Wellness      | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  14 | Health           | Wellness      | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  15 | Meditation       | Wellness      | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  16 | Fitness          | Wellness      | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  17 | Venture          | Tech          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  18 | Startups         | Tech          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  19 | Product          | Tech          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  20 | Engineering      | Tech          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  21 | VR/AR            | Tech          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  22 | AI               | Tech          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  23 | Marketing        | Tech          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  24 | Crypto           | Tech          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  25 | Programmer       | Tech          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  26 | Designer         | Tech          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  27 | Project Manager  | Tech          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  28 | Portuguese       | Languages     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  29 | Indonesian       | Languages     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  30 | German           | Languages     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  31 | Hindi            | Languages     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  32 | Mandarin         | Languages     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  33 | Spanish          | Languages     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  34 | Japanese         | Languages     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  35 | Arabic           | Languages     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  36 | Russian          | Languages     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  37 | French           | Languages     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  38 | English          | Languages     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  39 | Korean           | Languages     | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  40 | Gaming           | Entertainment | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  41 | Music            | Entertainment | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  42 | Karaoke          | Entertainment | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  43 | Celebrities      | Entertainment | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  44 | Podcasts         | Entertainment | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  45 | Anime & Manga    | Entertainment | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  46 | Fun              | Entertainment | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  47 | Variety          | Entertainment | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  48 | Movies           | Entertainment | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  49 | Television       | Entertainment | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  50 | Performances     | Entertainment | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  51 | Comedy           | Entertainment | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  52 | Storytelling     | Entertainment | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  53 | Pregnancy        | Life          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  54 | Travelling       | Life          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  55 | Weddings         | Life          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  56 | Dating           | Life          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  57 | Parenting        | Life          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  58 | Relationships    | Life          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  59 | Job Hunting      | Life          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  60 | Career           | Life          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  61 | Real Estate      | Life          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  62 | Stocks           | Life          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  63 | Side Jobs        | Life          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  64 | Networking       | Life          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  65 | Business         | Life          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  66 | Entrepreneurship | Life          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  67 | Basketball       | Sports        | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  68 | MMA              | Sports        | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  69 | Golf             | Sports        | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  70 | Soccer           | Sports        | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  71 | Football         | Sports        | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  72 | Cycling          | Sports        | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  73 | Baseball         | Sports        | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  74 | Tennis           | Sports        | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  75 | Volleyball       | Sports        | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  76 | Food & Drink     | Arts          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  77 | Dance            | Arts          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  78 | Theater          | Arts          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  79 | Fashion          | Arts          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  80 | Beauty           | Arts          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  81 | Design           | Arts          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  82 | Sci-Fi           | Arts          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  83 | Writing          | Arts          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  84 | Photography      | Arts          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  85 | Advertising      | Arts          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  86 | Architecture     | Arts          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  87 | Books            | Arts          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  88 | Economics        | WorldAffairs  | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  89 | Markets          | WorldAffairs  | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  90 | Social Issues    | WorldAffairs  | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  91 | Current Events   | WorldAffairs  | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  92 | Climate          | WorldAffairs  | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  93 | Politics         | WorldAffairs  | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  94 | Geopolitics      | WorldAffairs  | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  95 | ISTJ             | MBTI          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  96 | ISTP             | MBTI          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  97 | ISFJ             | MBTI          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  98 | ISFP             | MBTI          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+|  99 | INTJ             | MBTI          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+| 100 | INTP             | MBTI          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+| 101 | INFJ             | MBTI          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+| 102 | INFP             | MBTI          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+| 103 | ESTJ             | MBTI          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+| 104 | ESTP             | MBTI          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+| 105 | ESFJ             | MBTI          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+| 106 | ESFP             | MBTI          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+| 107 | ENTJ             | MBTI          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+| 108 | ENTP             | MBTI          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+| 109 | ENFJ             | MBTI          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
+| 110 | ENFP             | MBTI          | 2021-09-06 14:51:55 | 2021-09-06 14:51:55 |
++-----+------------------+---------------+---------------------+---------------------+
+
+
+
+
+ { label: 'economy', value: 'economy' },
+
+
+{ label: 'History'       , value: '1' } 
+{ label: 'Science'       , value: '2' }
+{ label: 'Physics'       , value: '3' }
+{ label: 'Math'       , value: '4' },
+{ label: 'Psychology'       , value: '5' },
+{ label: 'The Future'       , value: '6' },
+{ label: 'Education'        , value: '7' },
+{ label: 'Philosophy'       , value: '8' },
+{ label: 'Space'         , value: '9' },
+{ label: 'Covid-19'         , value: '10' },
+{ label: 'Biology'          , value: '11' },
+{ label: 'Weights'          , value: '12' },
+{ label: 'Veganism'         , value: '13' },
+{ label: 'Health'           , value: '14' },
+{ label: 'Meditation'       , value: '15' },
+{ label: 'Fitness'          , value: '16' },
+{ label: 'Venture'          , value: '17' },
+{ label: 'Startups'         , value: '18' },
+{ label: 'Product'          , value: '19' },
+{ label: 'Engineering'      , value: '20' },
+{ label: 'VR/AR'            , value: '21' },
+{ label: 'AI'               , value: '22' },
+{ label: 'Marketing'        , value: '23' },
+{ label: 'Crypto'           , value: '24' },
+{ label: 'Programmer'       , value: '25' },
+{ label: 'Designer'         , value: '26' },
+{ label: 'Project Manager'  , value: '27' },
+{ label: 'Portuguese'       , value: '28' },
+{ label: 'Indonesian'      , value: '29' },
+{ label: 'German'           , value: '30' },
+{ label: 'Hindi'            , value: '31' },
+{ label: 'Mandarin'         , value: '32' },
+{ label: 'Spanish'          , value: '33' },
+{ label: 'Japanese'         , value: '34' },
+{ label: 'Arabic'           , value: '35' },
+{ label: 'Russian'          , value: '36' },
+{ label: 'French'           , value: '37' },
+{ label: 'English'          , value: '38' },
+{ label: 'Korean'           , value: '39' },
+{ label: 'Gaming'           , value: '40' },
+{ label: 'Music'            , value: '41' },
+{ label: 'Karaoke'          , value: '42' },
+{ label: 'Celebrities'      , value: '43' },
+{ label: 'Podcasts'         , value: '44' },
+{ label: 'Anime & Manga'    , value: '45' },
+{ label: 'Fun'              , value: '46' },
+{ label: 'Variety'          , value: '47' },
+{ label: 'Movies'           , value: '48' },
+{ label: 'Television'       , value: '49' },
+{ label: 'Performances'     , value: '50' },
+{ label: 'Comedy'           , value: '51' },
+{ label: 'Storytelling'     , value: '52' },
+{ label: 'Pregnancy'        , value: '53' },
+{ label: 'Travelling'       , value: '54' },
+{ label: 'Weddings'         , value: '55' },
+{ label: 'Dating'           , value: '56' },
+{ label: 'Parenting'        , value: '57' },
+{ label: 'Relationships'    , value: '58' },
+{ label: 'Job Hunting'      , value: '59' },
+{ label: 'Career'           , value: '60' },
+{ label: 'Real Estate'      , value: '61' },
+{ label: 'Stocks'           , value: '62' },
+{ label: 'Side Jobs'        , value: '63' },
+{ label: 'Networking'       , value: '64' },
+{ label: 'Business'         , value: '65' },
+{ label: 'Entrepreneurship' , value: '66' },
+{ label: 'Basketball'       , value: '67' },
+{ label: 'MMA'              , value: '68' },
+{ label: 'Golf'             , value: '69' },
+{ label: 'Soccer'           , value: '70' },
+{ label: 'Football'         , value: '71' },
+{ label: 'Cycling'          , value: '72' },
+{ label: 'Baseball'         , value: '73' },
+{ label: 'Tennis'           , value: '74' },
+{ label: 'Volleyball'       , value: '75' },
+{ label: 'Food & Drink'     , value: '76' },
+{ label: 'Dance'            , value: '77' },
+{ label: 'Theater'          , value: '78' },
+{ label: 'Fashion'          , value: '79' },
+{ label: 'Beauty'           , value: '80' },
+{ label: 'Design'           , value: '81' },
+{ label: 'Sci-Fi'           , value: '82' },
+{ label: 'Writing'          , value: '83' },
+{ label: 'Photography'      , value: '84' },
+{ label: 'Advertising'      , value: '85' },
+{ label: 'Architecture'     , value: '86' },
+{ label: 'Books'            , value: '87' },
+{ label: 'Economics'        , value: '88' },
+{ label: 'Markets'          , value: '89' },
+{ label: 'Social Issues'    , value: '90' },
+{ label: 'Current Events'   , value: '91' },
+{ label: 'Climate'          , value: '92' },
+{ label: 'Politics'         , value: '93' },
+{ label: 'Geopolitics'      , value: '94' },
+{ label: 'ISTJ'             , value: '95' },
+{ label: 'ISTP'             , value: '96' },
+{ label: 'ISFJ'             , value: '97' },
+{ label: 'ISFP'             , value: '98' },
+{ label: 'INTJ'             , value: '99' },
+{ label: 'INTP'             , value: '100'},
+{ label: 'INFJ'             , value: '101'},
+{ label: 'INFP'             , value: '102'},
+{ label: 'ESTJ'             , value: '103'},
+{ label: 'ESTP'             , value: '104'},
+{ label: 'ESFJ'             , value: '105'},
+{ label: 'ESFP'             , value: '106'},
+{ label: 'ENTJ'             , value: '107'},
+{ label: 'ENTP'             , value: '108'},
+{ label: 'ENFJ'             , value: '109'},
+{ label: 'ENFP'             , value: '110'},
