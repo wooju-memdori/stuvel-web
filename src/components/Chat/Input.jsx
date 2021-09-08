@@ -29,7 +29,7 @@ const StyledInput = styled.textarea`
   border: none;
   border-radius: 0;
   padding: 5%;
-  width: 80%;
+  width: 100%;
   background-color: #15002a !important;
   &:focus {
     outline: none;
@@ -37,9 +37,6 @@ const StyledInput = styled.textarea`
 `;
 
 const SendButton = styled.button`
-  color: #fff !important;
-  text-transform: uppercase;
-  text-decoration: none;
   background: #290054;
   padding: 20px;
   display: inline-block;
