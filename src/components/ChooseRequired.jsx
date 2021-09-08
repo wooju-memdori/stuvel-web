@@ -10,6 +10,7 @@ const ChooseRequired = () => {
   const setUserInfo = useRecoilState(userInfoState)[1];
   const [alertText, setAlertText] = useState();
   const [firstPwd, setFirstPwd] = useState();
+  const [standard, setStandard] = useState();
   const [lastPwd] = useState();
 
   const onFinish = (values) => {
@@ -28,6 +29,15 @@ const ChooseRequired = () => {
 
   const orginPwd = (e) => {
     setFirstPwd(e.target.value);
+    // 비밀번호 유효성 검사
+    const regExp =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[$@$!%*?&])[A-Za-z$@$!%*?&]{8,}/;
+    console.log('비밀번호 유효성 검사 :: ', regExp.test(e.target.value));
+    if (regExp.test(e.target.value) === false) {
+      setStandard('대문자, 소문자, 특수문자를 포함해주세요.');
+    } else {
+      setStandard('');
+    }
   };
 
   const pwdCheck = (e) => {
@@ -38,6 +48,8 @@ const ChooseRequired = () => {
     console.log(pwdInfo);
     if (!(firstPwd === e.target.value)) {
       setAlertText('비밀번호가 일치하지 않습니다.');
+    } else {
+      setAlertText('');
     }
   };
 
@@ -92,6 +104,7 @@ const ChooseRequired = () => {
                   },
                 ]}
               />
+              <p className="check-text check-text-position">{standard}</p>
             </Form.Item>
 
             <Form.Item label="비밀번호 확인" labelAlign="left" name="pwdCheck">
@@ -160,6 +173,14 @@ const SignUpForm = styled.div`
   .check-text {
     position: absolute;
     top: 4.2em;
+    left: 3.8em;
+    font-family: Roboto;
+    font-size: 0.75em;
+    color: #d45667;
+  }
+  .check-text-position {
+    position: absolute;
+    top: 4em;
     left: 3.8em;
     font-family: Roboto;
     font-size: 0.75em;
