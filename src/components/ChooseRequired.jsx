@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Form, Input, Button } from 'antd';
 import styled from 'styled-components';
@@ -14,16 +15,25 @@ const ChooseRequired = () => {
   const [lastPwd] = useState();
 
   const onFinish = (values) => {
+    console.log('성공으로 연결');
+    console.log(values.firstPwd);
+
     const userDefaultInfo = {
       nickname: values.nickname,
       email: values.email,
-      password: values.password,
+      password: firstPwd,
     };
+
+    console.log('------');
+    console.log(userDefaultInfo);
     setUserInfo(userDefaultInfo);
     setRequiredOrOption('option');
   };
 
   const onFinishFailed = (errorInfo) => {
+    console.log('에러로 연결');
+    console.log(errorInfo.firstPwd);
+    console.log(firstPwd);
     console.log('Failed:', errorInfo);
   };
 
@@ -31,10 +41,10 @@ const ChooseRequired = () => {
     setFirstPwd(e.target.value);
     // 비밀번호 유효성 검사
     const regExp =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[$@$!%*?&])[A-Za-z$@$!%*?&]{8,}/;
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/;
     console.log('비밀번호 유효성 검사 :: ', regExp.test(e.target.value));
     if (regExp.test(e.target.value) === false) {
-      setStandard('대문자, 소문자, 특수문자를 포함해주세요.');
+      setStandard('대문자, 소문자, 숫자, 특수문자를 포함해주세요.');
     } else {
       setStandard('');
     }
@@ -80,29 +90,37 @@ const ChooseRequired = () => {
               label="닉네임"
               labelAlign="left"
               name="nickname"
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
             >
               <Input className="input" />
             </Form.Item>
 
-            <Form.Item labelAlign="left" label="이메일" name="email">
+            <Form.Item
+              labelAlign="left"
+              label="이메일"
+              name="email"
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
+            >
               <Input
                 className="input diffPwd"
                 placeholder="이메일을 입력해주세요"
               />
             </Form.Item>
 
-            <Form.Item label="비밀번호" labelAlign="left" name="password">
+            <Form.Item label="비밀번호" labelAlign="left" name="firstPwd">
               <Input.Password
                 className="input"
                 placeholder="(대문자, 소문자, 특수문자 조합 8자 이상)"
                 value={firstPwd}
                 onChange={orginPwd}
-                rules={[
-                  {
-                    required: true,
-                    message: '대문자, 소문자, 특수문자를 포함해주세요',
-                  },
-                ]}
               />
               <p className="check-text check-text-position">{standard}</p>
             </Form.Item>
@@ -116,7 +134,6 @@ const ChooseRequired = () => {
                 rules={[
                   {
                     required: true,
-                    message: '',
                   },
                 ]}
               />
@@ -180,11 +197,32 @@ const SignUpForm = styled.div`
   }
   .check-text-position {
     position: absolute;
+    width: 14em;
     top: 4em;
     left: 3.8em;
     font-family: Roboto;
     font-size: 0.75em;
     color: #d45667;
+  }
+  #sign-up-form {
+    .ant-form-item-has-error {
+      .ant-form-item-control {
+        .ant-form-item-explain-error {
+          visibility : hidden;
+        }
+      }
+    }
+    .ant-form-item {
+      .ant-form-item-label {
+        label {
+          ::after {
+            content:none;
+          }
+          ::before {
+            content:none;
+          }
+      }
+    }
   }
 `;
 
