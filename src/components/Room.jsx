@@ -162,6 +162,12 @@ const RoomContainer = styled.div`
     height: 100%;
     object-fit: cover;
   }
+  .black-nemo {
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    width: 50%;
+  }
   .other div {
     backface-visibility: hidden;
     transition: 1s;
@@ -179,7 +185,7 @@ const RoomContainer = styled.div`
     position: absolute;
     transform: rotateY(-180deg);
     background-color: black;
-    border: 0.125em solid #000000;
+    border: 0.125em solid #fff;
     box-sizing: border-box;
     border-radius: 0.5em;
   }

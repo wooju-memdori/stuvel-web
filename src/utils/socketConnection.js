@@ -165,6 +165,10 @@ class SocketConnection {
       userContainer.className = 'user-container';
       const videoContainer = document.createElement('div');
       videoContainer.className = 'video-container';
+      const blackNemo = document.createElement('img');
+      blackNemo.className = 'black-nemo';
+      blackNemo.src = `${window.location.href}/../blackNemo.png`;
+      videoContainer.appendChild(blackNemo);
       const video = document.createElement('video');
       video.srcObject = this.videoContainer[createObj.id].stream;
       video.id = createObj.id;
