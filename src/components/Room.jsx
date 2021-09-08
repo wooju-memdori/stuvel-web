@@ -130,11 +130,11 @@ const RoomPage = styled.div`
     height: 15%;
   }
   #room-div {
-    width: 90%;
+    width: 80%;
     height: 75%;
     position: absolute;
-    top: 5%;
-    left: 5%;
+    top: 7%;
+    left: 10%;
   }
 `;
 
@@ -162,6 +162,15 @@ const RoomContainer = styled.div`
     height: 100%;
     object-fit: cover;
   }
+  .video-container h3 {
+    position: absolute;
+    bottom: 0.5%;
+    z-index: 1;
+    width: 50%;
+    margin: 0;
+    left: 3%;
+    font-weight: 700;
+  }
   .black-nemo {
     position: absolute;
     bottom: 0;
@@ -184,10 +193,55 @@ const RoomContainer = styled.div`
     height: 100%;
     position: absolute;
     transform: rotateY(-180deg);
-    background-color: black;
+    background-color: #0b0016;
     border: 0.125em solid #fff;
     box-sizing: border-box;
     border-radius: 0.5em;
+    padding: 1.438em 2.5em;
+  }
+  .user-info > * {
+    height: 100%;
+    display: inline-block;
+  }
+  .profile {
+    float: left;
+    height: 43%;
+    width: 30%;
+  }
+  .profile img {
+    height: 100%;
+    border-radius: 9.985em;
+  }
+  .default-info {
+    width: 60%;
+    height: 45%;
+  }
+  .default-info h3 {
+    font-size: 1.5em;
+    font-weight: 700;
+  }
+  @media (min-width: 1900px) {
+    .default-info h3 {
+      font-size: 2em;
+      font-weight: 700;
+    }
+    .default-info span {
+      font-size: 1.5em;
+    }
+  }
+  .gender-img {
+    position: relative;
+    left: 0.7em;
+  }
+  .score-img {
+    position: relative;
+    left: 1.4em;
+  }
+  .tags {
+    width: 80%;
+    height: 40%;
+    position: relative;
+    top: 1.3em;
   }
   .other:active .user-info {
     transform: rotateY(0deg);
