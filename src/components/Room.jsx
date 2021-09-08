@@ -126,28 +126,28 @@ const RoomContainer = styled.div`
     width: 100%;
     height: 100%;
   }
-  .user-container.other div {
-    width: 150px;
-    height: 200px;
-    border: 1px solid #828282;
-    font-size: 35px;
+  .other div {
     backface-visibility: hidden;
     transition: 1s;
   }
-  .user-container .video-container {
+  .other .video-container {
     position: absolute;
     transform: rotateY(0deg);
   }
-  .user-container:hover .video-container {
+  .other:hover .video-container {
     transform: rotateY(180deg);
   }
-  .user-container .user-info {
+  .other .user-info {
+    width: 100%;
+    height: 100%;
+    background-color: black;
     transform: rotateY(-180deg);
   }
-  .user-container:hover .user-info {
+  .other:hover .user-info {
     transform: rotateY(0deg);
   }
   video {
+    backface-visibility: hidden;
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
     width: 100%;
@@ -158,4 +158,3 @@ const RoomContainer = styled.div`
     transform: scaleX(1);
   }
 `;
-et

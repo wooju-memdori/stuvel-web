@@ -94,9 +94,9 @@ class SocketConnection {
     return myNavigator({
       video: video
         ? {
-          frameRate: 12,
-          noiseSuppression: true,
-        }
+            frameRate: 12,
+            noiseSuppression: true,
+          }
         : false,
       audio: audio,
     });
@@ -174,7 +174,7 @@ class SocketConnection {
       userContainer.appendChild(videoContainer);
       if (createObj.userInfo) {
         const userInfoDiv = document.createElement('div');
-        userContainer.className += 'oher;   
+        userContainer.className += ' other';
         this.createUserInfo(userInfoDiv, createObj.userInfo);
         userContainer.appendChild(userInfoDiv);
       }
