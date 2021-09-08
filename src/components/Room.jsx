@@ -171,6 +171,11 @@ const RoomContainer = styled.div`
     left: 3%;
     font-weight: 700;
   }
+  .user-container:first-child:nth-last-child(1) {
+    .video-container h3 {
+      font-size: 3em;
+    }
+  }
   .black-nemo {
     position: absolute;
     bottom: 0;
