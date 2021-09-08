@@ -2,7 +2,11 @@ import React, { useCallback, useState } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { Layout, Menu } from 'antd';
 import styled from 'styled-components';
-import { collapsedState, currentNavbarComponent } from '../state/atom';
+import {
+  collapsedState,
+  roomIdState,
+  currentNavbarComponent,
+} from '../state/atom';
 import {
   LogowithDotIcon,
   SettingsIcon,
@@ -11,12 +15,11 @@ import {
   ChatBubbleIcon,
   FriendsIcon,
 } from './Icon';
-
 import NavbarMenuContainer from '../containers/NavbarMenuContainer';
 
 const Navigation = ({ onCollapse }) => {
   const collapsed = useRecoilValue(collapsedState);
-
+  const roomId = useRecoilValue(roomIdState);
   const [currentHeader, setCurrentHeader] = useRecoilState(
     currentNavbarComponent,
   );
@@ -35,11 +38,10 @@ const Navigation = ({ onCollapse }) => {
   return (
     <>
       {showModalMenu ? <NavbarMenuContainer onClose={onModalClose} /> : ''}
-
       <Sider
         collapsible
         collapsed={collapsed}
-        onCollapse={onCollapse}
+        onCollapse={onCollapse} // TODO: 없어도 될 듯합니다
         trigger={null}
       >
         <a href="/">
@@ -78,13 +80,9 @@ const Navigation = ({ onCollapse }) => {
             <SettingsIcon />
             <span>Settings</span>
           </Menu.Item>
-          <Menu.Item key="Sailing">
+          <Menu.Item key="Sailing" className={roomId ? 'active' : ''}>
             <PlanetIcon />
-            {window.location.pathname === '/sailing' ? (
-              <span>Sailing</span>
-            ) : (
-              <span>Off</span>
-            )}
+            {roomId ? <span>Sailing</span> : <span>Off</span>}
           </Menu.Item>
         </Menu>
       </Sider>
@@ -125,14 +123,14 @@ const Sider = styled(Layout.Sider)`
     & svg path {
       transition: 0.25s;
     }
-    &:hover,
-    &.active {
-      background-color: rgba(255, 255, 255, 0.1) !important;
-      transition: 0.5s;
-    }
     &:not(:last-child) {
       border-right: 5px solid transparent;
       border-left: 5px solid transparent;
+      &:hover,
+      &.active {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        transition: 0.5s;
+      }
     }
     &:not(:last-child):hover,
     &:not(:last-child).active {
@@ -159,6 +157,7 @@ const Sider = styled(Layout.Sider)`
     position: absolute;
     bottom: 0;
     border-bottom: 5px solid transparent;
+    cursor: auto;
     & .ant-menu-title-content {
       bottom: 5px;
       & svg {
@@ -166,7 +165,6 @@ const Sider = styled(Layout.Sider)`
         padding-top: 10px;
       }
     }
-    &:hover,
     &.active {
       border-bottom: 5px solid #bd01e4;
     }
