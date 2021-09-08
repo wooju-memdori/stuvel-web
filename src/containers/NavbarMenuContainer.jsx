@@ -4,6 +4,10 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { currentNavbarComponent } from '../state/atom';
 import MyPage from '../components/MyPage';
+<<<<<<< Updated upstream
+=======
+import Settings from '../components/Settings';
+>>>>>>> Stashed changes
 import { CloseButtonIcon } from '../components/Icon';
 
 const NavbarMenuContainer = ({ onClose }) => {
@@ -40,20 +44,21 @@ export default NavbarMenuContainer;
 const LayoutContainer = styled.div`
   position: fixed;
   left: 80px;
-  width: 573px;
+  width: 34%;
   height: 100%;
   z-index: 3;
   background-color: #200040;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
 `;
 
 const Header = styled.div`
   font-size: 1.25rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   font-weight: bold;
   text-align: left;
   border-bottom: 1px solid #ebebeb;
-  padding: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   & button {
     background-color: transparent;
     border: none;
