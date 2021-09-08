@@ -1,6 +1,11 @@
 import { atom, selectorFamily } from 'recoil';
 import axios from '../utils/axios';
 
+export const isModalVisibleState = atom({
+  key: 'isModalVisibleState',
+  default: false,
+});
+
 export const collapsedState = atom({
   key: 'collapsedState',
   default: false,
@@ -77,3 +82,51 @@ export const signUpDoneState = atom({
   key: 'signUpDoneState',
   default: false,
 });
+
+export const followersState = selectorFamily({
+  key: 'followersState',
+  get: () => async () => {
+    const response = await axios.get(`/followers`);
+    return response.data.data;
+  },
+});
+
+export const followingsState = selectorFamily({
+  key: 'followersState',
+  get: () => async () => {
+    const response = await axios.get(`/followings`);
+    return response.data.data;
+  },
+});
+
+export const currentUserInfoState = atom({
+  key: 'currentUserInfoState',
+  default: null,
+});
+
+export const currentUserInfoFetchState = selectorFamily({
+  key: 'currentUserInfoFetchState',
+  get: () => async () => {
+    const response = await axios.get(`/users`);
+    if (response.error) {
+      return response.error;
+    }
+    return response.data.data;
+  },
+});
+
+export const currentNavbarComponent = atom({
+  key: 'currentNavbarInfoState',
+  default: '',
+});
+
+// export const userUpdateState = selectorFamily({
+//   key: 'userUpdateState',
+//   get: (body) => async () => {
+//     const response = await axios.patch(`/users/me`, body);
+//     if (response.error) {
+//       return response.error;
+//     }
+//     return response.data.data;
+//   },
+// });

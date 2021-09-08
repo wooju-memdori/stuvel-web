@@ -738,6 +738,36 @@ const FilterSvg = () => (
   </svg>
 );
 
+const StarSvg = () => (
+  <svg
+    width="1.75em"
+    height="1.625em"
+    viewBox="0 0 28 26"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M13.0489 0.927047C13.3483 0.00573683 14.6517 0.00573993 14.9511 0.927051L17.3677 8.36475C17.5016 8.77677 17.8855 9.05573 18.3188 9.05573H26.1392C27.1079 9.05573 27.5107 10.2953 26.727 10.8647L20.4001 15.4615C20.0496 15.7161 19.903 16.1675 20.0369 16.5795L22.4535 24.0172C22.7529 24.9385 21.6984 25.7047 20.9147 25.1353L14.5878 20.5385C14.2373 20.2839 13.7627 20.2839 13.4122 20.5385L7.08533 25.1353C6.30162 25.7047 5.24714 24.9385 5.54649 24.0172L7.96315 16.5795C8.09702 16.1675 7.95036 15.7161 7.59987 15.4615L1.27299 10.8647C0.489277 10.2953 0.892056 9.05573 1.86078 9.05573H9.68123C10.1145 9.05573 10.4984 8.77677 10.6323 8.36475L13.0489 0.927047Z"
+      fill="white"
+    />
+  </svg>
+);
+
+const StarFilledSvg = () => (
+  <svg
+    width="28"
+    height="27"
+    viewBox="0 0 28 27"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M13.0489 1.63408C13.3483 0.712768 14.6517 0.712771 14.9511 1.63408L17.3677 9.07178C17.5016 9.4838 17.8855 9.76276 18.3188 9.76276H26.1392C27.1079 9.76276 27.5107 11.0024 26.727 11.5718L20.4001 16.1685C20.0496 16.4232 19.903 16.8745 20.0369 17.2866L22.4535 24.7242C22.7529 25.6456 21.6984 26.4117 20.9147 25.8423L14.5878 21.2455C14.2373 20.9909 13.7627 20.9909 13.4122 21.2455L7.08533 25.8423C6.30162 26.4117 5.24714 25.6456 5.54649 24.7243L7.96315 17.2866C8.09702 16.8745 7.95036 16.4232 7.59987 16.1685L1.27299 11.5718C0.489277 11.0024 0.892056 9.76276 1.86078 9.76276H9.68123C10.1145 9.76276 10.4984 9.4838 10.6323 9.07178L13.0489 1.63408Z"
+      fill="#FFECA8"
+    />
+  </svg>
+);
+
 const AstronautSvg = () => (
   <svg
     width="61"
@@ -817,6 +847,126 @@ const ChatBubbleSvg = () => (
   </svg>
 );
 
+const DefaultProfileSvg = () => (
+  <svg
+    width="138"
+    height="138"
+    viewBox="0 0 138 138"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <mask
+      id="mask0"
+      maskUnits="userSpaceOnUse"
+      x="0"
+      y="0"
+      width="138"
+      height="138"
+    >
+      <circle cx="69" cy="69" r="69" fill="#C4C4C4" />
+    </mask>
+    <g mask="url(#mask0)">
+      <path d="M0 0H138V138H0V0Z" fill="#A0A0A0" />
+      <path
+        d="M37.9502 60.3754C37.9502 55.1356 42.1979 50.8879 47.4377 50.8879H90.5627C95.8025 50.8879 100.05 55.1356 100.05 60.3754V107.813C100.05 113.053 95.8025 117.3 90.5627 117.3H47.4377C42.1979 117.3 37.9502 113.053 37.9502 107.813V60.3754Z"
+        fill="#CECECE"
+      />
+      <path
+        d="M37.9502 60.3754C37.9502 55.1356 42.1979 50.8879 47.4377 50.8879H90.5627C95.8025 50.8879 100.05 55.1356 100.05 60.3754V107.813C100.05 113.053 95.8025 117.3 90.5627 117.3H47.4377C42.1979 117.3 37.9502 113.053 37.9502 107.813V60.3754Z"
+        fill="url(#paint0_radial)"
+      />
+      <path
+        d="M36.2246 48.2378C36.2246 32.076 49.3263 18.9744 65.488 18.9744H72.5112C88.6729 18.9744 101.775 32.076 101.775 48.2378V55.261C101.775 71.4227 88.6729 84.5244 72.5112 84.5244H65.488C49.3263 84.5244 36.2246 71.4227 36.2246 55.261V48.2378Z"
+        fill="#EBEBEB"
+      />
+      <path
+        d="M46 41.452C46 39.9413 46.5987 38.4886 47.8864 37.6986C50.8208 35.8983 57.4874 33 69.996 33C82.5045 33 89.1712 35.8983 92.1056 37.6986C93.3933 38.4886 93.992 39.9413 93.992 41.452V63.4855C93.992 65.6341 92.7903 67.5705 90.7254 68.1641C87.215 69.1732 80.6543 70.4571 69.996 70.4571C59.3376 70.4571 52.777 69.1732 49.2666 68.1641C47.2016 67.5705 46 65.6341 46 63.4855V41.452Z"
+        fill="#C4C4C4"
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M45.2839 87.9746C32.7808 87.9746 22.0662 96.915 19.8272 109.216L14.5879 138H123.414L118.175 109.216C115.936 96.915 105.222 87.9746 92.7184 87.9746H45.2839Z"
+        fill="#EBEBEB"
+      />
+    </g>
+    <defs>
+      <radialGradient
+        id="paint0_radial"
+        cx="0"
+        cy="0"
+        r="1"
+        gradientUnits="userSpaceOnUse"
+        gradientTransform="translate(69.0002 84.0942) rotate(90) scale(33.2062 31.05)"
+      >
+        <stop stopColor="#C2C2C2" />
+        <stop offset="0.822917" stopColor="#CBCBCB" stopOpacity="0.937857" />
+        <stop offset="1" stopColor="#CECECE" stopOpacity="0.91" />
+      </radialGradient>
+    </defs>
+  </svg>
+);
+
+const PlusButtonSvg = () => (
+  <svg
+    width="25"
+    height="25"
+    viewBox="0 0 25 25"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect
+      x="0.855"
+      y="0.855"
+      width="23.29"
+      height="23.29"
+      rx="11.645"
+      stroke="white"
+      strokeWidth="1.71"
+    />
+    <rect
+      x="11.2129"
+      y="6.052"
+      width="2.57891"
+      height="12.8946"
+      rx="1.28946"
+      fill="white"
+    />
+    <rect
+      x="18.9482"
+      y="11.2104"
+      width="2.57891"
+      height="12.8946"
+      rx="1.28946"
+      transform="rotate(90 18.9482 11.2104)"
+      fill="white"
+    />
+  </svg>
+);
+
+const CloseButtonSvg = () => (
+  <svg
+    width="34"
+    height="35"
+    viewBox="0 0 34 35"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M8.18652 9.4585L25.1866 26.4586"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <path
+      d="M25.1865 8.83057L8.18644 25.8307"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
 /*eslint-disable */
 export const LogoIcon = (props) => <Icon component={LogoSvg} {...props} />;
 export const BigLogoIcon = (props) => (
@@ -862,6 +1012,10 @@ export const NoScreenShareIcon = (props) => (
   <Icon component={NoScreenShareSvg} {...props} />
 );
 export const FilterIcon = (props) => <Icon component={FilterSvg} {...props} />;
+export const StarIcon = (props) => <Icon component={StarSvg} {...props} />;
+export const StarFilledIcon = (props) => (
+  <Icon component={StarFilledSvg} {...props} />
+);
 export const AstronautIcon = (props) => (
   <Icon component={AstronautSvg} {...props} />
 );
@@ -870,4 +1024,13 @@ export const SingleUserIcon = (props) => (
 );
 export const ChatBubbleIcon = (props) => (
   <Icon component={ChatBubbleSvg} {...props} />
+);
+export const DefaultProfileIcon = (props) => (
+  <Icon component={DefaultProfileSvg} {...props} />
+);
+export const CloseButtonIcon = (props) => (
+  <Icon component={CloseButtonSvg} {...props} />
+);
+export const PlusButtonIcon = (props) => (
+  <Icon component={PlusButtonSvg} {...props} />
 );
