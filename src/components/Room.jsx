@@ -176,11 +176,12 @@ const RoomContainer = styled.div`
   .other .user-info {
     width: 100%;
     height: 100%;
+    position: absolute;
+    transform: rotateY(-180deg);
+    background-color: black;
     border: 0.125em solid #000000;
     box-sizing: border-box;
     border-radius: 0.5em;
-    background-color: black;
-    transform: rotateY(-180deg);
   }
   .other:active .user-info {
     transform: rotateY(0deg);
