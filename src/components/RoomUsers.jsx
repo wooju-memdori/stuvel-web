@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValueLoadable } from 'recoil';
 import styled from 'styled-components';
@@ -69,57 +68,57 @@ const RoomUsers = () => {
                 </div>
               </div>
             ) : (
-                usersList.map((user) => {
-                  return (
-                    <div className="user-info">
-                      <img
-                        className="right-up-nemo"
-                        alt=""
-                        src={`${window.location.href}/../nemo1.png`}
-                      />
-                      <img
-                        className="left-down-nemo"
-                        alt=""
-                        src={`${window.location.href}/../nemo1.png`}
-                      />
-                      {user.nickname ? (
-                        <>
-                          <div className="profile">
-                            <div className="profile-img">
-                              {user.image ? (
-                                <img src={user.image} alt="" />
+              usersList.map((user) => {
+                return (
+                  <div className="user-info">
+                    <img
+                      className="right-up-nemo"
+                      alt=""
+                      src={`${window.location.href}/../nemo1.png`}
+                    />
+                    <img
+                      className="left-down-nemo"
+                      alt=""
+                      src={`${window.location.href}/../nemo1.png`}
+                    />
+                    {user.nickname ? (
+                      <>
+                        <div className="profile">
+                          <div className="profile-img">
+                            {user.image ? (
+                              <img src={user.image} alt="" />
+                            ) : (
+                              <img
+                                src={`${window.location.href}/../defaultProfile.png`}
+                                alt=""
+                              />
+                            )}
+                          </div>
+                          <div className="default-info">
+                            <h3>{user.nickname}</h3>
+                            <div className="gender">
+                              <span className="gender-txt">gender</span>
+                              {user.gender === 0 ? (
+                                <FemaleIcon className="gender-img" />
                               ) : (
-                                  <img
-                                    src={`${window.location.href}/../defaultProfile.png`}
-                                    alt=""
-                                  />
-                                )}
+                                <MaleIcon className="gender-img" />
+                              )}
                             </div>
-                            <div className="default-info">
-                              <h3>{user.nickname}</h3>
-                              <div className="gender">
-                                <span className="gender-txt">gender</span>
-                                {user.gender === 0 ? (
-                                  <FemaleIcon className="gender-img" />
-                                ) : (
-                                    <MaleIcon className="gender-img" />
-                                  )}
-                              </div>
-                              <div className="score">
-                                <span className="score-txt">score</span>
-                                <Rate disabled defaultValue={user.mobum_score} />
-                              </div>
+                            <div className="score">
+                              <span className="score-txt">score</span>
+                              <Rate disabled defaultValue={user.mobum_score} />
                             </div>
                           </div>
-                          <p>{user.tag}</p>
-                        </>
-                      ) : (
-                          <div className="no-record">No record</div>
-                        )}
-                    </div>
-                  );
-                })
-              )}
+                        </div>
+                        <p>{user.tag}</p>
+                      </>
+                    ) : (
+                      <div className="no-record">No record</div>
+                    )}
+                  </div>
+                );
+              })
+            )}
             <div id="links">
               <Button
                 type="primary"
@@ -174,7 +173,7 @@ const RoomInfo = styled.div`
   .user-info {
     height: 10.75em;
     width: 100%;
-    background: rgba(39, 35, 51, 0.97);s
+    background: rgba(39, 35, 51, 0.97);
     border: 1px solid #ffffff;
     border-radius: 0.571em;
     margin: 2% 0;
