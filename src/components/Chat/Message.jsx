@@ -15,15 +15,15 @@ const Message = ({ message: { text, user, time }, name }) => {
     <MessageContainer>
       <SendText>{time}</SendText>
       <MessageBox>
-        <MessageText color="white">{text}</MessageText>
+        <MessageText>{text}</MessageText>
       </MessageBox>
     </MessageContainer>
   ) : (
     <MessageContainer justifyStart>
       <MessageBox myMessage>
-        <MessageText color="black">{text}</MessageText>
+        <MessageText>{text}</MessageText>
       </MessageBox>
-      <SendText myMessage>{user}</SendText>
+      <SendText myMessage>{time}</SendText>
     </MessageContainer>
   );
 };
@@ -39,7 +39,7 @@ const MessageContainer = styled.div`
 `;
 
 const MessageBox = styled.div`
-  background: ${(props) => (props.myMessage ? '#5C4DB8' : '#645572')};
+  background: ${(props) => (props.myMessage ? '#645572' : '#5C4DB8')};
   border-radius: 8px;
   padding: 5px 10px;
   color: white;
@@ -53,13 +53,15 @@ const MessageText = styled.p`
   float: left;
   word-wrap: break-word;
   color: white;
+  margin-bottom: 0;
 `;
 
 const SendText = styled.p`
   display: flex;
-  align-items: center;
+  align-items: end;
   color: #828282;
   letter-spacing: 0.3px;
+  margin-bottom: 0;
   padding-right: ${(props) => (props.myMessage ? 0 : 0.5)}em;
   padding-left: ${(props) => (props.myMessage ? 0.5 : 0)}em;
 `;
