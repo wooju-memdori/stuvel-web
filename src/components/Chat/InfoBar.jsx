@@ -1,13 +1,22 @@
 import React from 'react';
+import { Avatar } from 'antd';
 import styled from 'styled-components';
 
-const InfoBar = ({ room }) => (
-  <StyledInfoBar>
-    <LeftInnerContainer>
-      <h3>{room}</h3>
-    </LeftInnerContainer>
-  </StyledInfoBar>
-);
+const InfoBar = ({ room }) => {
+  console.log(room);
+  return (
+    <StyledInfoBar>
+      <LeftInnerContainer>
+        <Avatar
+          style={{ marginRight: '1rem' }}
+          size="large"
+          src="https://avatars.githubusercontent.com/u/50407047?v=4"
+        />
+        <h3>하연</h3>
+      </LeftInnerContainer>
+    </StyledInfoBar>
+  );
+};
 
 export default InfoBar;
 
@@ -27,4 +36,6 @@ const LeftInnerContainer = styled.div`
   align-items: center;
   margin-left: 5%;
   color: white;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 `;
