@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Button } from 'antd';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
@@ -8,6 +8,9 @@ import { BigLogoIcon, LeftBackgroundIcon, RightBackgroundIcon } from './Icon';
 const ChooseRequired = () => {
   const setRequiredOrOption = useRecoilState(signUpProcessState)[1];
   const setUserInfo = useRecoilState(userInfoState)[1];
+  const [alertText, setAlertText] = useState();
+  const [firstPwd, setFirstPwd] = useState();
+  const [lastPwd] = useState();
 
   const onFinish = (values) => {
     const userDefaultInfo = {
@@ -21,6 +24,21 @@ const ChooseRequired = () => {
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
+  };
+
+  const orginPwd = (e) => {
+    setFirstPwd(e.target.value);
+  };
+
+  const pwdCheck = (e) => {
+    const pwdInfo = {
+      firstPwd,
+      lastPwd,
+    };
+    console.log(pwdInfo);
+    if (!(firstPwd === e.target.value)) {
+      setAlertText('비밀번호가 일치하지 않습니다.');
+    }
   };
 
   return (
@@ -65,6 +83,8 @@ const ChooseRequired = () => {
               <Input.Password
                 className="input"
                 placeholder="(대문자, 소문자, 특수문자 조합 8자 이상)"
+                value={firstPwd}
+                onChange={orginPwd}
                 rules={[
                   {
                     required: true,
@@ -78,6 +98,8 @@ const ChooseRequired = () => {
               <Input.Password
                 className="input diffPwd"
                 placeholder="비밀번호 확인을 입력해주세요"
+                value={lastPwd}
+                onChange={pwdCheck}
                 rules={[
                   {
                     required: true,
@@ -85,6 +107,7 @@ const ChooseRequired = () => {
                   },
                 ]}
               />
+              <p className="check-text">{alertText}</p>
             </Form.Item>
 
             <Form.Item
@@ -133,6 +156,14 @@ const SignUpForm = styled.div`
     margin-left: -16%;
     width: 22.5em;
     height: 3.13em;
+  }
+  .check-text {
+    position: absolute;
+    top: 4.2em;
+    left: 3.8em;
+    font-family: Roboto;
+    font-size: 0.75em;
+    color: #d45667;
   }
 `;
 

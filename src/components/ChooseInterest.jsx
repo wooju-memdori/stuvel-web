@@ -24,10 +24,11 @@ const ChooseInterest = () => {
     };
     console.log(userInfo);
     setUserInfo(newUserInfo);
+    console.info(newUserInfo);
   };
 
   const onChange = (checkedValues) => {
-    console.error(checkedValues);
+    console.warn(checkedValues);
     setInterests(checkedValues);
     addInterests();
   };
