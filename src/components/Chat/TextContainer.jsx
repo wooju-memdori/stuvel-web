@@ -8,7 +8,7 @@ const TextContainer = ({ users }) => (
       <div>
         <ActiveContainer>
           <List
-            itemLayoout="horizontal"
+            itemLayout="horizontal"
             dataSource={users}
             renderItem={(user) => (
               <List.Item>
