@@ -56,10 +56,10 @@ const Chat = () => {
 
   return (
     <StyledRow>
-      <Col span={12}>
+      <Col span={8}>
         <TextContainer users={users} />
       </Col>
-      <Col span={12}>
+      <Col span={16}>
         <Container>
           <InfoBar room={room} />
           <Messages messages={messages} name={name} />
