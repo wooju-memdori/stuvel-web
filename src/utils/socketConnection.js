@@ -57,7 +57,9 @@ class SocketConnection {
       };
       console.log('peers established and joined room', userData);
       const response = await axios.post(`./room/${roomId}`);
-      this.socket.emit('join-room', roomId, id, response.data.userId);
+      this.myUserInfo = response.data.userInfo;
+      console.log(this.myUserInfo);
+      this.socket.emit('join-room', roomId, id, this.myUserInfo);
       this.setNavigatorToStream();
     });
     this.myPeer.on('error', (err) => {
@@ -106,7 +108,11 @@ class SocketConnection {
     this.myPeer.on('call', (call) => {
       call.answer(stream);
       call.on('stream', (userVideoStream) => {
-        this.createVideo({ id: call.metadata.id, stream: userVideoStream });
+        this.createVideo({
+          id: call.metadata.id,
+          userInfo: call.metadata.userInfo,
+          stream: userVideoStream,
+        });
       });
       call.on('close', () => {
         console.log('closing peers listeners', call.metadata.id);
@@ -122,28 +128,33 @@ class SocketConnection {
 
   newUserConnection = (stream) => {
     console.log('newUserConnection');
-    this.socket.on('user-connected', (userId) => {
-      console.log('New User Connected', userId);
-      this.connectToNewUser(userId, stream);
+    this.socket.on('user-connected', (peerId, userInfo) => {
+      console.log('New User Connected', peerId, userInfo);
+      console.log('userID 가져왔어요~', userInfo);
+      this.connectToNewUser(peerId, userInfo, stream);
     });
   };
 
-  connectToNewUser(userId, stream) {
-    const call = this.myPeer.call(userId, stream, {
-      metadata: { id: this.myId },
+  connectToNewUser(peerId, userInfo, stream) {
+    const call = this.myPeer.call(peerId, stream, {
+      metadata: { id: this.myId, userInfo: this.myUserInfo },
     });
     call.on('stream', (userVideoStream) => {
-      this.createVideo({ id: userId, stream: userVideoStream });
+      this.createVideo({
+        id: peerId,
+        userInfo: userInfo,
+        stream: userVideoStream,
+      });
     });
     call.on('close', () => {
-      console.log('closing new user', userId);
-      this.removeVideo(userId);
+      console.log('closing new user', peerId);
+      this.removeVideo(peerId);
     });
     call.on('error', () => {
       console.log('peer error ------');
-      this.removeVideo(userId);
+      this.removeVideo(peerId);
     });
-    peers[userId] = call;
+    peers[peerId] = call;
   }
 
   createVideo = (createObj) => {
