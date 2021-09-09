@@ -8,14 +8,15 @@ import {
   micStatusState,
   displayStreamState,
 } from '../state/atom';
-
-const TextAlignCentered = styled.div`
-  text-align: center;
-`;
-
-const TextAlignCentered = styled.div`
-  text-align: center;
-`;
+import {
+  CamIcon,
+  MicIcon,
+  NoCamIcon,
+  ScreenShareIcon,
+  NoMicIcon,
+  NoScreenShareIcon,
+  ExitIcon,
+} from './Icon';
 
 const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
   const camStatus = useRecoilValue(camStatusState);
@@ -32,12 +33,12 @@ const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
   return (
     <Layout.Footer>
       <TextAlignCentered>
-      <div className="cam-handle">
+        <div className="cam-handle">
           {camStatus ? (
             <CamIcon onClick={handleMyCam} className="handle-icon" />
           ) : (
-              <NoCamIcon onClick={handleMyCam} />
-            )}
+            <NoCamIcon onClick={handleMyCam} />
+          )}
           <p>캠</p>
         </div>
 
@@ -45,8 +46,8 @@ const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
           {micStatus ? (
             <MicIcon onClick={handleMyMic} className="handle-icon" />
           ) : (
-              <NoMicIcon onClick={handleMyMic} />
-            )}
+            <NoMicIcon onClick={handleMyMic} />
+          )}
 
           <p>마이크</p>
         </div>
@@ -57,32 +58,29 @@ const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
               className="handle-icon"
             />
           ) : (
-              <NoScreenShareIcon onClick={toggleScreenShare} />
-            )}
+            <NoScreenShareIcon onClick={toggleScreenShare} />
+          )}
           <p>화면공유</p>
         </div>
         <div className="cam-handle">
-          <LinkShareIcon
-            onClick={copy}
-            className="handle-icon"
-          />
+          {/* <LinkShareIcon onClick={copy} className="handle-icon" /> */}
           <p>링크복사</p>
         </div>
         <div className="cam-handle">
           <ExitIcon />
           <p>나가기</p>
         </div>
-        <Button onClick={handleMyCam}>
-          {camStatus ? 'Disable Cam' : 'Enable Cam'}
-        </Button>
-        <Button onClick={handleMyMic}>
-          {micStatus ? 'Disable Mic' : 'Enable Mic'}
-        </Button>
-        <Button onClick={toggleScreenShare}>
-          {displayStream ? 'Stop Screen Share' : 'Share Screen'}
-        </Button>
-        <Button onClick={copy}>Invite Link</Button>
       </TextAlignCentered>
+      <Button onClick={handleMyCam}>
+        {camStatus ? 'Disable Cam' : 'Enable Cam'}
+      </Button>
+      <Button onClick={handleMyMic}>
+        {micStatus ? 'Disable Mic' : 'Enable Mic'}
+      </Button>
+      <Button onClick={toggleScreenShare}>
+        {displayStream ? 'Stop Screen Share' : 'Share Screen'}
+      </Button>
+      <Button onClick={copy}>Invite Link</Button>
     </Layout.Footer>
   );
 };
