@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { string, func } from 'prop-types';
-// import { Spin } from 'antd';
-// import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import styled from 'styled-components';
 import Footer from './Footer';
@@ -88,13 +88,13 @@ export default function Room({ paramRoomId }) {
 
   return (
     <RoomPage>
-      {/* <Spin
-        indicator={<LoadingOutlined spin />}
-        size="large"
-        spinning={!streaming}
-      > */}
-      <div id="room-div">
-        <RoomContainer id="room-container" />
+    <Spin
+      indicator={<LoadingOutlined spin />}
+      size="large"
+      spinning={!streaming}
+    >
+       <div id="room-div">
+      <RoomContainer id="room-container" />
       </div>
       {streaming && (
         <Footer
@@ -104,7 +104,7 @@ export default function Room({ paramRoomId }) {
           roomId={roomId}
         />
       )}
-      {/* </Spin> */}
+    </Spin>
     </RoomPage>
   );
 }
@@ -140,7 +140,9 @@ const RoomPage = styled.div`
 
 const RoomContainer = styled.div`
   width: 100%;
+  background-color: black;
   display: grid;
+  height: calc(100vh - 64px);
   grid-gap: 6px 6px;
   grid-template-columns: repeat(auto-fit, minmax(400px, auto));
   grid-template-rows: repeat(auto-fit, minmax(100px, auto));
@@ -164,7 +166,7 @@ const RoomContainer = styled.div`
   }
   .video-container h3 {
     position: absolute;
-    bottom: 0.5%;
+    bottom: 0.2%;
     z-index: 1;
     width: 50%;
     margin: 0;
@@ -173,7 +175,7 @@ const RoomContainer = styled.div`
   }
   .user-container:first-child:nth-last-child(1) {
     .video-container h3 {
-      font-size: 3em;
+      font-size: 2.5em;
     }
   }
   .black-nemo {

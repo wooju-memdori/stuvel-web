@@ -13,6 +13,7 @@ class SocketConnection {
     this.streaming = false;
     this.myId = '';
     this.myUserInfo = null; // stuvel에서 사용하는 userId
+
     this.myPeer = initializePeerConnection();
     this.socket = initializeSocketConnection();
     if (this.socket) this.isSocketConnected = true;
@@ -76,6 +77,7 @@ class SocketConnection {
         this.settings.updateInstance('streaming', true);
         // stream과 id로 비디오 element 생성
         this.createVideo({ id: this.myId, userInfo: null, stream });
+        // this.createVideo({ id: this.myId, stream });
         // peer 이벤트 리스너
         // 다른 유저가 보낸 stream을 듣고 peer.answer(stream)으로 로컬 스트림 응답함
         this.setPeersListeners(stream);
@@ -195,7 +197,7 @@ class SocketConnection {
       }
     }
   };
-
+  
   createUserInfo = (userInfoDiv, userInfo) => {
     userInfoDiv.className = 'user-info';
     const profile = document.createElement('div');
