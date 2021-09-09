@@ -18,6 +18,22 @@ import {
   displayStreamState,
 } from '../state/atom';
 
+const TextAlignCentered = styled.div`
+  text-align: center;
+  .cam-handle {
+    display: inline-block;
+    margin: 0 3%;
+  }
+  .handle-icon svg circle {
+    transition: 0.2s;
+  }
+  .handle-icon svg:hover {
+    circle {
+      fill: #34006a;
+    }
+  }
+`;
+
 const MyCamFooter = ({ handleMyCam, handleMyMic, toggleScreenShare }) => {
   const camStatus = useRecoilValue(camStatusState);
   const micStatus = useRecoilValue(micStatusState);
@@ -30,8 +46,8 @@ const MyCamFooter = ({ handleMyCam, handleMyMic, toggleScreenShare }) => {
           {camStatus ? (
             <CamIcon onClick={handleMyCam} className="handle-icon" />
           ) : (
-              <NoCamIcon onClick={handleMyCam} />
-            )}
+            <NoCamIcon onClick={handleMyCam} />
+          )}
           <p>캠</p>
         </div>
 
@@ -39,8 +55,8 @@ const MyCamFooter = ({ handleMyCam, handleMyMic, toggleScreenShare }) => {
           {micStatus ? (
             <MicIcon onClick={handleMyMic} className="handle-icon" />
           ) : (
-              <NoMicIcon onClick={handleMyMic} />
-            )}
+            <NoMicIcon onClick={handleMyMic} />
+          )}
 
           <p>마이크</p>
         </div>
@@ -51,8 +67,8 @@ const MyCamFooter = ({ handleMyCam, handleMyMic, toggleScreenShare }) => {
               className="handle-icon"
             />
           ) : (
-              <NoScreenShareIcon onClick={toggleScreenShare} />
-            )}
+            <NoScreenShareIcon onClick={toggleScreenShare} />
+          )}
 
           <p>화면공유</p>
         </div>

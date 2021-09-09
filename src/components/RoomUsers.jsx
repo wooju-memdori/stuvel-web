@@ -10,7 +10,7 @@ import {
   roomIdState,
 } from '../state/atom';
 import axios from '../utils/axios';
-import { ToHomeIcon, FemaleIcon, MaleIcon } from './Icon';
+import { ToHomeIcon, ExitIcon, FemaleIcon, MaleIcon } from './Icon';
 
 const RoomUsers = () => {
   const [nowRoomId, setRoomId] = useRecoilState(roomIdState);
@@ -46,7 +46,7 @@ const RoomUsers = () => {
       return (
         <RoomInfo>
           <div id="room-style">
-            <h3>행성 스타일</h3>
+          <h3>행성 스타일</h3>
           </div>
           <div id="room-users">
             <h3>행성 방문자</h3>
@@ -69,9 +69,10 @@ const RoomUsers = () => {
               </div>
             ) : (
               usersList.map((user) => {
-                return (
+              return (
+                
                   <div className="user-info">
-                    <img
+                  <img
                       className="right-up-nemo"
                       alt=""
                       src={`${window.location.href}/../nemo1.png`}
@@ -122,8 +123,8 @@ const RoomUsers = () => {
                       <div className="no-record">No record</div>
                     )}
                   </div>
-                );
-              })
+              );
+            })
             )}
             <div id="links">
               <Button
@@ -146,7 +147,7 @@ const RoomUsers = () => {
               </Button>
               <div id="exit">
                 <Link to="/">
-                  <ToHomeIcon />
+                <ToHomeIcon />
                   <p>나가기</p>
                 </Link>
               </div>

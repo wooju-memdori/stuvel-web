@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import { Layout, message } from 'antd';
+import { Layout, Button, message } from 'antd';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { func, string } from 'prop-types';
@@ -20,6 +20,10 @@ import {
   ExitIcon
 } from './Icon';
 
+const TextAlignCentered = styled.div`
+  text-align: center;
+`;
+
 const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
   const camStatus = useRecoilValue(camStatusState);
   const micStatus = useRecoilValue(micStatusState);
@@ -35,7 +39,7 @@ const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
   return (
     <Layout.Footer>
       <TextAlignCentered>
-        <div className="cam-handle">
+      <div className="cam-handle">
           {camStatus ? (
             <CamIcon onClick={handleMyCam} className="handle-icon" />
           ) : (
@@ -75,6 +79,16 @@ const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
           <ExitIcon />
           <p>나가기</p>
         </div>
+        <Button onClick={handleMyCam}>
+          {camStatus ? 'Disable Cam' : 'Enable Cam'}
+        </Button>
+        <Button onClick={handleMyMic}>
+          {micStatus ? 'Disable Mic' : 'Enable Mic'}
+        </Button>
+        <Button onClick={toggleScreenShare}>
+          {displayStream ? 'Stop Screen Share' : 'Share Screen'}
+        </Button>
+        <Button onClick={copy}>Invite Link</Button>
       </TextAlignCentered>
     </Layout.Footer>
   );
@@ -102,5 +116,4 @@ const TextAlignCentered = styled.div`
     }
   }
 `;
-
 export default Footer;
