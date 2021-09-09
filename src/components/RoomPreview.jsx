@@ -20,11 +20,6 @@ const RoomPreview = () => {
         <PreviewMyCam />
       </div>
       <div className="room-info">
-        <img
-          className="center-line-nemo"
-          alt=""
-          src={`${window.location.href}/../nemo2.png`}
-        />
         <RoomUsers className="room-users" />
       </div>
     </RoomPreviewPage>
@@ -65,10 +60,6 @@ const RoomPreviewPage = styled.div`
     border-left: 1px solid #ffffff;
     background: #0b0016;
     position: relative;
-  }
-  .center-line-nemo {
-    width: 0.438em;
-    position: absolute;
   }
 `;
 
