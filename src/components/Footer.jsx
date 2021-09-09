@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
 import { Layout, Button, message } from 'antd';
 import { useRecoilValue } from 'recoil';
@@ -9,16 +8,10 @@ import {
   micStatusState,
   displayStreamState,
 } from '../state/atom';
-import {
-  CamIcon,
-  MicIcon,
-  NoCamIcon,
-  ScreenShareIcon,
-  NoMicIcon,
-  NoScreenShareIcon,
-  LinkShareIcon,
-  ExitIcon
-} from './Icon';
+
+const TextAlignCentered = styled.div`
+  text-align: center;
+`;
 
 const TextAlignCentered = styled.div`
   text-align: center;

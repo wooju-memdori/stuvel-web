@@ -38,7 +38,7 @@ const RoomUsers = () => {
       const roomUsers = usersInfo.contents;
       const usersList = [...roomUsers];
       console.log(usersList);
-      if (usersList.length < 3 && usersList.length >= 1) {
+      if (usersList.length < 3) {
         while (usersList.length < 3) {
           usersList.push({});
         }
@@ -187,47 +187,6 @@ const RoomInfo = styled.div`
     position: relative;
     display: inline-flex;
   }
-  #no-user {
-    height: 33.5em;
-    border-radius: 1em;
-    background: rgba(0, 0, 0, 0);
-  }
-  .right-up-nemo {
-    width: 12.79%;
-    position: absolute;
-    top: 0;
-    right: 0;
-    -moz-transform: scaleX(-1);
-    -o-transform: scaleX(-1);
-    -webkit-transform: scaleX(-1);
-    -transform: scaleX(-1);
-  }
-  .left-down-nemo {
-    width: 12.79%;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    -moz-transform: scaleY(-1);
-    -o-transform: scaleY(-1);
-    -webkit-transform: scaleY(-1);
-    -transform: scaleY(-1);
-  }
-  .left-up-nemo {
-    width: 24.15%;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  .right-down-nemo {
-    width: 24.15%;
-    position: absolute;
-    -moz-transform: scale(-1);
-    -o-transform: scale(-1);
-    -webkit-transform: scale(-1);
-    -transform: scale(-1);
-    bottom: 0;
-    right: 0;
-  }
   .profile {
     float: left;
     min-width: 25em;
@@ -288,12 +247,6 @@ const RoomInfo = styled.div`
     font-weight: 900;
     font-size: 1.75em;
     color: #616161;
-  }
-  #no-user .no-record {
-    margin-top: -1.7em;
-  }
-  .greeting {
-    font-size: 1.5em;
   }
   #links {
     bottom: 0;

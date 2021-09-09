@@ -57,9 +57,7 @@ class SocketConnection {
       };
       console.log('peers established and joined room', userData);
       const response = await axios.post(`./room/${roomId}`);
-      this.myUserInfo = response.data.userInfo;
-      console.log(this.myUserInfo);
-      this.socket.emit('join-room', roomId, id, this.myUserInfo);
+      this.socket.emit('join-room', roomId, id, response.data.userId);
       this.setNavigatorToStream();
     });
     this.myPeer.on('error', (err) => {
@@ -108,11 +106,7 @@ class SocketConnection {
     this.myPeer.on('call', (call) => {
       call.answer(stream);
       call.on('stream', (userVideoStream) => {
-        this.createVideo({
-          id: call.metadata.id,
-          userInfo: call.metadata.userInfo,
-          stream: userVideoStream,
-        });
+        this.createVideo({ id: call.metadata.id, stream: userVideoStream });
       });
       call.on('close', () => {
         console.log('closing peers listeners', call.metadata.id);
@@ -128,33 +122,28 @@ class SocketConnection {
 
   newUserConnection = (stream) => {
     console.log('newUserConnection');
-    this.socket.on('user-connected', (peerId, userInfo) => {
-      console.log('New User Connected', peerId, userInfo);
-      console.log('userID 가져왔어요~', userInfo);
-      this.connectToNewUser(peerId, userInfo, stream);
+    this.socket.on('user-connected', (userId) => {
+      console.log('New User Connected', userId);
+      this.connectToNewUser(userId, stream);
     });
   };
 
-  connectToNewUser(peerId, userInfo, stream) {
-    const call = this.myPeer.call(peerId, stream, {
-      metadata: { id: this.myId, userInfo: this.myUserInfo },
+  connectToNewUser(userId, stream) {
+    const call = this.myPeer.call(userId, stream, {
+      metadata: { id: this.myId },
     });
     call.on('stream', (userVideoStream) => {
-      this.createVideo({
-        id: peerId,
-        userInfo: userInfo,
-        stream: userVideoStream,
-      });
+      this.createVideo({ id: userId, stream: userVideoStream });
     });
     call.on('close', () => {
-      console.log('closing new user', peerId);
-      this.removeVideo(peerId);
+      console.log('closing new user', userId);
+      this.removeVideo(userId);
     });
     call.on('error', () => {
       console.log('peer error ------');
-      this.removeVideo(peerId);
+      this.removeVideo(userId);
     });
-    peers[peerId] = call;
+    peers[userId] = call;
   }
 
   createVideo = (createObj) => {
@@ -163,34 +152,14 @@ class SocketConnection {
         ...createObj,
       };
       const roomContainer = document.getElementById('room-container');
-      const userContainer = document.createElement('div');
-      userContainer.className = 'user-container';
       const videoContainer = document.createElement('div');
-      videoContainer.className = 'video-container';
-      const blackNemo = document.createElement('img');
-      blackNemo.className = 'black-nemo';
-      blackNemo.src = `${window.location.href}/../blackNemo.png`;
-      videoContainer.appendChild(blackNemo);
-      const userName = document.createElement('h3');
       const video = document.createElement('video');
       video.srcObject = this.videoContainer[createObj.id].stream;
       video.id = createObj.id;
       video.autoplay = true;
-      if (this.myId === createObj.id) {
-        video.muted = true;
-        userName.innerText = this.myUserInfo.nickname;
-      }
+      if (this.myId === createObj.id) video.muted = true;
       videoContainer.appendChild(video);
-      videoContainer.appendChild(userName);
-      userContainer.appendChild(videoContainer);
-      if (createObj.userInfo) {
-        const userInfoDiv = document.createElement('div');
-        userContainer.className += ' other';
-        this.createUserInfo(userInfoDiv, createObj.userInfo);
-        userContainer.appendChild(userInfoDiv);
-        userName.innerText = createObj.userInfo.nickname;
-      }
-      roomContainer.appendChild(userContainer);
+      roomContainer.append(videoContainer);
     } else {
       if (document.getElementById(createObj.id)) {
         document.getElementById(createObj.id).srcObject = createObj.stream;
