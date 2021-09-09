@@ -20,6 +20,11 @@ const RoomPreview = () => {
         <PreviewMyCam />
       </div>
       <div className="room-info">
+      <img
+          className="center-line-nemo"
+          alt=""
+          src={`${window.location.href}/../nemo2.png`}
+        />
         <RoomUsers className="room-users" />
       </div>
     </RoomPreviewPage>

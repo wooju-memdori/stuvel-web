@@ -12,6 +12,8 @@ class SocketConnection {
     this.settings = settings;
     this.streaming = false;
     this.myId = '';
+    this.myUserInfo = null; // stuvel에서 사용하는 userId
+
     this.myPeer = initializePeerConnection();
     this.socket = initializeSocketConnection();
     if (this.socket) this.isSocketConnected = true;
@@ -72,7 +74,8 @@ class SocketConnection {
         this.streaming = true;
         this.settings.updateInstance('streaming', true);
         // stream과 id로 비디오 element 생성
-        this.createVideo({ id: this.myId, stream });
+        this.createVideo({ id: this.myId, userInfo: null, stream });
+        // this.createVideo({ id: this.myId, stream });
         // peer 이벤트 리스너
         // 다른 유저가 보낸 stream을 듣고 peer.answer(stream)으로 로컬 스트림 응답함
         this.setPeersListeners(stream);
@@ -162,6 +165,56 @@ class SocketConnection {
         document.getElementById(createObj.id).srcObject = createObj.stream;
       }
     }
+  };
+  
+  createUserInfo = (userInfoDiv, userInfo) => {
+    userInfoDiv.className = 'user-info';
+    const profile = document.createElement('div');
+    profile.className = 'profile';
+    const profileImg = document.createElement('img');
+    if (userInfo.img) {
+      profileImg.src = userInfo.image;
+    } else {
+      profileImg.src = `${window.location.href}/../defaultProfile.png`;
+    }
+    profile.appendChild(profileImg);
+    const defaultInfo = document.createElement('div');
+    defaultInfo.className = 'default-info';
+    const nickname = document.createElement('h3');
+    nickname.innerText = userInfo.nickname;
+    const gender = document.createElement('div');
+    gender.className = 'gender';
+    const genderText = document.createElement('span');
+    genderText.className = 'gender-txt';
+    genderText.innerText = 'gender';
+    const genderImg = document.createElement('img');
+    genderImg.className = 'gender-img';
+    if (userInfo.gender === 0) {
+      genderImg.src = `${window.location.href}/../female.png`;
+    } else {
+      genderImg.src = `${window.location.href}/../male.png`;
+    }
+    gender.appendChild(genderText);
+    gender.appendChild(genderImg);
+    const score = document.createElement('div');
+    score.className = 'score';
+    const scoreText = document.createElement('span');
+    scoreText.className = 'score-txt';
+    scoreText.innerText = 'score';
+    const scoreImg = document.createElement('img');
+    scoreImg.className = 'score-img';
+    scoreImg.src = `${window.location.href}/../star.png`;
+    score.appendChild(scoreText);
+    score.appendChild(scoreImg);
+    const tagsExample = document.createElement('img');
+    tagsExample.className = 'tags';
+    tagsExample.src = `${window.location.href}/../tagsExample.svg`;
+    defaultInfo.appendChild(nickname);
+    defaultInfo.appendChild(gender);
+    defaultInfo.appendChild(score);
+    userInfoDiv.appendChild(profile);
+    userInfoDiv.appendChild(defaultInfo);
+    userInfoDiv.appendChild(tagsExample);
   };
 
   // 화면 공유를 위해 현재 stream을 화면 공유 stream으로 변경
