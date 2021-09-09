@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useRecoilState, useRecoilValueLoadable } from 'recoil';
 import styled from 'styled-components';
 import {
@@ -11,32 +11,53 @@ import {
 } from './Icon';
 import { currentUserInfoState, currentUserInfoFetchState } from '../state/atom';
 
+import FullModalContainer from '../containers/FullModalContainer';
+
 const MyPage = () => {
+  const [currentUserInfo, setCurrentUserInfo] =
+    useRecoilState(currentUserInfoState);
+
   const currentUserFetchInfo = useRecoilValueLoadable(
     currentUserInfoFetchState(),
   );
 
-  const [currentUserInfo, setCurrentUserInfo] =
-    useRecoilState(currentUserInfoState);
+  // const sampleUser = {
+  //   tags: ['History', 'Fun'],
+  // };
+
+  const [openTagsChoice, setOpenTagChoice] = useState(false);
+
+  const onModalShow = useCallback(() => {
+    setOpenTagChoice(true);
+  }, []);
+
+  const onModalClose = useCallback(() => {
+    setOpenTagChoice(false);
+  }, []);
 
   useEffect(() => {
-    switch (currentUserFetchInfo.state) {
-      case 'hasValue':
-        setCurrentUserInfo(currentUserFetchInfo.contents);
-        break;
-      case 'hasError':
-        console.error(currentUserFetchInfo.contents.message);
-        break;
-      case 'loading':
-      default:
-        console.log('loading');
+    if (!currentUserInfo) {
+      switch (currentUserFetchInfo.state) {
+        case 'hasValue':
+          setCurrentUserInfo(currentUserFetchInfo.contents);
+          break;
+        case 'hasError':
+          // console.error(currentUserFetchInfo.contents.message);
+          // setIsLoading(false);
+          break;
+        case 'loading':
+          console.log('loading');
+          // setIsLoading(true);
+          break;
+        default:
+          console.log('loading');
+      }
     }
-  }, [currentUserFetchInfo]);
+  }, [currentUserFetchInfo, currentUserInfo]);
 
   return (
     <>
-      {/* {isError ? <alert>ERROR!!!</alert> : ''} */}
-
+      {openTagsChoice && <FullModalContainer onClose={onModalClose} />}
       {currentUserInfo && (
         <Profile>
           <div id="top">
@@ -54,13 +75,13 @@ const MyPage = () => {
             <InfoDetails>
               <div
                 id="nickname"
-                className={currentUserInfo.nickname.length > 6 ? 'small' : ''}
+                // className={currentUserInfo.nickname.length > 6 ? 'small' : ''}
               >
                 {currentUserInfo.nickname}
               </div>
               <div id="gender">
                 <span className="field">gender</span>{' '}
-                {currentUserInfo?.gender === 0 ? <MaleIcon /> : <FemaleIcon />}
+                {currentUserInfo.gender === 0 ? <MaleIcon /> : <FemaleIcon />}
               </div>
               <div id="score">
                 <span className="field">Score</span>
@@ -120,10 +141,11 @@ const MyPage = () => {
           </div>
           <InterestTags>
             <h1>
-              내 관심사 설정 <PlusButtonIcon />{' '}
+              내 관심사 설정
+              <PlusButtonIcon onClick={onModalShow} />
             </h1>
             {currentUserInfo.tag &&
-              currentUserInfo?.tag.map((tag) => (
+              currentUserInfo.tag.map((tag) => (
                 <button type="button" key={tag}>
                   {tag}
                 </button>
