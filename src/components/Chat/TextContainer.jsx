@@ -1,39 +1,31 @@
+/* eslint-disable */
 import React from 'react';
-import { List } from 'antd';
+import { List, Input } from 'antd';
 import styled from 'styled-components';
+import { SmallerCloseButtonIcon } from '../Icon';
+
+const testUsers = ['태희', '희진', '해린', '해리'];
 
 const TextContainer = ({ users }) => (
-  <StyledTextContainer>
-    {users ? (
-      <div>
-        <ActiveContainer>
-          <List
-            itemLayout="horizontal"
-            dataSource={users}
-            renderItem={(user) => (
-              <List.Item>
-                <List.Item.Meta title={user.name} />
-              </List.Item>
-            )}
-          />
-        </ActiveContainer>
-      </div>
-    ) : null}
-  </StyledTextContainer>
+  <div>
+    <PaddingDiv>
+      <Input />
+    </PaddingDiv>
+    <List
+      itemLayout="horizontal"
+      dataSource={testUsers}
+      renderItem={(user) => (
+        <List.Item>
+          <List.Item.Meta title={user} style={{ fontSize: '1.143rem' }} />
+          <SmallerCloseButtonIcon style={{ marginRight: '1rem' }} />
+        </List.Item>
+      )}
+    />
+  </div>
 );
 
 export default TextContainer;
 
-const StyledTextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  color: white;
-  height: 60%;
-  justify-content: space-between;
-`;
-
-const ActiveContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 50%;
+const PaddingDiv = styled.div`
+  padding: 0.5rem;
 `;
