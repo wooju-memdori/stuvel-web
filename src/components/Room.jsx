@@ -8,7 +8,6 @@ import styled from 'styled-components';
 import Footer from './Footer';
 // eslint-disable-next-line
 import { createSocketConnectionInstance } from '../utils/socketConnection';
-
 import {
   micStatusState,
   camStatusState,

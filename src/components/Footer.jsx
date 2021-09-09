@@ -31,7 +31,6 @@ const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
       .then(() => message.success('Invitation link copied!'))
       .catch(() => message.error('Browser not support clipboard api'));
   };
-
   return (
     <Layout.Footer>
       <TextAlignCentered>

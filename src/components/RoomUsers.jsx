@@ -22,7 +22,6 @@ const RoomUsers = () => {
     const response = await axios.get(`/room/`);
     setRoomId(response.data);
   };
-
   useEffect(() => {
     // 방 아직 확정 안했으면 방 번호 새로 구하기
     // 케이스 1. 처음 들어왔을때 2. 다른 행성 찾기 버튼 눌렀을 때

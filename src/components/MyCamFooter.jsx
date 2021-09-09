@@ -53,7 +53,6 @@ const MyCamFooter = ({ handleMyCam, handleMyMic, toggleScreenShare }) => {
           ) : (
               <NoScreenShareIcon onClick={toggleScreenShare} />
             )}
-
           <p>화면공유</p>
         </div>
       </TextAlignCentered>

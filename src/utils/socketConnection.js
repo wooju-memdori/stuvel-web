@@ -245,7 +245,6 @@ class SocketConnection {
     userInfoDiv.appendChild(defaultInfo);
     userInfoDiv.appendChild(tagsExample);
   };
-
   // 화면 공유를 위해 현재 stream을 화면 공유 stream으로 변경
   // 우선 타입을 확인해서 userMedia타입이면 캠과 마이크로부터 스트리밍할 것이고,
   // 화면공유라면 getDisplayMedia()로부터 얻은 display stream을 스트리밍

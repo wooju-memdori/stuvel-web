@@ -966,7 +966,6 @@ const CloseButtonSvg = () => (
     />
   </svg>
 );
-
 /*eslint-disable */
 export const LogoIcon = (props) => <Icon component={LogoSvg} {...props} />;
 export const BigLogoIcon = (props) => (
