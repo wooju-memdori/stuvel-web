@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { string } from 'prop-types';
+import { string, func } from 'prop-types';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
@@ -87,12 +87,15 @@ export default function Room({ paramRoomId }) {
   };
 
   return (
+    <RoomPage>
     <Spin
       indicator={<LoadingOutlined spin />}
       size="large"
       spinning={!streaming}
     >
+       <div id="room-div">
       <RoomContainer id="room-container" />
+      </div>
       {streaming && (
         <Footer
           handleMyCam={handleMyCam}
@@ -102,6 +105,7 @@ export default function Room({ paramRoomId }) {
         />
       )}
     </Spin>
+    </RoomPage>
   );
 }
 
@@ -110,6 +114,7 @@ Room.propTypes = {
 };
 
 const RoomContainer = styled.div`
+  width: 100%;
   background-color: black;
   display: grid;
   height: calc(100vh - 64px);
