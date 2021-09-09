@@ -830,6 +830,29 @@ const CloseButtonSvg = () => (
   </svg>
 );
 
+const SmallerCloseButtonSvg = () => (
+  <svg
+    width="1rem"
+    height="1rem"
+    viewBox="0 0 34 35"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M8.18652 9.4585L25.1866 26.4586"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <path
+      d="M25.1865 8.83057L8.18644 25.8307"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
 /*eslint-disable */
 export const LogoIcon = (props) => <Icon component={LogoSvg} {...props} />;
 export const BigLogoIcon = (props) => (
@@ -885,4 +908,8 @@ export const DefaultProfileIcon = (props) => (
 
 export const CloseButtonIcon = (props) => (
   <Icon component={CloseButtonSvg} {...props} />
+);
+
+export const SmallerCloseButtonIcon = (props) => (
+  <Icon component={SmallerCloseButtonSvg} {...props} />
 );
