@@ -83,6 +83,12 @@ const RoomUsers = () => {
                             </div>
                           </div>
                         </div>
+                        <div className="tags">
+                          <img
+                            src={`${window.location.href}/../tagsExample.svg`}
+                            alt=""
+                          />
+                        </div>
                         <p>{user.tag}</p>
                       </>
                     ) : (
@@ -149,12 +155,13 @@ const RoomInfo = styled.div`
     background: rgba(39, 35, 51, 0.97);
     border: 1px solid #ffffff;
     border-radius: 0.571em;
-    margin: 2% 0;
+    margin: 1% 0;
     position: relative;
+    display: inline-flex;
   }
   .profile {
     float: left;
-    min-width: 18.75em;
+    min-width: 25em;
     height: 100%;
     border-right: 1px solid #ffffff;
     display: inline-flex;
@@ -195,6 +202,13 @@ const RoomInfo = styled.div`
   .ant-rate {
     position: relative;
     left: 1.2em;
+  }
+  .tags {
+    padding: 2%;
+  }
+  .tags img {
+    width: 100%;
+    height: 100%;
   }
   .user-info .no-record {
     position: absolute;
