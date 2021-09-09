@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilState, useRecoilValueLoadable } from 'recoil';
-import { Modal, Tabs } from 'antd';
+import { Modal, Tabs, Input } from 'antd';
 import UserList from './UserList';
 
 import {
@@ -10,6 +10,7 @@ import {
 } from '../state/atom';
 
 const { TabPane } = Tabs;
+const { Search } = Input;
 
 export default function Friends() {
   const [isModalVisible, setIsModalVisible] =
@@ -17,23 +18,32 @@ export default function Friends() {
   const followers = useRecoilValueLoadable(followersState());
   const followings = useRecoilValueLoadable(followingsState());
 
-  const handleOk = () => {
+  const handleModalOk = () => {
     setIsModalVisible(false);
   };
 
-  const handleCancel = () => {
+  const handleModalCancel = () => {
     setIsModalVisible(false);
   };
+
+  const onSearch = (value) => console.log(value);
 
   return (
     <Modal
       title="Followers"
       visible={isModalVisible}
-      onOk={handleOk}
-      onCancel={handleCancel}
+      onOk={handleModalOk}
+      onCancel={handleModalCancel}
+      style={{ backgroundColor: '#290054' }}
     >
+      <Search
+        placeholder="input search text"
+        allowClear
+        onSearch={onSearch}
+        style={{ marginBottom: '1rem' }}
+      />
       {followers.state === 'hasValue' && followings.state === 'hasValue' && (
-        <Tabs type="card">
+        <Tabs>
           <TabPane tab={`팔로워(${followers.contents.length}명)`} key="1">
             <UserList list={followers.contents} />
           </TabPane>
@@ -41,7 +51,7 @@ export default function Friends() {
             <UserList list={followings.contents} />
           </TabPane>
           <TabPane tab="나와 비행한 여행자" key="3">
-            개발 중입니다~
+            Coming Soon
           </TabPane>
         </Tabs>
       )}
