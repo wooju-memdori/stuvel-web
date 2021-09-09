@@ -13,6 +13,10 @@ const TextAlignCentered = styled.div`
   text-align: center;
 `;
 
+const TextAlignCentered = styled.div`
+  text-align: center;
+`;
+
 const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
   const camStatus = useRecoilValue(camStatusState);
   const micStatus = useRecoilValue(micStatusState);
@@ -28,6 +32,46 @@ const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
   return (
     <Layout.Footer>
       <TextAlignCentered>
+      <div className="cam-handle">
+          {camStatus ? (
+            <CamIcon onClick={handleMyCam} className="handle-icon" />
+          ) : (
+              <NoCamIcon onClick={handleMyCam} />
+            )}
+          <p>캠</p>
+        </div>
+
+        <div className="cam-handle">
+          {micStatus ? (
+            <MicIcon onClick={handleMyMic} className="handle-icon" />
+          ) : (
+              <NoMicIcon onClick={handleMyMic} />
+            )}
+
+          <p>마이크</p>
+        </div>
+        <div className="cam-handle">
+          {displayStream ? (
+            <ScreenShareIcon
+              onClick={toggleScreenShare}
+              className="handle-icon"
+            />
+          ) : (
+              <NoScreenShareIcon onClick={toggleScreenShare} />
+            )}
+          <p>화면공유</p>
+        </div>
+        <div className="cam-handle">
+          <LinkShareIcon
+            onClick={copy}
+            className="handle-icon"
+          />
+          <p>링크복사</p>
+        </div>
+        <div className="cam-handle">
+          <ExitIcon />
+          <p>나가기</p>
+        </div>
         <Button onClick={handleMyCam}>
           {camStatus ? 'Disable Cam' : 'Enable Cam'}
         </Button>
@@ -50,4 +94,19 @@ Footer.propTypes = {
   roomId: string.isRequired,
 };
 
+const TextAlignCentered = styled.div`
+  text-align: center;
+  .cam-handle {
+    display: inline-block;
+    margin: 0 1%;
+  }
+  .handle-icon svg circle {
+    transition: 0.2s;
+  }
+  .handle-icon svg:hover {
+    circle {
+      fill: #34006a;
+    }
+  }
+`;
 export default Footer;

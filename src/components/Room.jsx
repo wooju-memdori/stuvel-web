@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { string } from 'prop-types';
+import { string, func } from 'prop-types';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
@@ -87,12 +87,15 @@ export default function Room({ paramRoomId }) {
   };
 
   return (
+    <RoomPage>
     <Spin
       indicator={<LoadingOutlined spin />}
       size="large"
       spinning={!streaming}
     >
+       <div id="room-div">
       <RoomContainer id="room-container" />
+      </div>
       {streaming && (
         <Footer
           handleMyCam={handleMyCam}
@@ -102,6 +105,7 @@ export default function Room({ paramRoomId }) {
         />
       )}
     </Spin>
+    </RoomPage>
   );
 }
 
@@ -110,6 +114,7 @@ Room.propTypes = {
 };
 
 const RoomContainer = styled.div`
+  width: 100%;
   background-color: black;
   display: grid;
   height: calc(100vh - 64px);
@@ -118,6 +123,61 @@ const RoomContainer = styled.div`
   grid-template-rows: repeat(auto-fit, minmax(100px, auto));
   & > * {
     width: 100%;
+    height: 0;
+  }
+  .user-container {
+    padding-bottom: 56.2%;
+    position: relative;
+  }
+  .video-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .video-container h3 {
+    position: absolute;
+    bottom: 0.2%;
+    z-index: 1;
+    width: 50%;
+    margin: 0;
+    left: 3%;
+    font-weight: 700;
+  }
+  .user-container:first-child:nth-last-child(1) {
+    .video-container h3 {
+      font-size: 2.5em;
+    }
+  }
+  .black-nemo {
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    width: 50%;
+  }
+  .other div {
+    backface-visibility: hidden;
+    transition: 1s;
+  }
+  .other .video-container {
+    position: absolute;
+    transform: rotateY(0deg);
+  }
+  .other:active .video-container {
+    transform: rotateY(180deg);
+  }
+  .other .user-info {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform: rotateY(-180deg);
+    background-color: #0b0016;
+    border: 0.125em solid #fff;
+    box-sizing: border-box;
+    border-radius: 0.5em;
+    padding: 1.438em 2.5em;
+  }
+  .user-info > * {
     height: 100%;
   }
   video {
