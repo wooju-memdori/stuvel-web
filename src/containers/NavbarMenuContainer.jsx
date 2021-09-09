@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { currentNavbarComponent } from '../state/atom';
 import MyPage from '../components/MyPage';
 import Settings from '../components/Settings';
+import Chat from '../components/Chat/Chat';
 import { CloseButtonIcon } from '../components/Icon';
 
 const NavbarMenuContainer = ({ onClose }) => {
@@ -23,7 +24,7 @@ const NavbarMenuContainer = ({ onClose }) => {
           {{
             'My Page': <MyPage />,
             Social: <div>Social</div>,
-            Chat: <div>Chat</div>,
+            Chat: <Chat />,
             Settings: <Settings />,
           }[currentHeader] || ''}
         </Content>
