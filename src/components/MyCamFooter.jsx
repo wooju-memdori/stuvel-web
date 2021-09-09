@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
 import { Layout } from 'antd';
 import styled from 'styled-components';
@@ -82,21 +81,5 @@ MyCamFooter.propTypes = {
   handleMyMic: func.isRequired,
   toggleScreenShare: func.isRequired,
 };
-
-const TextAlignCentered = styled.div`
-  text-align: center;
-  .cam-handle {
-    display: inline-block;
-    margin: 0 3%;
-  }
-  .handle-icon svg circle {
-    transition: 0.2s;
-  }
-  .handle-icon svg:hover {
-    circle {
-      fill: #34006a;
-    }
-  }
-`;
 
 export default MyCamFooter;
