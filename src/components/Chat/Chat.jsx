@@ -57,7 +57,7 @@ const Chat = () => {
   return (
     <StyledRow>
       <Col span={8}>
-        <TextContainer users={users} />
+        <StyledImg src={`${window.location.href}chat-users-test.png`} />
       </Col>
       <Col span={16}>
         <Container>
@@ -76,6 +76,10 @@ const Chat = () => {
 
 export default Chat;
 
+const StyledImg = styled.img`
+  width: 100%;
+`;
+
 const StyledRow = styled(Row)`
   display: flex;
   margin-top: -2rem;
@@ -86,6 +90,6 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   background: #e9d1ff;
-  height: 90vh;
+  height: 94vh;
   border: 1px solid white;
 `;
