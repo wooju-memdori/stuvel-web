@@ -12,7 +12,6 @@ class SocketConnection {
     this.settings = settings;
     this.streaming = false;
     this.myId = '';
-    this.myUserInfo = null; // stuvel에서 사용하는 userId
     this.myPeer = initializePeerConnection();
     this.socket = initializeSocketConnection();
     if (this.socket) this.isSocketConnected = true;
@@ -56,9 +55,7 @@ class SocketConnection {
       };
       console.log('peers established and joined room', userData);
       const response = await axios.post(`./room/${roomId}`);
-      this.myUserInfo = response.data.userInfo;
-      console.log(this.myUserInfo);
-      this.socket.emit('join-room', roomId, id, this.myUserInfo);
+      this.socket.emit('join-room', roomId, id, response.data.userId);
       this.setNavigatorToStream();
     });
     this.myPeer.on('error', (err) => {
@@ -75,7 +72,7 @@ class SocketConnection {
         this.streaming = true;
         this.settings.updateInstance('streaming', true);
         // stream과 id로 비디오 element 생성
-        this.createVideo({ id: this.myId, userInfo: null, stream });
+        this.createVideo({ id: this.myId, stream });
         // peer 이벤트 리스너
         // 다른 유저가 보낸 stream을 듣고 peer.answer(stream)으로 로컬 스트림 응답함
         this.setPeersListeners(stream);
@@ -106,11 +103,7 @@ class SocketConnection {
     this.myPeer.on('call', (call) => {
       call.answer(stream);
       call.on('stream', (userVideoStream) => {
-        this.createVideo({
-          id: call.metadata.id,
-          userInfo: call.metadata.userInfo,
-          stream: userVideoStream,
-        });
+        this.createVideo({ id: call.metadata.id, stream: userVideoStream });
       });
       call.on('close', () => {
         console.log('closing peers listeners', call.metadata.id);
@@ -126,33 +119,28 @@ class SocketConnection {
 
   newUserConnection = (stream) => {
     console.log('newUserConnection');
-    this.socket.on('user-connected', (peerId, userInfo) => {
-      console.log('New User Connected', peerId, userInfo);
-      console.log('userID 가져왔어요~', userInfo);
-      this.connectToNewUser(peerId, userInfo, stream);
+    this.socket.on('user-connected', (userId) => {
+      console.log('New User Connected', userId);
+      this.connectToNewUser(userId, stream);
     });
   };
 
-  connectToNewUser(peerId, userInfo, stream) {
-    const call = this.myPeer.call(peerId, stream, {
-      metadata: { id: this.myId, userInfo: this.myUserInfo },
+  connectToNewUser(userId, stream) {
+    const call = this.myPeer.call(userId, stream, {
+      metadata: { id: this.myId },
     });
     call.on('stream', (userVideoStream) => {
-      this.createVideo({
-        id: peerId,
-        userInfo: userInfo,
-        stream: userVideoStream,
-      });
+      this.createVideo({ id: userId, stream: userVideoStream });
     });
     call.on('close', () => {
-      console.log('closing new user', peerId);
-      this.removeVideo(peerId);
+      console.log('closing new user', userId);
+      this.removeVideo(userId);
     });
     call.on('error', () => {
       console.log('peer error ------');
-      this.removeVideo(peerId);
+      this.removeVideo(userId);
     });
-    peers[peerId] = call;
+    peers[userId] = call;
   }
 
   createVideo = (createObj) => {
@@ -161,89 +149,19 @@ class SocketConnection {
         ...createObj,
       };
       const roomContainer = document.getElementById('room-container');
-      const userContainer = document.createElement('div');
-      userContainer.className = 'user-container';
       const videoContainer = document.createElement('div');
-      videoContainer.className = 'video-container';
-      const blackNemo = document.createElement('img');
-      blackNemo.className = 'black-nemo';
-      blackNemo.src = `${window.location.href}/../blackNemo.png`;
-      videoContainer.appendChild(blackNemo);
-      const userName = document.createElement('h3');
       const video = document.createElement('video');
       video.srcObject = this.videoContainer[createObj.id].stream;
       video.id = createObj.id;
       video.autoplay = true;
-      if (this.myId === createObj.id) {
-        video.muted = true;
-        userName.innerText = this.myUserInfo.nickname;
-      }
+      if (this.myId === createObj.id) video.muted = true;
       videoContainer.appendChild(video);
-      videoContainer.appendChild(userName);
-      userContainer.appendChild(videoContainer);
-      if (createObj.userInfo) {
-        const userInfoDiv = document.createElement('div');
-        userContainer.className += ' other';
-        this.createUserInfo(userInfoDiv, createObj.userInfo);
-        userContainer.appendChild(userInfoDiv);
-        userName.innerText = createObj.userInfo.nickname;
-      }
-      roomContainer.appendChild(userContainer);
+      roomContainer.append(videoContainer);
     } else {
       if (document.getElementById(createObj.id)) {
         document.getElementById(createObj.id).srcObject = createObj.stream;
       }
     }
-  };
-
-  createUserInfo = (userInfoDiv, userInfo) => {
-    userInfoDiv.className = 'user-info';
-    const profile = document.createElement('div');
-    profile.className = 'profile';
-    const profileImg = document.createElement('img');
-    if (userInfo.img) {
-      profileImg.src = userInfo.image;
-    } else {
-      profileImg.src = `${window.location.href}/../defaultProfile.png`;
-    }
-    profile.appendChild(profileImg);
-    const defaultInfo = document.createElement('div');
-    defaultInfo.className = 'default-info';
-    const nickname = document.createElement('h3');
-    nickname.innerText = userInfo.nickname;
-    const gender = document.createElement('div');
-    gender.className = 'gender';
-    const genderText = document.createElement('span');
-    genderText.className = 'gender-txt';
-    genderText.innerText = 'gender';
-    const genderImg = document.createElement('img');
-    genderImg.className = 'gender-img';
-    if (userInfo.gender === 0) {
-      genderImg.src = `${window.location.href}/../female.png`;
-    } else {
-      genderImg.src = `${window.location.href}/../male.png`;
-    }
-    gender.appendChild(genderText);
-    gender.appendChild(genderImg);
-    const score = document.createElement('div');
-    score.className = 'score';
-    const scoreText = document.createElement('span');
-    scoreText.className = 'score-txt';
-    scoreText.innerText = 'score';
-    const scoreImg = document.createElement('img');
-    scoreImg.className = 'score-img';
-    scoreImg.src = `${window.location.href}/../star.png`;
-    score.appendChild(scoreText);
-    score.appendChild(scoreImg);
-    const tagsExample = document.createElement('img');
-    tagsExample.className = 'tags';
-    tagsExample.src = `${window.location.href}/../tagsExample.svg`;
-    defaultInfo.appendChild(nickname);
-    defaultInfo.appendChild(gender);
-    defaultInfo.appendChild(score);
-    userInfoDiv.appendChild(profile);
-    userInfoDiv.appendChild(defaultInfo);
-    userInfoDiv.appendChild(tagsExample);
   };
 
   // 화면 공유를 위해 현재 stream을 화면 공유 stream으로 변경
