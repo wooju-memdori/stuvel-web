@@ -1,6 +1,5 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
-import { Layout, message } from 'antd';
+import { Layout, Button, message } from 'antd';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { func, string } from 'prop-types';
@@ -9,16 +8,10 @@ import {
   micStatusState,
   displayStreamState,
 } from '../state/atom';
-import {
-  CamIcon,
-  MicIcon,
-  NoCamIcon,
-  ScreenShareIcon,
-  NoMicIcon,
-  NoScreenShareIcon,
-  LinkShareIcon,
-  ExitIcon
-} from './Icon';
+
+const TextAlignCentered = styled.div`
+  text-align: center;
+`;
 
 const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
   const camStatus = useRecoilValue(camStatusState);
@@ -35,46 +28,16 @@ const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
   return (
     <Layout.Footer>
       <TextAlignCentered>
-        <div className="cam-handle">
-          {camStatus ? (
-            <CamIcon onClick={handleMyCam} className="handle-icon" />
-          ) : (
-              <NoCamIcon onClick={handleMyCam} />
-            )}
-          <p>캠</p>
-        </div>
-
-        <div className="cam-handle">
-          {micStatus ? (
-            <MicIcon onClick={handleMyMic} className="handle-icon" />
-          ) : (
-              <NoMicIcon onClick={handleMyMic} />
-            )}
-
-          <p>마이크</p>
-        </div>
-        <div className="cam-handle">
-          {displayStream ? (
-            <ScreenShareIcon
-              onClick={toggleScreenShare}
-              className="handle-icon"
-            />
-          ) : (
-              <NoScreenShareIcon onClick={toggleScreenShare} />
-            )}
-          <p>화면공유</p>
-        </div>
-        <div className="cam-handle">
-          <LinkShareIcon
-            onClick={copy}
-            className="handle-icon"
-          />
-          <p>링크복사</p>
-        </div>
-        <div className="cam-handle">
-          <ExitIcon />
-          <p>나가기</p>
-        </div>
+        <Button onClick={handleMyCam}>
+          {camStatus ? 'Disable Cam' : 'Enable Cam'}
+        </Button>
+        <Button onClick={handleMyMic}>
+          {micStatus ? 'Disable Mic' : 'Enable Mic'}
+        </Button>
+        <Button onClick={toggleScreenShare}>
+          {displayStream ? 'Stop Screen Share' : 'Share Screen'}
+        </Button>
+        <Button onClick={copy}>Invite Link</Button>
       </TextAlignCentered>
     </Layout.Footer>
   );
@@ -86,21 +49,5 @@ Footer.propTypes = {
   toggleScreenShare: func.isRequired,
   roomId: string.isRequired,
 };
-
-const TextAlignCentered = styled.div`
-  text-align: center;
-  .cam-handle {
-    display: inline-block;
-    margin: 0 1%;
-  }
-  .handle-icon svg circle {
-    transition: 0.2s;
-  }
-  .handle-icon svg:hover {
-    circle {
-      fill: #34006a;
-    }
-  }
-`;
 
 export default Footer;

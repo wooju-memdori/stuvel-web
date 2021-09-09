@@ -10,7 +10,7 @@ import {
   roomIdState,
 } from '../state/atom';
 import axios from '../utils/axios';
-import { ToHomeIcon, FemaleIcon, MaleIcon } from './Icon';
+import { ExitIcon, FemaleIcon, MaleIcon } from './Icon';
 
 const RoomUsers = () => {
   const [nowRoomId, setRoomId] = useRecoilState(roomIdState);
@@ -38,7 +38,7 @@ const RoomUsers = () => {
       const roomUsers = usersInfo.contents;
       const usersList = [...roomUsers];
       console.log(usersList);
-      if (usersList.length < 3 && usersList.length >= 1) {
+      if (usersList.length < 3) {
         while (usersList.length < 3) {
           usersList.push({});
         }
@@ -46,41 +46,14 @@ const RoomUsers = () => {
       return (
         <RoomInfo>
           <div id="room-style">
-            <h3>행성 스타일</h3>
+            <h3>Room style</h3>
           </div>
           <div id="room-users">
             <h3>행성 방문자</h3>
-            {usersList.length === 0 ? (
-              <div className="user-info" id="no-user">
-                <img
-                  className="left-up-nemo"
-                  alt=""
-                  src={`${window.location.href}/../nemo1.png`}
-                />
-                <img
-                  className="right-down-nemo"
-                  alt=""
-                  src={`${window.location.href}/../nemo1.png`}
-                />
-                <div className="no-record">
-                  No record <br />
-                  <span className="greeting">당신이 첫 방문자입니다 :-)</span>
-                </div>
-              </div>
-            ) : (
-              usersList.map((user) => {
-                return (
+            {usersList.map((user) => {
+              return (
+                <>
                   <div className="user-info">
-                    <img
-                      className="right-up-nemo"
-                      alt=""
-                      src={`${window.location.href}/../nemo1.png`}
-                    />
-                    <img
-                      className="left-down-nemo"
-                      alt=""
-                      src={`${window.location.href}/../nemo1.png`}
-                    />
                     {user.nickname ? (
                       <>
                         <div className="profile">
@@ -110,21 +83,15 @@ const RoomUsers = () => {
                             </div>
                           </div>
                         </div>
-                        <div className="tags">
-                          <img
-                            src={`${window.location.href}/../tagsExample.svg`}
-                            alt=""
-                          />
-                        </div>
                         <p>{user.tag}</p>
                       </>
                     ) : (
                       <div className="no-record">No record</div>
                     )}
                   </div>
-                );
-              })
-            )}
+                </>
+              );
+            })}
             <div id="links">
               <Button
                 type="primary"
@@ -146,7 +113,7 @@ const RoomUsers = () => {
               </Button>
               <div id="exit">
                 <Link to="/">
-                  <ToHomeIcon />
+                  <ExitIcon />
                   <p>나가기</p>
                 </Link>
               </div>
@@ -182,54 +149,12 @@ const RoomInfo = styled.div`
     background: rgba(39, 35, 51, 0.97);
     border: 1px solid #ffffff;
     border-radius: 0.571em;
-    margin: 1% 0;
+    margin: 2% 0;
     position: relative;
-    display: inline-flex;
-  }
-  #no-user {
-    height: 33.5em;
-    border-radius: 1em;
-    background: rgba(0, 0, 0, 0);
-  }
-  .right-up-nemo {
-    width: 12.79%;
-    position: absolute;
-    top: 0;
-    right: 0;
-    -moz-transform: scaleX(-1);
-    -o-transform: scaleX(-1);
-    -webkit-transform: scaleX(-1);
-    -transform: scaleX(-1);
-  }
-  .left-down-nemo {
-    width: 12.79%;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    -moz-transform: scaleY(-1);
-    -o-transform: scaleY(-1);
-    -webkit-transform: scaleY(-1);
-    -transform: scaleY(-1);
-  }
-  .left-up-nemo {
-    width: 24.15%;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  .right-down-nemo {
-    width: 24.15%;
-    position: absolute;
-    -moz-transform: scale(-1);
-    -o-transform: scale(-1);
-    -webkit-transform: scale(-1);
-    -transform: scale(-1);
-    bottom: 0;
-    right: 0;
   }
   .profile {
     float: left;
-    min-width: 25em;
+    min-width: 18.75em;
     height: 100%;
     border-right: 1px solid #ffffff;
     display: inline-flex;
@@ -271,13 +196,6 @@ const RoomInfo = styled.div`
     position: relative;
     left: 1.2em;
   }
-  .tags {
-    padding: 2%;
-  }
-  .tags img {
-    width: 100%;
-    height: 100%;
-  }
   .user-info .no-record {
     position: absolute;
     top: 50%;
@@ -287,12 +205,6 @@ const RoomInfo = styled.div`
     font-weight: 900;
     font-size: 1.75em;
     color: #616161;
-  }
-  #no-user .no-record {
-    margin-top: -1.7em;
-  }
-  .greeting {
-    font-size: 1.5em;
   }
   #links {
     bottom: 0;
