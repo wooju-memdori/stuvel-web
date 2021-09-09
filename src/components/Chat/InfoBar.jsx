@@ -1,9 +1,9 @@
+/* eslint-disable */
 import React from 'react';
 import { Avatar } from 'antd';
 import styled from 'styled-components';
 
 const InfoBar = ({ room }) => {
-  console.log(room);
   return (
     <StyledInfoBar>
       <LeftInnerContainer>
@@ -12,7 +12,7 @@ const InfoBar = ({ room }) => {
           size="large"
           src="https://avatars.githubusercontent.com/u/50407047?v=4"
         />
-        <h3>하연</h3>
+        <UserNickname>깃허브망령</UserNickname>
       </LeftInnerContainer>
     </StyledInfoBar>
   );
@@ -28,6 +28,12 @@ const StyledInfoBar = styled.div`
   border-radius: 4px 4px 0 0;
   height: 60px;
   width: 100%;
+`;
+
+const UserNickname = styled.p`
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
 `;
 
 const LeftInnerContainer = styled.div`
