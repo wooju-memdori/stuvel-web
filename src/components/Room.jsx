@@ -164,7 +164,7 @@ const RoomContainer = styled.div`
   }
   .video-container h3 {
     position: absolute;
-    bottom: 0.5%;
+    bottom: 0.2%;
     z-index: 1;
     width: 50%;
     margin: 0;
@@ -173,7 +173,7 @@ const RoomContainer = styled.div`
   }
   .user-container:first-child:nth-last-child(1) {
     .video-container h3 {
-      font-size: 3em;
+      font-size: 2.5em;
     }
   }
   .black-nemo {
