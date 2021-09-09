@@ -1,3 +1,4 @@
+import { Button } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -13,12 +14,27 @@ const Input = ({ setMessage, sendMessage, message }) => (
           event.key === 'Enter' ? sendMessage(event) : null
         }
       />
-      <SendButton onClick={(e) => sendMessage(e)}>Send</SendButton>
     </Form>
+    <StyledDiv>
+      <Button
+        style={{
+          float: 'right',
+          width: '4.625rem',
+          margin: '0 1rem 1rem 0',
+        }}
+        type="primary"
+      >
+        전송
+      </Button>
+    </StyledDiv>
   </>
 );
 
 export default Input;
+
+const StyledDiv = styled.div`
+  background-color: #15002a;
+`;
 
 const Form = styled.form`
   display: flex;
@@ -31,15 +47,8 @@ const StyledInput = styled.textarea`
   padding: 5%;
   width: 100%;
   background-color: #15002a !important;
+  resize: none;
   &:focus {
     outline: none;
   }
-`;
-
-const SendButton = styled.button`
-  background: #290054;
-  padding: 20px;
-  display: inline-block;
-  border: none;
-  width: 20%;
 `;
