@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { string, func } from 'prop-types';
-// import { Spin } from 'antd';
-// import { LoadingOutlined } from '@ant-design/icons';
+import { string } from 'prop-types';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import styled from 'styled-components';
 import Footer from './Footer';
@@ -87,15 +87,12 @@ export default function Room({ paramRoomId }) {
   };
 
   return (
-    <RoomPage>
-      {/* <Spin
-        indicator={<LoadingOutlined spin />}
-        size="large"
-        spinning={!streaming}
-      > */}
-      <div id="room-div">
-        <RoomContainer id="room-container" />
-      </div>
+    <Spin
+      indicator={<LoadingOutlined spin />}
+      size="large"
+      spinning={!streaming}
+    >
+      <RoomContainer id="room-container" />
       {streaming && (
         <Footer
           handleMyCam={handleMyCam}
@@ -104,8 +101,7 @@ export default function Room({ paramRoomId }) {
           roomId={roomId}
         />
       )}
-      {/* </Spin> */}
-    </RoomPage>
+    </Spin>
   );
 }
 
@@ -113,41 +109,13 @@ Room.propTypes = {
   paramRoomId: string.isRequired,
 };
 
-Footer.propTypes = {
-  handleMyCam: func.isRequired,
-  handleMyMic: func.isRequired,
-  toggleScreenShare: func.isRequired,
-};
-
-const RoomPage = styled.div`
-  width: 100%;
-  height: 100%;
-  position: relative;
-  .ant-layout-footer {
-    position: absolute;
-    width: 100%;
-    bottom: 0%;
-    height: 15%;
-  }
-  #room-div {
-    width: 80%;
-    height: 75%;
-    position: absolute;
-    top: 7%;
-    left: 10%;
-  }
-`;
-
 const RoomContainer = styled.div`
-  width: 100%;
+  background-color: black;
   display: grid;
+  height: calc(100vh - 64px);
   grid-gap: 6px 6px;
   grid-template-columns: repeat(auto-fit, minmax(400px, auto));
   grid-template-rows: repeat(auto-fit, minmax(100px, auto));
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   & > * {
     width: 100%;
     height: 0;
@@ -206,61 +174,12 @@ const RoomContainer = styled.div`
   }
   .user-info > * {
     height: 100%;
-    display: inline-block;
-  }
-  .profile {
-    float: left;
-    height: 43%;
-    width: 30%;
-  }
-  .profile img {
-    height: 100%;
-    border-radius: 9.985em;
-  }
-  .default-info {
-    width: 60%;
-    height: 45%;
-  }
-  .default-info h3 {
-    font-size: 1.5em;
-    font-weight: 700;
-  }
-  @media (min-width: 1900px) {
-    .default-info h3 {
-      font-size: 2em;
-      font-weight: 700;
-    }
-    .default-info span {
-      font-size: 1.5em;
-    }
-  }
-  .gender-img {
-    position: relative;
-    left: 0.7em;
-  }
-  .score-img {
-    position: relative;
-    left: 1.4em;
-  }
-  .tags {
-    width: 80%;
-    height: 40%;
-    position: relative;
-    top: 1.3em;
-  }
-  .other:active .user-info {
-    transform: rotateY(0deg);
   }
   video {
-    backface-visibility: hidden;
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    border: 0.125em solid #000000;
-    box-sizing: border-box;
-    border-radius: 0.5em;
   }
   .display-media {
     -webkit-transform: scaleX(1);
