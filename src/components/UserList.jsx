@@ -8,7 +8,7 @@ import 'antd/dist/antd.css';
 export default function UserList({ list }) {
   return (
     <List
-      itemLayoout="horizontal"
+      itemLayoot="horizontal"
       dataSource={list}
       renderItem={(item) => (
         <List.Item>
