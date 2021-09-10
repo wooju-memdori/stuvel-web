@@ -68,8 +68,8 @@ export const genderOrInterestState = atom({
   default: 'gender',
 });
 
-export const requiredOrOptionState = atom({
-  key: 'requiredOrOptionState',
+export const signUpProcessState = atom({
+  key: 'signUpProcessState',
   default: 'required',
 });
 
