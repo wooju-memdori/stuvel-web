@@ -77,6 +77,11 @@ const Settings = () => {
     }, 2000);
   }, [password]);
 
+  const onLogOut = useCallback(() => {
+    sessionStorage.removeItem('userInfo');
+    window.location.replace('/');
+  }, []);
+
   return (
     <>
       {currentUserInfo && (
@@ -203,8 +208,19 @@ const Settings = () => {
             <h2>차단 관리</h2>
           </EachSettingsContainer>
           <EachSettingsContainer>
-            <h1>로그아웃</h1>
-            <h1>회원탈퇴</h1>
+            <div
+              role="button"
+              tabIndex={0}
+              onKeyDown={onLogOut}
+              onClick={onLogOut}
+            >
+              <h1>
+                <span>로그아웃</span>
+              </h1>
+            </div>
+            <h1>
+              <span>회원탈퇴</span>
+            </h1>
           </EachSettingsContainer>
         </SettingsContainer>
       )}
@@ -247,21 +263,21 @@ const EachSettingsContainer = styled.div`
     span {
       display: inline-block;
     }
-
     .field {
       color: #d4d4d4;
     }
   }
-
   &:nth-child(1) {
     margin-top: 0.125rem;
   }
-
   &:not(:last-child) {
     border-bottom: 10px solid rgba(255, 255, 255, 0.2);
   }
   &:last-child {
     margin-top: 2.5rem;
+    h1 span {
+      cursor: pointer;
+    }
     h1:nth-child(1) {
       color: #ff0000;
     }
