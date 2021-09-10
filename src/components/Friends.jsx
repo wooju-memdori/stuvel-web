@@ -1,41 +1,20 @@
 import React from 'react';
-import { useRecoilState, useRecoilValueLoadable } from 'recoil';
-import { Modal, Tabs, Input } from 'antd';
+import { useRecoilValueLoadable } from 'recoil';
+import { Tabs, Input } from 'antd';
 import UserList from './UserList';
 
-import {
-  isModalVisibleState,
-  followersState,
-  followingsState,
-} from '../state/atom';
+import { followersState, followingsState } from '../state/atom';
 
 const { TabPane } = Tabs;
 const { Search } = Input;
 
 export default function Friends() {
-  const [isModalVisible, setIsModalVisible] =
-    useRecoilState(isModalVisibleState);
   const followers = useRecoilValueLoadable(followersState());
   const followings = useRecoilValueLoadable(followingsState());
-
-  const handleModalOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleModalCancel = () => {
-    setIsModalVisible(false);
-  };
-
   const onSearch = (value) => console.log(value);
 
   return (
-    <Modal
-      title="Followers"
-      visible={isModalVisible}
-      onOk={handleModalOk}
-      onCancel={handleModalCancel}
-      style={{ backgroundColor: '#290054' }}
-    >
+    <>
       <Search
         placeholder="input search text"
         allowClear
@@ -55,6 +34,6 @@ export default function Friends() {
           </TabPane>
         </Tabs>
       )}
-    </Modal>
+    </>
   );
 }

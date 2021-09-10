@@ -8,8 +8,13 @@ import styled from 'styled-components';
 import { ChatSmallIcon, PlusIcon } from './Icon';
 
 import 'antd/dist/antd.css';
+import axios from 'axios';
 
 export default function UserList({ list }) {
+  const onClickFollow = () => {
+    axios.post(`${process.env.REACT_APP_API_URL}/follow/3`);
+  };
+
   return (
     <List
       split={false}
@@ -34,11 +39,9 @@ export default function UserList({ list }) {
               </Badge>
             }
             title={item.nickname}
-            description={
-              item.roomId ? `${item.roomId} 행성에서 공부중` : '오프라인'
-            }
+            description={item.id == 2 ? `A-384B 행성에서 공부중` : '온라인'}
           />
-          <PlusIcon style={{ marginRight: '1em' }} />
+          <PlusIcon style={{ marginRight: '1em' }} onClick={onClickFollow} />
           <ChatSmallIcon style={{ marginRight: '0.8em' }} />
           <Popover
             style={{ borderRadius: 0 }}
