@@ -967,6 +967,29 @@ const CloseButtonSvg = () => (
   </svg>
 );
 
+const SmallerCloseButtonSvg = () => (
+  <svg
+    width="1rem"
+    height="1rem"
+    viewBox="0 0 34 35"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M8.18652 9.4585L25.1866 26.4586"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <path
+      d="M25.1865 8.83057L8.18644 25.8307"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
 /*eslint-disable */
 export const LogoIcon = (props) => <Icon component={LogoSvg} {...props} />;
 export const BigLogoIcon = (props) => (
@@ -1003,9 +1026,7 @@ export const ScreenShareIcon = (props) => (
 export const LinkShareIcon = (props) => (
   <Icon component={LinkShareSvg} {...props} />
 );
-export const ExitIcon = (props) => (
-  <Icon component={ExitSvg} {...props} />
-);
+export const ExitIcon = (props) => <Icon component={ExitSvg} {...props} />;
 export const NoCamIcon = (props) => <Icon component={NoCamSvg} {...props} />;
 export const NoMicIcon = (props) => <Icon component={NoMicSvg} {...props} />;
 export const NoScreenShareIcon = (props) => (
@@ -1033,4 +1054,7 @@ export const CloseButtonIcon = (props) => (
 );
 export const PlusButtonIcon = (props) => (
   <Icon component={PlusButtonSvg} {...props} />
+);
+export const SmallerCloseButtonIcon = (props) => (
+  <Icon component={SmallerCloseButtonSvg} {...props} />
 );
