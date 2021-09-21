@@ -11,7 +11,9 @@ const { Search } = Input;
 export default function Friends() {
   const followers = useRecoilValueLoadable(followersState());
   const followings = useRecoilValueLoadable(followingsState());
-  const onSearch = (value) => console.log(value);
+  const onSearch = (value) => {
+    console.log(value);
+  };
 
   return (
     <>
