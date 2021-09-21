@@ -7,6 +7,7 @@ import MyPage from '../components/MyPage';
 import Settings from '../components/Settings';
 import Chat from '../components/Chat/Chat';
 import { CloseButtonIcon } from '../components/Icon';
+import Friends from '../components/Friends';
 
 const NavbarMenuContainer = ({ onClose }) => {
   const currentHeader = useRecoilValue(currentNavbarComponent);
@@ -23,7 +24,7 @@ const NavbarMenuContainer = ({ onClose }) => {
         <Content>
           {{
             'My Page': <MyPage />,
-            Social: <div>Social</div>,
+            Social: <Friends />,
             Chat: <Chat />,
             Settings: <Settings />,
           }[currentHeader] || ''}

@@ -5,7 +5,15 @@ import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { Image, Button, Radio } from 'antd';
 import { genderOrInterestState, userInfoState } from '../state/atom';
-import { UnionSvgIcon, PurpleCircleSvgIcon, WhiteCircleSvgIcon, LeftBackgroundIcon, RightBackgroundIcon, WomanSvgIcon, ManSvgIcon } from './Icon';
+import {
+  UnionSvgIcon,
+  PurpleCircleSvgIcon,
+  WhiteCircleSvgIcon,
+  LeftBackgroundIcon,
+  RightBackgroundIcon,
+  WomanSvgIcon,
+  ManSvgIcon,
+} from './Icon';
 
 const ChooseGender = () => {
   const setGenderOrInterest = useRecoilState(genderOrInterestState)[1];
@@ -14,48 +22,78 @@ const ChooseGender = () => {
   const [gender, setGender] = useState(0);
   const addGender = () => {
     const newUserInfo = {
-      ...userInfo, gender
+      ...userInfo,
+      gender,
     };
     setUserInfo(newUserInfo);
   };
 
   return (
     <Background>
-    <LeftBackgroundIcon className="background-left" />
-    <RightBackgroundIcon className="background-right" />
-    <SmallMenu>
-    <PurpleCircleSvgIcon className="cirle-left" />
-    <WhiteCircleSvgIcon className="cirle-middle" />
-    <WhiteCircleSvgIcon className="cirle-right" />
-    <UnionSvgIcon className="union-icon" />
-    <div>
-      <p className="text">회원가입이 완료되었습니다!<br />여행자님의 성별을 선택해주세요</p>
-      <form className="form">
-        <Radio.Group size="large" buttonStyle="solid" >
-          <Radio.Button value="a" className="gender woman" onClick={() => { setGender(0) }}><WomanSvgIcon  className="woman-icon"/></Radio.Button>
-          <Radio.Button value="b" className="gender man" onClick={() => { setGender(1) }}><ManSvgIcon  className="man-icon"/></Radio.Button>
-        </Radio.Group>
-        <p className="woman-text">여자</p>
-        <p className="man-text">남자</p>
-        <Button
-        className="next-button"
-          type="primary"
-          onClick={() => {
-            addGender();
-            setGenderOrInterest('interest');
-          }}
-        >
-          다음
-      </Button>
-        <Button  type="default" className="skip-button" onClick={() => { setGenderOrInterest('interest'); }}>건너뛰기</Button>
-      </form>
-    </div>
-    </SmallMenu>
+      <LeftBackgroundIcon className="background-left" />
+      <RightBackgroundIcon className="background-right" />
+      <SmallMenu>
+        <PurpleCircleSvgIcon className="cirle-left" />
+        <WhiteCircleSvgIcon className="cirle-middle" />
+        <WhiteCircleSvgIcon className="cirle-right" />
+        <UnionSvgIcon className="union-icon" />
+        <div>
+          <p className="text">
+            회원가입이 완료되었습니다!
+            <br />
+            여행자님의 성별을 선택해주세요
+          </p>
+          <form className="form">
+            <Radio.Group size="large" buttonStyle="solid">
+              <Radio.Button
+                value="a"
+                className="gender woman"
+                onClick={() => {
+                  setGender(0);
+                }}
+              >
+                <WomanSvgIcon className="woman-icon" />
+              </Radio.Button>
+              <Radio.Button
+                value="b"
+                className="gender man"
+                onClick={() => {
+                  setGender(1);
+                }}
+              >
+                <ManSvgIcon className="man-icon" />
+              </Radio.Button>
+            </Radio.Group>
+            <p className="woman-text">여자</p>
+            <p className="man-text">남자</p>
+            <Button
+              className="next-button"
+              type="primary"
+              onClick={() => {
+                addGender();
+                setGenderOrInterest('interest');
+              }}
+            >
+              다음
+            </Button>
+            <Button
+              type="default"
+              className="skip-button"
+              onClick={() => {
+                setGenderOrInterest('interest');
+              }}
+            >
+              건너뛰기
+            </Button>
+          </form>
+        </div>
+      </SmallMenu>
     </Background>
   );
 };
 
 const Background = styled.div`
+  background: linear-gradient(to bottom, #480088 0%, #0e032c 100%);
   width: 100%;
   height: 100%;
   .background-left {
@@ -86,7 +124,7 @@ const SmallMenu = styled.div`
   }
   .cirle-middle {
     position: absolute;
-    margin-left: 20.70em;
+    margin-left: 20.7em;
     top: 3%;
   }
   .cirle-right {
@@ -103,14 +141,14 @@ const SmallMenu = styled.div`
   }
   .next-button {
     position: absolute;
-    width: 22.50em;
+    width: 22.5em;
     height: 3.13em;
     top: 46.94em;
     margin-left: 9.75em;
   }
   .skip-button {
     position: absolute;
-    width: 22.50em;
+    width: 22.5em;
     height: 3.13em;
     top: 42.81em;
     margin-left: 9.75em;
@@ -151,7 +189,7 @@ const SmallMenu = styled.div`
     .ant-radio-group {
       .ant-radio-button-wrapper {
         ::before {
-          content:none;
+          content: none;
         }
       }
     }
@@ -175,7 +213,5 @@ const SmallMenu = styled.div`
     line-height: 1.44em;
   }
 `;
-
-
 
 export default ChooseGender;
