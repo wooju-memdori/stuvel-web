@@ -6,7 +6,7 @@ import {
   PurpleCircleSvgIcon,
   LeftBackgroundIcon,
   RightBackgroundIcon,
-} from './Icon';
+} from './common/Icon';
 
 const FinishSignUp = () => {
   const moveHome = () => {

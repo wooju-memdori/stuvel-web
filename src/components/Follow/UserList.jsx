@@ -1,18 +1,16 @@
-/* eslint-disable */
-
 import React from 'react';
 import { List, Avatar, Badge, Popover } from 'antd';
 import { UserOutlined, EllipsisOutlined } from '@ant-design/icons';
 import { arrayOf } from 'prop-types';
 import styled from 'styled-components';
-import { ChatSmallIcon, PlusIcon } from './Icon';
-
-import 'antd/dist/antd.css';
 import axios from 'axios';
+import 'antd/dist/antd.css';
+
+import { ChatSmallIcon, PlusIcon } from '../common/Icon';
 
 export default function UserList({ list }) {
-  const onClickFollow = () => {
-    axios.post(`${process.env.REACT_APP_API_URL}/follow/3`);
+  const onClickFollow = (id) => {
+    axios.post(`${process.env.REACT_APP_API_URL}/follow/${id}`);
   };
 
   return (
@@ -39,9 +37,14 @@ export default function UserList({ list }) {
               </Badge>
             }
             title={item.nickname}
-            description={item.id == 2 ? `A-384B 행성에서 공부중` : '온라인'}
+            description={item.id === 2 ? `A-384B 행성에서 공부중` : '오프라인'}
           />
-          <PlusIcon style={{ marginRight: '1em' }} onClick={onClickFollow} />
+          <PlusIcon
+            style={{ marginRight: '1em' }}
+            onClick={() => {
+              onClickFollow(item.id);
+            }}
+          />
           <ChatSmallIcon style={{ marginRight: '0.8em' }} />
           <Popover
             style={{ borderRadius: 0 }}

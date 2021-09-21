@@ -3,7 +3,7 @@ import { useRecoilValueLoadable } from 'recoil';
 import { Tabs, Input } from 'antd';
 import UserList from './UserList';
 
-import { followersState, followingsState } from '../state/atom';
+import { followersState, followingsState } from '../../state/atom';
 
 const { TabPane } = Tabs;
 const { Search } = Input;
