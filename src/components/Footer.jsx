@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import { Layout, message } from 'antd';
+import { Layout, message, Button } from 'antd';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { func, string } from 'prop-types';
@@ -17,7 +17,7 @@ import {
   NoMicIcon,
   NoScreenShareIcon,
   LinkShareIcon,
-  ExitIcon
+  ExitIcon,
 } from './Icon';
 
 const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
@@ -39,8 +39,8 @@ const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
           {camStatus ? (
             <CamIcon onClick={handleMyCam} className="handle-icon" />
           ) : (
-              <NoCamIcon onClick={handleMyCam} />
-            )}
+            <NoCamIcon onClick={handleMyCam} />
+          )}
           <p>캠</p>
         </div>
 
@@ -48,8 +48,8 @@ const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
           {micStatus ? (
             <MicIcon onClick={handleMyMic} className="handle-icon" />
           ) : (
-              <NoMicIcon onClick={handleMyMic} />
-            )}
+            <NoMicIcon onClick={handleMyMic} />
+          )}
           <p>마이크</p>
         </div>
         <div className="cam-handle">
@@ -59,15 +59,12 @@ const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
               className="handle-icon"
             />
           ) : (
-              <NoScreenShareIcon onClick={toggleScreenShare} />
-            )}
+            <NoScreenShareIcon onClick={toggleScreenShare} />
+          )}
           <p>화면공유</p>
         </div>
         <div className="cam-handle">
-          <LinkShareIcon
-            onClick={copy}
-            className="handle-icon"
-          />
+          <LinkShareIcon onClick={copy} className="handle-icon" />
           <p>링크복사</p>
         </div>
         <div className="cam-handle">
