@@ -9,6 +9,9 @@ import 'antd/dist/antd.css';
 import { ChatSmallIcon, PlusIcon } from '../Icon';
 
 export default function UserList({ list }) {
+  const onClickFollow = (id) => {
+    axios.post(`${process.env.REACT_APP_API_URL}/follow/${id}`);
+  };
 
   return (
     <List
@@ -35,6 +38,12 @@ export default function UserList({ list }) {
             }
             title={item.nickname}
             description={item.id === 2 ? `A-384B 행성에서 공부중` : '오프라인'}
+          />
+          <PlusIcon
+            style={{ marginRight: '1em' }}
+            onClick={() => {
+              onClickFollow(item.id);
+            }}
           />
           <ChatSmallIcon style={{ marginRight: '0.8em' }} />
           <Popover
