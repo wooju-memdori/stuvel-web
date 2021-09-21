@@ -3,7 +3,7 @@ import { Link, Route } from 'react-router-dom';
 import { Button } from 'antd';
 import styled from 'styled-components';
 import { FilterIcon } from './Icon';
-import RoomContainer from '../containers/RoomContainer';
+import RoomContainer from '../../containers/RoomContainer';
 
 const HomePage = () => {
   return (

@@ -11,7 +11,7 @@ import {
   ScreenShareIcon,
   NoMicIcon,
   NoScreenShareIcon,
-} from './Icon';
+} from './common/Icon';
 import {
   camStatusState,
   micStatusState,
@@ -30,8 +30,8 @@ const MyCamFooter = ({ handleMyCam, handleMyMic, toggleScreenShare }) => {
           {camStatus ? (
             <CamIcon onClick={handleMyCam} className="handle-icon" />
           ) : (
-              <NoCamIcon onClick={handleMyCam} />
-            )}
+            <NoCamIcon onClick={handleMyCam} />
+          )}
           <p>캠</p>
         </div>
 
@@ -39,8 +39,8 @@ const MyCamFooter = ({ handleMyCam, handleMyMic, toggleScreenShare }) => {
           {micStatus ? (
             <MicIcon onClick={handleMyMic} className="handle-icon" />
           ) : (
-              <NoMicIcon onClick={handleMyMic} />
-            )}
+            <NoMicIcon onClick={handleMyMic} />
+          )}
 
           <p>마이크</p>
         </div>
@@ -51,8 +51,8 @@ const MyCamFooter = ({ handleMyCam, handleMyMic, toggleScreenShare }) => {
               className="handle-icon"
             />
           ) : (
-              <NoScreenShareIcon onClick={toggleScreenShare} />
-            )}
+            <NoScreenShareIcon onClick={toggleScreenShare} />
+          )}
 
           <p>화면공유</p>
         </div>

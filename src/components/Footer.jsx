@@ -18,7 +18,7 @@ import {
   NoScreenShareIcon,
   LinkShareIcon,
   ExitIcon,
-} from './Icon';
+} from './common/Icon';
 
 const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
   const camStatus = useRecoilValue(camStatusState);
