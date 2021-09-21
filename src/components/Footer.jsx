@@ -50,7 +50,6 @@ const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
           ) : (
               <NoMicIcon onClick={handleMyMic} />
             )}
-
           <p>마이크</p>
         </div>
         <div className="cam-handle">
@@ -76,6 +75,16 @@ const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
           <p>나가기</p>
         </div>
       </TextAlignCentered>
+      <Button onClick={handleMyCam}>
+        {camStatus ? 'Disable Cam' : 'Enable Cam'}
+      </Button>
+      <Button onClick={handleMyMic}>
+        {micStatus ? 'Disable Mic' : 'Enable Mic'}
+      </Button>
+      <Button onClick={toggleScreenShare}>
+        {displayStream ? 'Stop Screen Share' : 'Share Screen'}
+      </Button>
+      <Button onClick={copy}>Invite Link</Button>
     </Layout.Footer>
   );
 };

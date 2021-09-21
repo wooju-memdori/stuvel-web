@@ -195,6 +195,56 @@ class SocketConnection {
       }
     }
   };
+  
+  createUserInfo = (userInfoDiv, userInfo) => {
+    userInfoDiv.className = 'user-info';
+    const profile = document.createElement('div');
+    profile.className = 'profile';
+    const profileImg = document.createElement('img');
+    if (userInfo.img) {
+      profileImg.src = userInfo.image;
+    } else {
+      profileImg.src = `${window.location.href}/../defaultProfile.png`;
+    }
+    profile.appendChild(profileImg);
+    const defaultInfo = document.createElement('div');
+    defaultInfo.className = 'default-info';
+    const nickname = document.createElement('h3');
+    nickname.innerText = userInfo.nickname;
+    const gender = document.createElement('div');
+    gender.className = 'gender';
+    const genderText = document.createElement('span');
+    genderText.className = 'gender-txt';
+    genderText.innerText = 'gender';
+    const genderImg = document.createElement('img');
+    genderImg.className = 'gender-img';
+    if (userInfo.gender === 0) {
+      genderImg.src = `${window.location.href}/../female.png`;
+    } else {
+      genderImg.src = `${window.location.href}/../male.png`;
+    }
+    gender.appendChild(genderText);
+    gender.appendChild(genderImg);
+    const score = document.createElement('div');
+    score.className = 'score';
+    const scoreText = document.createElement('span');
+    scoreText.className = 'score-txt';
+    scoreText.innerText = 'score';
+    const scoreImg = document.createElement('img');
+    scoreImg.className = 'score-img';
+    scoreImg.src = `${window.location.href}/../star.png`;
+    score.appendChild(scoreText);
+    score.appendChild(scoreImg);
+    const tagsExample = document.createElement('img');
+    tagsExample.className = 'tags';
+    tagsExample.src = `${window.location.href}/../tagsExample.svg`;
+    defaultInfo.appendChild(nickname);
+    defaultInfo.appendChild(gender);
+    defaultInfo.appendChild(score);
+    userInfoDiv.appendChild(profile);
+    userInfoDiv.appendChild(defaultInfo);
+    userInfoDiv.appendChild(tagsExample);
+  };
 
   createUserInfo = (userInfoDiv, userInfo) => {
     userInfoDiv.className = 'user-info';

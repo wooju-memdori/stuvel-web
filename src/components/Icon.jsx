@@ -342,6 +342,82 @@ const RightBackgroundSvg = () => (
   </svg>
 );
 
+const PurpleCircleSvg = () => (
+  <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="8" cy="8" r="8" fill="#D300FF" />
+  </svg>
+);
+
+const WhiteCircleSvg = () => (
+  <svg
+    width="8"
+    height="8"
+    viewBox="0 0 8 8"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="4" cy="4" r="4" fill="white" />
+  </svg>
+);
+
+const UnionSvg = () => (
+  <svg
+    width="48"
+    height="58"
+    viewBox="0 0 48 58"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g filter="url(#filter0_d)">
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M7.86155 43.0619C6.96315 42.5411 6.66023 41.3886 7.17577 40.4919L11.0455 33.7614C9.2552 29.5012 9.54097 24.6732 11.8578 20.6436L17.8432 10.2334C18.365 9.32577 19.1293 8.60249 20.0641 8.13838L35.2686 0.557961C36.8599 -0.239936 38.7405 -0.177494 40.2814 0.715849C41.8278 1.61235 42.8165 3.21348 42.9295 4.99942L43.9887 22.0089C44.0558 23.0538 43.8142 24.0801 43.2924 24.9878L37.307 35.398C35.2039 39.0557 31.6356 41.6381 27.5066 42.481C27.384 42.5047 27.2592 42.5198 27.1298 42.5177L26.2655 42.5174L22.6361 48.83C22.1228 49.7353 20.9751 50.0395 20.0767 49.5187C19.1783 48.9978 18.8754 47.8453 19.3909 46.9487L24.4804 38.0967C24.9991 37.1945 26.1468 36.8904 27.0397 37.4081C27.4696 37.6572 27.7631 38.051 27.8959 38.4922C30.4818 37.6636 32.686 35.8968 34.0564 33.5134L40.0418 23.1032C40.1927 22.8408 40.261 22.5451 40.2452 22.2443L39.4992 10.2644L32.4376 6.17039L21.7328 11.5115C21.4655 11.6482 21.2446 11.8555 21.0937 12.1179L15.1084 22.5281C13.2536 25.754 13.1489 29.6736 14.8287 33.0022C15.1132 33.5681 15.0954 34.243 14.7779 34.7953L10.4209 42.3733C9.90535 43.27 8.7545 43.5796 7.86155 43.0619ZM12.3621 49.7466C11.4637 49.2257 11.1608 48.0733 11.6763 47.1766L16.0019 39.6532C16.5206 38.7511 17.6683 38.4469 18.5612 38.9646C19.4542 39.4823 19.7626 40.6379 19.247 41.5346L14.9214 49.058C14.4027 49.9601 13.2605 50.2674 12.3621 49.7466ZM7.71938 47.3358C7.16902 48.293 5.9501 48.6209 4.99685 48.0683C4.04359 47.5156 3.71699 46.2916 4.26735 45.3344C4.81771 44.3772 6.03663 44.0492 6.98988 44.6019C7.94313 45.1545 8.26974 46.3785 7.71938 47.3358Z"
+        fill="white"
+        fillOpacity="0.5"
+        shapeRendering="crispEdges"
+      />
+    </g>
+    <defs>
+      <filter
+        id="filter0_d"
+        x="0"
+        y="0"
+        width="47.9997"
+        height="58.0001"
+        filterUnits="userSpaceOnUse"
+        colorInterpolationFilters="sRGB"
+      >
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+        <feColorMatrix
+          in="SourceAlpha"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          result="hardAlpha"
+        />
+        <feOffset dy="4" />
+        <feGaussianBlur stdDeviation="2" />
+        <feComposite in2="hardAlpha" operator="out" />
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+        />
+        <feBlend
+          mode="normal"
+          in2="BackgroundImageFix"
+          result="effect1_dropShadow"
+        />
+        <feBlend
+          mode="normal"
+          in="SourceGraphic"
+          in2="effect1_dropShadow"
+          result="shape"
+        />
+      </filter>
+      </defs>
+  </svg>
+);
+
 const RoomPlanetSvg = () => (
   <svg
     width="3.112em"
@@ -1053,7 +1129,7 @@ const DefaultProfileSvg = () => (
         <stop offset="0.822917" stopColor="#CBCBCB" stopOpacity="0.937857" />
         <stop offset="1" stopColor="#CECECE" stopOpacity="0.91" />
       </radialGradient>
-    </defs>
+      </defs>
   </svg>
 );
 
@@ -1094,15 +1170,45 @@ const PlusButtonSvg = () => (
   </svg>
 );
 
+
 const CloseButtonSvg = () => (
   <svg
     width="34"
     height="35"
     viewBox="0 0 34 35"
-    fill="none"
+      fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
+
     <path
+
+      d="M202.541 102.146C202.541 157.455 157.704 202.292 102.395 202.292C47.0851 202.292 2.24786 157.455 2.24786 102.146C2.24786 46.8363 47.0851 1.99909 102.395 1.99909C157.704 1.99909 202.541 46.8363 202.541 102.146Z"
+      stroke="white"
+      strokeWidth="2.70667"
+    />
+    <path
+      d="M151.015 54.3123L118.831 84.8701C111.587 77.7154 101.624 73.2799 90.6353 73.2799C68.4803 73.2799 50.5156 91.2446 50.5156 113.4C50.5156 135.555 68.4803 153.519 90.6353 153.519C112.79 153.519 130.755 135.555 130.755 113.4C130.755 112.709 130.733 112.018 130.71 111.327"
+      stroke="white"
+      strokeWidth="8.97205"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M128.106 104.401C132.093 104.401 135.324 101.17 135.324 97.1836C135.324 93.1973 132.093 89.9658 128.106 89.9658C124.12 89.9658 120.889 93.1973 120.889 97.1836C120.889 101.17 124.12 104.401 128.106 104.401Z"
+      fill="#FB95FD"
+    />
+    <path
+      d="M131.981 51.1703H154.27V72.5006"
+      stroke="#FB95FD"
+      strokeWidth="8.97205"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      />
+  </svg>
+);
+
       d="M8.18652 9.4585L25.1866 26.4586"
       stroke="white"
       strokeWidth="2"
@@ -1200,6 +1306,90 @@ const SmallerCloseButtonSvg = () => (
       stroke="white"
       strokeWidth="2"
       strokeLinecap="round"
+      />
+  </svg>
+);
+
+const LinkShareSvg = () => (
+  <svg
+    width="4.375em"
+    height="4.375em"
+    viewBox="0 0 70 70"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="35" cy="35" r="35" fill="#480094" />
+    <path
+      d="M26.4106 53.8245C23.95 55.5897 20.4998 55.3668 18.2888 53.1558L17.2546 52.1217C14.794 49.6611 14.794 45.6759 17.2546 43.2153L23.1477 37.3223C25.6083 34.8617 29.5934 34.8617 32.054 37.3223L33.0882 38.3565C35.3349 40.6031 35.531 44.1336 33.6677 46.5942"
+      stroke="white"
+      strokeWidth="2.67459"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M38.366 33.0875L37.3318 32.0534C34.8712 29.5927 34.8712 25.6076 37.3318 23.147L43.2248 17.254C45.6854 14.7934 49.6706 14.7934 52.1312 17.254L53.1653 18.2882C55.626 20.7488 55.626 24.7339 53.1653 27.1945L47.2723 33.0875C44.8117 35.5392 40.8266 35.5392 38.366 33.0875Z"
+      stroke="white"
+      strokeWidth="2.67459"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M40.6388 29.9315L29.9404 40.6299"
+      stroke="white"
+      strokeWidth="2.67459"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M30.1823 52.9776C31.6545 52.9776 32.8479 51.7841 32.8479 50.3119C32.8479 48.8397 31.6545 47.6462 30.1823 47.6462C28.7101 47.6462 27.5166 48.8397 27.5166 50.3119C27.5166 51.7841 28.7101 52.9776 30.1823 52.9776Z"
+      fill="#FB95FD"
+    />
+  </svg>
+);
+
+const ExitSvg = () => (
+  <svg
+    width="4.375em"
+    height="4.375em"
+    viewBox="0 0 70 70"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="35" cy="35" r="35" fill="#AD2929" />
+    <path
+      d="M32.6019 19.5964C33.9871 19.5964 35.1101 18.4735 35.1101 17.0883C35.1101 15.703 33.9871 14.5801 32.6019 14.5801C31.2167 14.5801 30.0938 15.703 30.0938 17.0883C30.0938 18.4735 31.2167 19.5964 32.6019 19.5964Z"
+      fill="#FB95FD"
+    />
+    <path
+      d="M39.3361 17.0883H48.2145C50.9004 17.0883 53.0742 19.2621 53.0742 21.9479V47.7246C53.0742 50.4105 50.9004 52.5843 48.2145 52.5843H31.6494"
+      stroke="white"
+      strokeWidth="3.72654"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M20.5243 23.8323L13.0657 33.2811C12.2348 34.3342 12.3218 35.8511 13.2686 36.8075L22.6498 46.1791"
+      stroke="white"
+      strokeWidth="3.72654"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M21.7627 34.9996H42.1579"
+      stroke="white"
+      strokeWidth="3.72654"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M16.7277 29.4839V39.8989L12.1289 34.1504L16.7277 29.4839Z"
+      fill="white"
     />
   </svg>
 );
@@ -1239,6 +1429,23 @@ export const LeftBackgroundIcon = (props) => (
 export const RightBackgroundIcon = (props) => (
   <Icon component={RightBackgroundSvg} {...props} />
 );
+
+export const PurpleCircleSvgIcon = (props) => (
+  <Icon component={PurpleCircleSvg} {...props} />
+);
+export const WhiteCircleSvgIcon = (props) => (
+  <Icon component={WhiteCircleSvg} {...props} />
+);
+export const UnionSvgIcon = (props) => (
+  <Icon component={UnionSvg} {...props} />
+);
+export const WomanSvgIcon = (props) => (
+  <Icon component={WomanSvg} {...props} />
+);
+export const ManSvgIcon = (props) => (
+  <Icon component={ManSvg} {...props} />
+);
+
 export const RoomPlanetIcon = (props) => (
   <Icon component={RoomPlanetSvg} {...props} />
 );
