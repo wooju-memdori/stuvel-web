@@ -2,7 +2,7 @@
 import React from 'react';
 import { List, Input } from 'antd';
 import styled from 'styled-components';
-import { SmallerCloseButtonIcon } from '../Icon';
+import { SmallerCloseButtonIcon } from '../common/Icon';
 
 const testUsers = ['태희', '희진', '해린', '해리'];
 

@@ -10,7 +10,7 @@ import {
   WhiteCircleSvgIcon,
   LeftBackgroundIcon,
   RightBackgroundIcon,
-} from './Icon';
+} from './common/Icon';
 
 const ChooseInterest = () => {
   const [interests, setInterests] = useState();

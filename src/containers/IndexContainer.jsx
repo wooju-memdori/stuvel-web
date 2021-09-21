@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 import { Route, Switch } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import Home from '../components/Home';
+import Home from '../components/common/Home';
 import Room from '../components/Room';
 import RoomContainer from './RoomContainer';
 import Navigation from '../components/Navigation';

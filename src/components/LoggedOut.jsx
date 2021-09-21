@@ -4,7 +4,11 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import styled from 'styled-components';
 import axios from '../utils/axios';
 import SignUpContainer from '../containers/SignUpContainer';
-import { BigLogoIcon, LeftBackgroundIcon, RightBackgroundIcon } from './Icon';
+import {
+  BigLogoIcon,
+  LeftBackgroundIcon,
+  RightBackgroundIcon,
+} from './common/Icon';
 
 const LoggedOut = () => {
   const [loginResult, setLoginResult] = useState('');
