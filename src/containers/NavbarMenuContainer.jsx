@@ -7,7 +7,7 @@ import MyPage from '../components/MyPage';
 import Settings from '../components/Settings';
 import Chat from '../components/Chat/Chat';
 import { CloseButtonIcon } from '../components/Icon';
-import Friends from '../components/Friends';
+import Friends from '../components/Follow/Friends';
 
 const NavbarMenuContainer = ({ onClose }) => {
   const currentHeader = useRecoilValue(currentNavbarComponent);
