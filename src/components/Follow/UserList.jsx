@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import 'antd/dist/antd.css';
 
-import { ChatSmallIcon, PlusIcon } from '../Icon';
+import { ChatSmallIcon, PlusIcon } from '../common/Icon';
 
 export default function UserList({ list }) {
   const onClickFollow = (id) => {

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { Image, Button, Radio } from 'antd';
+import { Button, Radio } from 'antd';
 import { genderOrInterestState, userInfoState } from '../state/atom';
 import {
   UnionSvgIcon,
@@ -13,7 +13,7 @@ import {
   RightBackgroundIcon,
   WomanSvgIcon,
   ManSvgIcon,
-} from './Icon';
+} from './common/Icon';
 
 const ChooseGender = () => {
   const setGenderOrInterest = useRecoilState(genderOrInterestState)[1];
