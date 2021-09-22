@@ -3,14 +3,18 @@ import { List, Avatar, Badge, Popover } from 'antd';
 import { UserOutlined, EllipsisOutlined } from '@ant-design/icons';
 import { arrayOf } from 'prop-types';
 import styled from 'styled-components';
-import axios from 'axios';
+import axios from '../../utils/axios';
 import 'antd/dist/antd.css';
 
 import { ChatSmallIcon, PlusIcon } from '../common/Icon';
 
 export default function UserList({ list }) {
-  const onClickFollow = (id) => {
+  const onClickFollow = (id) => () => {
     axios.post(`${process.env.REACT_APP_API_URL}/follow/${id}`);
+  };
+
+  const onClickUnfollow = (id) => () => {
+    axios.delete(`${process.env.REACT_APP_API_URL}/follow/${id}`);
   };
 
   return (
@@ -52,7 +56,9 @@ export default function UserList({ list }) {
             content={
               <List split={false} size="small">
                 {item.roomId && <List.Item>비행 따라가기</List.Item>}
-                {item.following && <List.Item>언팔로우</List.Item>}
+                <List.Item onClick={onClickUnfollow(item.id)}>
+                  언팔로우
+                </List.Item>
                 <List.Item>차단</List.Item>
                 <List.Item>신고</List.Item>
                 <List.Item>초대</List.Item>
