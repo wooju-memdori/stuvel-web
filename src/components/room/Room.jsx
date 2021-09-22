@@ -7,7 +7,7 @@ import 'antd/dist/antd.css';
 import styled from 'styled-components';
 import Footer from './Footer';
 // eslint-disable-next-line
-import { createSocketConnectionInstance } from '../utils/socketConnection';
+import { createSocketConnectionInstance } from '../../utils/socketConnection';
 
 import {
   micStatusState,
@@ -16,7 +16,7 @@ import {
   userDetailsState,
   displayStreamState,
   roomIdState,
-} from '../state/atom';
+} from '../../state/atom';
 
 export default function Room({ paramRoomId }) {
   const [roomId, setRoomId] = useRecoilState(roomIdState);

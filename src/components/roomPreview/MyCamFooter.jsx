@@ -11,12 +11,12 @@ import {
   ScreenShareIcon,
   NoMicIcon,
   NoScreenShareIcon,
-} from './common/Icon';
+} from '../common/Icon';
 import {
   camStatusState,
   micStatusState,
   displayStreamState,
-} from '../state/atom';
+} from '../../state/atom';
 
 const MyCamFooter = ({ handleMyCam, handleMyMic, toggleScreenShare }) => {
   const camStatus = useRecoilValue(camStatusState);

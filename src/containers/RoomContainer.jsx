@@ -2,8 +2,8 @@ import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { string } from 'prop-types';
 import { roomConfirmedState } from '../state/atom';
-import Room from '../components/Room';
-import RoomPreview from '../components/RoomPreview';
+import Room from '../components/room/Room';
+import RoomPreview from '../components/roomPreview/RoomPreview';
 
 const RoomContainer = ({ match }) => {
   if (match.params.roomId) {
