@@ -10,7 +10,8 @@ import {
   roomIdState,
 } from '../../state/atom';
 import axios from '../../utils/axios';
-import { ToHomeIcon, FemaleIcon, MaleIcon } from '../common/Icon';
+import { FemaleIcon, MaleIcon } from '../common/Icon';
+import { ToHomeIcon } from './RoomPreviewIcon';
 
 const RoomUsers = () => {
   const [nowRoomId, setRoomId] = useRecoilState(roomIdState);
