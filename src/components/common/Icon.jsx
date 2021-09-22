@@ -414,7 +414,7 @@ const UnionSvg = () => (
           result="shape"
         />
       </filter>
-      </defs>
+    </defs>
   </svg>
 );
 
@@ -431,6 +431,80 @@ const RoomPlanetSvg = () => (
       clipRule="evenodd"
       d="M57.0753 29.7473C58.7971 30.4283 60.2184 31.1738 61.3052 31.9495C63.148 33.2648 63.6864 34.4017 63.6864 35.2081C63.6864 35.8988 63.3009 36.8262 61.9994 37.928C60.8741 38.8807 59.2212 39.8194 57.0753 40.6686C57.9661 37.0869 57.9661 33.329 57.0753 29.7473ZM51.9985 27.3451C52.0176 27.3905 52.0383 27.4351 52.0606 27.479C54.1865 32.116 54.2982 37.4498 52.3955 42.16C47.6061 43.3841 41.6741 44.1222 35.2082 44.1222C28.7422 44.1222 22.81 43.3841 18.0206 42.1599C15.3186 35.4709 16.679 27.5243 22.1016 22.1016C29.3401 14.8631 41.076 14.8631 48.3145 22.1016C49.8819 23.669 51.1099 25.4473 51.9985 27.3451ZM55.2527 24.8966C58.6059 25.8946 61.4924 27.1687 63.6291 28.6938C65.9063 30.3193 67.6864 32.5024 67.6864 35.2081C67.6864 37.529 66.3666 39.4717 64.584 40.9809C62.7923 42.4977 60.318 43.774 57.4351 44.8067C56.737 45.0568 56.0087 45.2948 55.2525 45.52C54.21 47.5454 52.8401 49.4458 51.143 51.143C42.3424 59.9436 28.0738 59.9436 19.2732 51.143C17.576 49.4458 16.2062 47.5453 15.1636 45.5199C14.4075 45.2947 13.6793 45.0567 12.9813 44.8067C10.0984 43.774 7.62408 42.4977 5.83242 40.9809C4.04979 39.4717 2.73001 37.529 2.73 35.2081C2.73001 31.9119 5.35044 29.3786 8.50403 27.608C9.46718 27.0673 10.6863 27.4097 11.2271 28.3729C11.7678 29.336 11.4254 30.5552 10.4623 31.0959C7.5928 32.707 6.73 34.2084 6.73001 35.2081C6.73 35.8988 7.11555 36.8262 8.41702 37.928C9.54221 38.8806 11.195 39.8193 13.3408 40.6685C11.4955 33.2488 13.473 25.0734 19.2732 19.2732C28.0738 10.4726 42.3424 10.4726 51.143 19.2732C52.8402 20.9704 54.2101 22.8711 55.2527 24.8966ZM20.7924 46.8616C21.1988 47.363 21.6352 47.8481 22.1016 48.3146C29.3401 55.5531 41.076 55.5531 48.3145 48.3146C48.781 47.8481 49.2174 47.363 49.6237 46.8616C45.2777 47.6718 40.3747 48.1222 35.2082 48.1222C30.0416 48.1222 25.1385 47.6718 20.7924 46.8616Z"
       fill="white"
+    />
+  </svg>
+);
+
+const WomanSvg = () => (
+  <svg
+    width="203"
+    height="204"
+    viewBox="0 0 203 204"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle
+      cx="101.5"
+      cy="102.146"
+      r="100.147"
+      stroke="white"
+      strokeWidth="2.70667"
+    />
+    <path
+      d="M153.435 154.507L121.443 120.836C128.928 113.257 133.568 102.834 133.568 91.3383C133.568 68.1601 114.774 49.3657 91.5956 49.3657C68.4174 49.3657 49.623 68.1601 49.623 91.3383C49.623 114.516 68.4174 133.311 91.5956 133.311C92.3185 133.311 93.0413 133.288 93.7642 133.264"
+      stroke="white"
+      strokeWidth="8.97205"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M108.036 136.461C112.022 136.461 115.254 133.23 115.254 129.243C115.254 125.257 112.022 122.026 108.036 122.026C104.05 122.026 100.818 125.257 100.818 129.243C100.818 133.23 104.05 136.461 108.036 136.461Z"
+      fill="#FB95FD"
+    />
+    <path
+      d="M148 124.286L124.682 147.605"
+      stroke="#FB95FD"
+      strokeWidth="8.97205"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+const ManSvg = () => (
+  <svg
+    width="204"
+    height="204"
+    viewBox="0 0 204 204"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M202.541 102.146C202.541 157.455 157.704 202.292 102.395 202.292C47.0851 202.292 2.24786 157.455 2.24786 102.146C2.24786 46.8363 47.0851 1.99909 102.395 1.99909C157.704 1.99909 202.541 46.8363 202.541 102.146Z"
+      stroke="white"
+      strokeWidth="2.70667"
+    />
+    <path
+      d="M151.015 54.3123L118.831 84.8701C111.587 77.7154 101.624 73.2799 90.6353 73.2799C68.4803 73.2799 50.5156 91.2446 50.5156 113.4C50.5156 135.555 68.4803 153.519 90.6353 153.519C112.79 153.519 130.755 135.555 130.755 113.4C130.755 112.709 130.733 112.018 130.71 111.327"
+      stroke="white"
+      strokeWidth="8.97205"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M128.106 104.401C132.093 104.401 135.324 101.17 135.324 97.1836C135.324 93.1973 132.093 89.9658 128.106 89.9658C124.12 89.9658 120.889 93.1973 120.889 97.1836C120.889 101.17 124.12 104.401 128.106 104.401Z"
+      fill="#FB95FD"
+    />
+    <path
+      d="M131.981 51.1703H154.27V72.5006"
+      stroke="#FB95FD"
+      strokeWidth="8.97205"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
@@ -711,6 +785,90 @@ const NoScreenShareSvg = () => (
   </svg>
 );
 
+const LinkShareSvg = () => (
+  <svg
+    width="4.375em"
+    height="4.375em"
+    viewBox="0 0 70 70"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="35" cy="35" r="35" fill="#480094" />
+    <path
+      d="M26.4106 53.8245C23.95 55.5897 20.4998 55.3668 18.2888 53.1558L17.2546 52.1217C14.794 49.6611 14.794 45.6759 17.2546 43.2153L23.1477 37.3223C25.6083 34.8617 29.5934 34.8617 32.054 37.3223L33.0882 38.3565C35.3349 40.6031 35.531 44.1336 33.6677 46.5942"
+      stroke="white"
+      strokeWidth="2.67459"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M38.366 33.0875L37.3318 32.0534C34.8712 29.5927 34.8712 25.6076 37.3318 23.147L43.2248 17.254C45.6854 14.7934 49.6706 14.7934 52.1312 17.254L53.1653 18.2882C55.626 20.7488 55.626 24.7339 53.1653 27.1945L47.2723 33.0875C44.8117 35.5392 40.8266 35.5392 38.366 33.0875Z"
+      stroke="white"
+      strokeWidth="2.67459"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M40.6388 29.9315L29.9404 40.6299"
+      stroke="white"
+      strokeWidth="2.67459"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M30.1823 52.9776C31.6545 52.9776 32.8479 51.7841 32.8479 50.3119C32.8479 48.8397 31.6545 47.6462 30.1823 47.6462C28.7101 47.6462 27.5166 48.8397 27.5166 50.3119C27.5166 51.7841 28.7101 52.9776 30.1823 52.9776Z"
+      fill="#FB95FD"
+    />
+  </svg>
+);
+
+const ExitSvg = () => (
+  <svg
+    width="4.375em"
+    height="4.375em"
+    viewBox="0 0 70 70"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="35" cy="35" r="35" fill="#AD2929" />
+    <path
+      d="M32.6019 19.5964C33.9871 19.5964 35.1101 18.4735 35.1101 17.0883C35.1101 15.703 33.9871 14.5801 32.6019 14.5801C31.2167 14.5801 30.0938 15.703 30.0938 17.0883C30.0938 18.4735 31.2167 19.5964 32.6019 19.5964Z"
+      fill="#FB95FD"
+    />
+    <path
+      d="M39.3361 17.0883H48.2145C50.9004 17.0883 53.0742 19.2621 53.0742 21.9479V47.7246C53.0742 50.4105 50.9004 52.5843 48.2145 52.5843H31.6494"
+      stroke="white"
+      strokeWidth="3.72654"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M20.5243 23.8323L13.0657 33.2811C12.2348 34.3342 12.3218 35.8511 13.2686 36.8075L22.6498 46.1791"
+      stroke="white"
+      strokeWidth="3.72654"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M21.7627 34.9996H42.1579"
+      stroke="white"
+      strokeWidth="3.72654"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M16.7277 29.4839V39.8989L12.1289 34.1504L16.7277 29.4839Z"
+      fill="white"
+    />
+  </svg>
+);
+
 const FilterSvg = () => (
   <svg
     width="1.813em"
@@ -895,45 +1053,7 @@ const DefaultProfileSvg = () => (
         <stop offset="0.822917" stopColor="#CBCBCB" stopOpacity="0.937857" />
         <stop offset="1" stopColor="#CECECE" stopOpacity="0.91" />
       </radialGradient>
-      </defs>
-  </svg>
-);
-
-const WomanSvg = () => (
-  <svg
-    width="203"
-    height="204"
-    viewBox="0 0 203 204"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <circle
-      cx="101.5"
-      cy="102.146"
-      r="100.147"
-      stroke="white"
-      strokeWidth="2.70667"
-    />
-    <path
-      d="M153.435 154.507L121.443 120.836C128.928 113.257 133.568 102.834 133.568 91.3383C133.568 68.1601 114.774 49.3657 91.5956 49.3657C68.4174 49.3657 49.623 68.1601 49.623 91.3383C49.623 114.516 68.4174 133.311 91.5956 133.311C92.3185 133.311 93.0413 133.288 93.7642 133.264"
-      stroke="white"
-      strokeWidth="8.97205"
-      strokeMiterlimit="10"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M108.036 136.461C112.022 136.461 115.254 133.23 115.254 129.243C115.254 125.257 112.022 122.026 108.036 122.026C104.05 122.026 100.818 125.257 100.818 129.243C100.818 133.23 104.05 136.461 108.036 136.461Z"
-      fill="#FB95FD"
-    />
-    <path
-      d="M148 124.286L124.682 147.605"
-      stroke="#FB95FD"
-      strokeWidth="8.97205"
-      strokeMiterlimit="10"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      />
+    </defs>
   </svg>
 );
 
@@ -970,30 +1090,19 @@ const PlusButtonSvg = () => (
       rx="1.28946"
       transform="rotate(90 18.9482 11.2104)"
       fill="white"
-      />
+    />
   </svg>
 );
 
-const ManSvg = () => (
-  <svg
-    width="204"
-    height="204"
-    viewBox="0 0 204 204"
-      fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-  
 const CloseButtonSvg = () => (
   <svg
     width="34"
     height="35"
     viewBox="0 0 34 35"
-      fill="none"
+    fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-
     <path
-
       d="M202.541 102.146C202.541 157.455 157.704 202.292 102.395 202.292C47.0851 202.292 2.24786 157.455 2.24786 102.146C2.24786 46.8363 47.0851 1.99909 102.395 1.99909C157.704 1.99909 202.541 46.8363 202.541 102.146Z"
       stroke="white"
       strokeWidth="2.70667"
@@ -1017,20 +1126,70 @@ const CloseButtonSvg = () => (
       strokeMiterlimit="10"
       strokeLinecap="round"
       strokeLinejoin="round"
-      />
+    />
   </svg>
 );
 
-      d="M8.18652 9.4585L25.1866 26.4586"
-      stroke="white"
-      strokeWidth="2"
-      strokeLinecap="round"
+const ChatSmallSvg = () => (
+  <svg
+    width="31"
+    height="22"
+    viewBox="0 0 31 22"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M19.9286 0H11.0714C4.95446 0 0 4.92196 0 10.9988C0 17.0756 4.95446 21.9976 11.0714 21.9976H29.3393C30.2582 21.9976 31 21.2607 31 20.3478V10.9988C31 4.92196 26.0455 0 19.9286 0ZM1.66071 10.9988C1.66071 5.84585 5.88446 1.64982 11.0714 1.64982H19.9286C25.1155 1.64982 29.3393 5.84585 29.3393 10.9988V17.5101L26.4829 20.3478H11.0714C5.88446 20.3478 1.66071 16.1517 1.66071 10.9988Z"
+      fill="white"
     />
     <path
-      d="M25.1865 8.83057L8.18644 25.8307"
+      d="M8.28767 12.6492C9.20485 12.6492 9.94838 11.9106 9.94838 10.9994C9.94838 10.0883 9.20485 9.34961 8.28767 9.34961C7.37048 9.34961 6.62695 10.0883 6.62695 10.9994C6.62695 11.9106 7.37048 12.6492 8.28767 12.6492Z"
+      fill="white"
+    />
+    <path
+      d="M15.5006 12.6492C16.4177 12.6492 17.1613 11.9106 17.1613 10.9994C17.1613 10.0883 16.4177 9.34961 15.5006 9.34961C14.5834 9.34961 13.8398 10.0883 13.8398 10.9994C13.8398 11.9106 14.5834 12.6492 15.5006 12.6492Z"
+      fill="white"
+    />
+    <path
+      d="M22.69 12.6492C23.6072 12.6492 24.3507 11.9106 24.3507 10.9994C24.3507 10.0883 23.6072 9.34961 22.69 9.34961C21.7728 9.34961 21.0293 10.0883 21.0293 10.9994C21.0293 11.9106 21.7728 12.6492 22.69 12.6492Z"
+      fill="white"
+    />
+  </svg>
+);
+
+const PlusSvg = () => (
+  <svg
+    width="25"
+    height="25"
+    viewBox="0 0 25 25"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect
+      x="0.855"
+      y="0.855"
+      width="23.29"
+      height="23.29"
+      rx="11.645"
       stroke="white"
-      strokeWidth="2"
-      strokeLinecap="round"
+      strokeWidth="1.71"
+    />
+    <rect
+      x="11.2129"
+      y="6.05273"
+      width="2.57891"
+      height="12.8946"
+      rx="1.28946"
+      fill="white"
+    />
+    <rect
+      x="18.9482"
+      y="11.2109"
+      width="2.57891"
+      height="12.8946"
+      rx="1.28946"
+      transform="rotate(90 18.9482 11.2109)"
+      fill="white"
     />
   </svg>
 );
@@ -1054,91 +1213,21 @@ const SmallerCloseButtonSvg = () => (
       stroke="white"
       strokeWidth="2"
       strokeLinecap="round"
-      />
-  </svg>
-);
-
-const LinkShareSvg = () => (
-  <svg
-    width="4.375em"
-    height="4.375em"
-    viewBox="0 0 70 70"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <circle cx="35" cy="35" r="35" fill="#480094" />
-    <path
-      d="M26.4106 53.8245C23.95 55.5897 20.4998 55.3668 18.2888 53.1558L17.2546 52.1217C14.794 49.6611 14.794 45.6759 17.2546 43.2153L23.1477 37.3223C25.6083 34.8617 29.5934 34.8617 32.054 37.3223L33.0882 38.3565C35.3349 40.6031 35.531 44.1336 33.6677 46.5942"
-      stroke="white"
-      strokeWidth="2.67459"
-      strokeMiterlimit="10"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M38.366 33.0875L37.3318 32.0534C34.8712 29.5927 34.8712 25.6076 37.3318 23.147L43.2248 17.254C45.6854 14.7934 49.6706 14.7934 52.1312 17.254L53.1653 18.2882C55.626 20.7488 55.626 24.7339 53.1653 27.1945L47.2723 33.0875C44.8117 35.5392 40.8266 35.5392 38.366 33.0875Z"
-      stroke="white"
-      strokeWidth="2.67459"
-      strokeMiterlimit="10"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M40.6388 29.9315L29.9404 40.6299"
-      stroke="white"
-      strokeWidth="2.67459"
-      strokeMiterlimit="10"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M30.1823 52.9776C31.6545 52.9776 32.8479 51.7841 32.8479 50.3119C32.8479 48.8397 31.6545 47.6462 30.1823 47.6462C28.7101 47.6462 27.5166 48.8397 27.5166 50.3119C27.5166 51.7841 28.7101 52.9776 30.1823 52.9776Z"
-      fill="#FB95FD"
     />
   </svg>
 );
 
-const ExitSvg = () => (
+const MoreSvg = () => (
   <svg
-    width="4.375em"
-    height="4.375em"
-    viewBox="0 0 70 70"
+    width="28"
+    height="6"
+    viewBox="0 0 28 6"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <circle cx="35" cy="35" r="35" fill="#AD2929" />
-    <path
-      d="M32.6019 19.5964C33.9871 19.5964 35.1101 18.4735 35.1101 17.0883C35.1101 15.703 33.9871 14.5801 32.6019 14.5801C31.2167 14.5801 30.0938 15.703 30.0938 17.0883C30.0938 18.4735 31.2167 19.5964 32.6019 19.5964Z"
-      fill="#FB95FD"
-    />
-    <path
-      d="M39.3361 17.0883H48.2145C50.9004 17.0883 53.0742 19.2621 53.0742 21.9479V47.7246C53.0742 50.4105 50.9004 52.5843 48.2145 52.5843H31.6494"
-      stroke="white"
-      strokeWidth="3.72654"
-      strokeMiterlimit="10"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M20.5243 23.8323L13.0657 33.2811C12.2348 34.3342 12.3218 35.8511 13.2686 36.8075L22.6498 46.1791"
-      stroke="white"
-      strokeWidth="3.72654"
-      strokeMiterlimit="10"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M21.7627 34.9996H42.1579"
-      stroke="white"
-      strokeWidth="3.72654"
-      strokeMiterlimit="10"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M16.7277 29.4839V39.8989L12.1289 34.1504L16.7277 29.4839Z"
-      fill="white"
-    />
+    <circle cx="3" cy="3" r="3" fill="white" />
+    <circle cx="14" cy="3" r="3" fill="white" />
+    <circle cx="25" cy="3" r="3" fill="white" />
   </svg>
 );
 
@@ -1171,20 +1260,14 @@ export const PurpleCircleSvgIcon = (props) => (
 export const WhiteCircleSvgIcon = (props) => (
   <Icon component={WhiteCircleSvg} {...props} />
 );
-export const UnionSvgIcon = (props) => (
-  <Icon component={UnionSvg} {...props} />
-);
-export const WomanSvgIcon = (props) => (
-  <Icon component={WomanSvg} {...props} />
-);
-export const ManSvgIcon = (props) => (
-  <Icon component={ManSvg} {...props} />
-);
+export const UnionSvgIcon = (props) => <Icon component={UnionSvg} {...props} />;
+export const WomanSvgIcon = (props) => <Icon component={WomanSvg} {...props} />;
+export const ManSvgIcon = (props) => <Icon component={ManSvg} {...props} />;
 
 export const RoomPlanetIcon = (props) => (
   <Icon component={RoomPlanetSvg} {...props} />
 );
-export const ExitIcon = (props) => <Icon component={ExitSvg} {...props} />;
+export const ToHomeIcon = (props) => <Icon component={ToHomeSvg} {...props} />;
 export const FemaleIcon = (props) => <Icon component={FemaleSvg} {...props} />;
 export const MaleIcon = (props) => <Icon component={MaleSvg} {...props} />;
 export const CamIcon = (props) => <Icon component={CamSvg} {...props} />;
@@ -1192,6 +1275,10 @@ export const MicIcon = (props) => <Icon component={MicSvg} {...props} />;
 export const ScreenShareIcon = (props) => (
   <Icon component={ScreenShareSvg} {...props} />
 );
+export const LinkShareIcon = (props) => (
+  <Icon component={LinkShareSvg} {...props} />
+);
+export const ExitIcon = (props) => <Icon component={ExitSvg} {...props} />;
 export const NoCamIcon = (props) => <Icon component={NoCamSvg} {...props} />;
 export const NoMicIcon = (props) => <Icon component={NoMicSvg} {...props} />;
 export const NoScreenShareIcon = (props) => (
@@ -1223,7 +1310,10 @@ export const PlusButtonIcon = (props) => (
 export const SmallerCloseButtonIcon = (props) => (
   <Icon component={SmallerCloseButtonSvg} {...props} />
 );
-export const ToHomeIcon = (props) => <Icon component={ToHomeSvg} {...props} />;
-export const LinkShareIcon = (props) => (
-  <Icon component={LinkShareSvg} {...props} />
+export const ChatSmallIcon = (props) => (
+  <Icon component={ChatSmallSvg} {...props} />
 );
+
+export const PlusIcon = (props) => <Icon component={PlusSvg} {...props} />;
+
+export const MoreIcon = (props) => <Icon copmonent={MoreSvg} {...props} />;

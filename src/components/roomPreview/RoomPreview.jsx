@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import RoomUsers from './RoomUsers';
 import PreviewMyCam from './PreivewMyCam';
 // import { roomIdState } from '../state/atom';
-import { RoomPlanetIcon } from './Icon';
+import { RoomPlanetIcon } from './RoomPreviewIcon';
 
 const RoomPreview = () => {
   // const nowRoomId = useRecoilValue(roomIdState);

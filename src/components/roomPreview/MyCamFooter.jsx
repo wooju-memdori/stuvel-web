@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import { Layout } from 'antd';
 import styled from 'styled-components';
@@ -10,28 +11,12 @@ import {
   ScreenShareIcon,
   NoMicIcon,
   NoScreenShareIcon,
-} from './Icon';
+} from '../common/Icon';
 import {
   camStatusState,
   micStatusState,
   displayStreamState,
-} from '../state/atom';
-
-const TextAlignCentered = styled.div`
-  text-align: center;
-  .cam-handle {
-    display: inline-block;
-    margin: 0 3%;
-  }
-  .handle-icon svg circle {
-    transition: 0.2s;
-  }
-  .handle-icon svg:hover {
-    circle {
-      fill: #34006a;
-    }
-  }
-`;
+} from '../../state/atom';
 
 const MyCamFooter = ({ handleMyCam, handleMyMic, toggleScreenShare }) => {
   const camStatus = useRecoilValue(camStatusState);
@@ -81,5 +66,21 @@ MyCamFooter.propTypes = {
   handleMyMic: func.isRequired,
   toggleScreenShare: func.isRequired,
 };
+
+const TextAlignCentered = styled.div`
+  text-align: center;
+  .cam-handle {
+    display: inline-block;
+    margin: 0 3%;
+  }
+  .handle-icon svg circle {
+    transition: 0.2s;
+  }
+  .handle-icon svg:hover {
+    circle {
+      fill: #34006a;
+    }
+  }
+`;
 
 export default MyCamFooter;

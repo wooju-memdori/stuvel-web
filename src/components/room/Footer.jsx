@@ -1,5 +1,6 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
-import { Layout, Button, message } from 'antd';
+import { Layout, message, Button } from 'antd';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { func, string } from 'prop-types';
@@ -7,7 +8,7 @@ import {
   camStatusState,
   micStatusState,
   displayStreamState,
-} from '../state/atom';
+} from '../../state/atom';
 import {
   CamIcon,
   MicIcon,
@@ -15,8 +16,8 @@ import {
   ScreenShareIcon,
   NoMicIcon,
   NoScreenShareIcon,
-  ExitIcon,
-} from './Icon';
+} from '../common/Icon';
+import { LinkShareIcon, ExitIcon } from './RoomIcon';
 
 const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
   const camStatus = useRecoilValue(camStatusState);
@@ -48,7 +49,6 @@ const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
           ) : (
             <NoMicIcon onClick={handleMyMic} />
           )}
-
           <p>마이크</p>
         </div>
         <div className="cam-handle">
@@ -63,7 +63,7 @@ const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
           <p>화면공유</p>
         </div>
         <div className="cam-handle">
-          {/* <LinkShareIcon onClick={copy} className="handle-icon" /> */}
+          <LinkShareIcon onClick={copy} className="handle-icon" />
           <p>링크복사</p>
         </div>
         <div className="cam-handle">
@@ -107,4 +107,5 @@ const TextAlignCentered = styled.div`
     }
   }
 `;
+
 export default Footer;

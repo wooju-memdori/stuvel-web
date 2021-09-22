@@ -1,13 +1,13 @@
 import React, { useRef, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { string, func } from 'prop-types';
-import { Spin } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
+// import { Spin } from 'antd';
+// import { LoadingOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import styled from 'styled-components';
 import Footer from './Footer';
 // eslint-disable-next-line
-import { createSocketConnectionInstance } from '../utils/socketConnection';
+import { createSocketConnectionInstance } from '../../utils/socketConnection';
 
 import {
   micStatusState,
@@ -16,7 +16,7 @@ import {
   userDetailsState,
   displayStreamState,
   roomIdState,
-} from '../state/atom';
+} from '../../state/atom';
 
 export default function Room({ paramRoomId }) {
   const [roomId, setRoomId] = useRecoilState(roomIdState);
@@ -88,23 +88,23 @@ export default function Room({ paramRoomId }) {
 
   return (
     <RoomPage>
-      <Spin
+      {/* <Spin
         indicator={<LoadingOutlined spin />}
         size="large"
         spinning={!streaming}
-      >
-        <div id="room-div">
-          <RoomContainer id="room-container" />
-        </div>
-        {streaming && (
-          <Footer
-            handleMyCam={handleMyCam}
-            handleMyMic={handleMyMic}
-            toggleScreenShare={toggleScreenShare}
-            roomId={roomId}
-          />
-        )}
-      </Spin>
+      > */}
+      <div id="room-div">
+        <RoomContainer id="room-container" />
+      </div>
+      {streaming && (
+        <Footer
+          handleMyCam={handleMyCam}
+          handleMyMic={handleMyMic}
+          toggleScreenShare={toggleScreenShare}
+          roomId={roomId}
+        />
+      )}
+      {/* </Spin> */}
     </RoomPage>
   );
 }

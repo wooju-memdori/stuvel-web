@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-import LoggedOut from './components/LoggedOut';
+import LoggedOut from './components/login/LoggedOut';
 import FinishSignUp from './components/FinishSignUp';
 import SignUpContainer from './containers/SignUpContainer';
 import IndexContainer from './containers/IndexContainer';
