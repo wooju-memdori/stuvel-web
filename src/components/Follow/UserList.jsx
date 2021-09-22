@@ -3,18 +3,42 @@ import { List, Avatar, Badge, Popover } from 'antd';
 import { UserOutlined, EllipsisOutlined } from '@ant-design/icons';
 import { arrayOf } from 'prop-types';
 import styled from 'styled-components';
-import axios from '../../utils/axios';
+import { useSetRecoilState } from 'recoil';
 import 'antd/dist/antd.css';
+
+import axios from '../../utils/axios';
+import { forceUserListUpdateState } from '../../state/follow';
 
 import { ChatSmallIcon, PlusIcon } from '../common/Icon';
 
 export default function UserList({ list }) {
+  const userListUpdates = useSetRecoilState(forceUserListUpdateState);
+
+  const forceUpdate = () =>
+    userListUpdates((n) => {
+      return n + 1;
+    });
+
   const onClickFollow = (id) => () => {
-    axios.post(`${process.env.REACT_APP_API_URL}/follow/${id}`);
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/follow/${id}`)
+      .then(() => {
+        forceUpdate();
+      })
+      .catch((error) => {
+        alert(error);
+      });
   };
 
   const onClickUnfollow = (id) => () => {
-    axios.delete(`${process.env.REACT_APP_API_URL}/follow/${id}`);
+    axios
+      .delete(`${process.env.REACT_APP_API_URL}/follow/${id}`)
+      .then(() => {
+        forceUpdate();
+      })
+      .catch((error) => {
+        alert(error);
+      });
   };
 
   return (
