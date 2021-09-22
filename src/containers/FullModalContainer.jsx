@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import ChooseInterest from '../components/ChooseInterest';
+import ChangeInterest from '../components/ChangeInterest';
 import { CloseButtonIcon } from '../components/Icon';
 
 const FullModalContainer = ({ onClose }) => {
@@ -14,7 +14,7 @@ const FullModalContainer = ({ onClose }) => {
           </button>
         </Header>
         <Content>
-          <ChooseInterest />
+          <ChangeInterest />
         </Content>
       </LayoutContainer>
     </>
