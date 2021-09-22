@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import ChooseInterest from '../components/ChooseInterest';
+import ChooseInterest from '../components/signup/ChooseInterest';
 import { CloseButtonIcon } from '../components/common/Icon';
 
 const FullModalContainer = ({ onClose }) => {

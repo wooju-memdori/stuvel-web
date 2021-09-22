@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import LoggedOut from './components/login/LoggedOut';
-import FinishSignUp from './components/FinishSignUp';
+import FinishSignUp from './components/signup/FinishSignUp';
 import SignUpContainer from './containers/SignUpContainer';
 import IndexContainer from './containers/IndexContainer';
 import 'antd/dist/antd.less';
