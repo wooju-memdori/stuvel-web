@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 import { Route, Switch } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import Home from '../components/common/Home';
-import Room from '../components/Room';
+import Room from '../components/room/Room';
 import RoomContainer from './RoomContainer';
 import Navigation from '../components/Navigation';
 import { collapsedState } from '../state/atom';

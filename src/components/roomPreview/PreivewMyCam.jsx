@@ -4,13 +4,13 @@ import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import MyCamFooter from './MyCamFooter';
-import { createStreamInstance } from '../utils/streamInstance';
+import { createStreamInstance } from '../../utils/streamInstance';
 import {
   micStatusState,
   camStatusState,
   streamingState,
   displayStreamState,
-} from '../state/atom';
+} from '../../state/atom';
 
 const PreviweMyCam = () => {
   const streamInstance = useRef(null);

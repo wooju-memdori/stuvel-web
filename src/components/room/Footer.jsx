@@ -8,7 +8,7 @@ import {
   camStatusState,
   micStatusState,
   displayStreamState,
-} from '../state/atom';
+} from '../../state/atom';
 import {
   CamIcon,
   MicIcon,
@@ -18,7 +18,7 @@ import {
   NoScreenShareIcon,
   LinkShareIcon,
   ExitIcon,
-} from './common/Icon';
+} from '../common/Icon';
 
 const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
   const camStatus = useRecoilValue(camStatusState);
