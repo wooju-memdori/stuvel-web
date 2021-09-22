@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import { Button, Checkbox } from 'antd';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { userInfoState, signUpProcessState } from '../state/atom';
-import axios from '../utils/axios';
+import { userInfoState, signUpProcessState } from '../../state/atom';
+import axios from '../../utils/axios';
+import { LeftBackgroundIcon, RightBackgroundIcon } from '../common/Icon';
 import {
   UnionSvgIcon,
   PurpleCircleSvgIcon,
   WhiteCircleSvgIcon,
-  LeftBackgroundIcon,
-  RightBackgroundIcon,
-} from './common/Icon';
+} from './SignUpIcon';
 
 const ChooseInterest = () => {
   const [interests, setInterests] = useState();
