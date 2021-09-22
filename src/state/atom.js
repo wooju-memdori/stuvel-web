@@ -83,22 +83,6 @@ export const signUpDoneState = atom({
   default: false,
 });
 
-export const followersState = selectorFamily({
-  key: 'followersState',
-  get: () => async () => {
-    const response = await axios.get(`/followers`);
-    return response.data.data;
-  },
-});
-
-export const followingsState = selectorFamily({
-  key: 'followersState',
-  get: () => async () => {
-    const response = await axios.get(`/followings`);
-    return response.data.data;
-  },
-});
-
 export const currentUserInfoState = atom({
   key: 'currentUserInfoState',
   default: null,
