@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ChangeInterest from '../components/ChangeInterest';
-import { CloseButtonIcon } from '../components/Icon';
+import { CloseButtonIcon } from '../components/common/Icon';
 
 const FullModalContainer = ({ onClose }) => {
   return (

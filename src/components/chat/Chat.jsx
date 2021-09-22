@@ -56,7 +56,7 @@ const Chat = () => {
 
   return (
     <StyledRow>
-      <Col span={8}>
+      <Col span={8} style={{ backgroundColor: '#290054' }}>
         <StyledImg src={`${window.location.href}chat-users-test.png`} />
       </Col>
       <Col span={16}>
@@ -82,6 +82,7 @@ const StyledImg = styled.img`
 
 const StyledRow = styled(Row)`
   display: flex;
+  background-color: #290054;
   margin-top: -2rem;
 `;
 

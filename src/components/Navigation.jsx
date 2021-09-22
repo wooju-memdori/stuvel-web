@@ -14,7 +14,7 @@ import {
   PlanetIcon,
   ChatBubbleIcon,
   FriendsIcon,
-} from './Icon';
+} from './common/Icon';
 import NavbarMenuContainer from '../containers/NavbarMenuContainer';
 
 const Navigation = ({ onCollapse }) => {

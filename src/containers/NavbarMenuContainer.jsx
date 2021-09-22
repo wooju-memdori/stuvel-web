@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 import { currentNavbarComponent } from '../state/atom';
 import MyPage from '../components/MyPage';
 import Settings from '../components/Settings';
-import Chat from '../components/Chat/Chat';
-import { CloseButtonIcon } from '../components/Icon';
+import Chat from '../components/chat/Chat';
+import { CloseButtonIcon } from '../components/common/Icon';
+import Friends from '../components/follow/Friends';
 
 const NavbarMenuContainer = ({ onClose }) => {
   const currentHeader = useRecoilValue(currentNavbarComponent);
@@ -23,7 +24,7 @@ const NavbarMenuContainer = ({ onClose }) => {
         <Content>
           {{
             'My Page': <MyPage />,
-            Social: <div>Social</div>,
+            Social: <Friends />,
             Chat: <Chat />,
             Settings: <Settings />,
           }[currentHeader] || ''}

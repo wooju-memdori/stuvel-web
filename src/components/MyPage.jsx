@@ -8,7 +8,7 @@ import {
   StarFilledIcon,
   StarIcon,
   PlusButtonIcon,
-} from './Icon';
+} from './common/Icon';
 import { currentUserInfoState, currentUserInfoFetchState } from '../state/atom';
 
 import FullModalContainer from '../containers/FullModalContainer';
