@@ -1,41 +1,37 @@
 import React, { useState } from 'react';
 import { Button, Checkbox } from 'antd';
 import styled from 'styled-components';
-import axios from '../utils/axios';
+import axios from '../../utils/axios';
 import {
   UnionSvgIcon,
   PurpleCircleSvgIcon,
   WhiteCircleSvgIcon,
   LeftBackgroundIcon,
   RightBackgroundIcon,
-} from './Icon';
+} from '../common/Icon';
 
 const ChangeInterest = () => {
-  const [interests, setInterests] = useState();
-
+  const [interests, setInterests] = useState([]);
   const addInterests = async () => {
     try {
+      console.log(`here: ${interests}`);
       const response = await axios.patch('/users/interests', interests);
-
       alert('관심사 변경에 성공하였습니다.');
-      console.log(response);
+      console.log(`there: ${response}`);
     } catch (err) {
       console.error(err);
-
       alert('관심사 변경에 실패하였습니다.');
     }
   };
 
   const onClick = (e) => {
     const uniqueInterests = new Set([...interests]);
-
     if (e.target.checked) {
       uniqueInterests.add(e.target.value);
     } else {
       uniqueInterests.delete(e.target.value);
     }
     setInterests(Array.from(uniqueInterests));
-
     console.log(uniqueInterests);
   };
 
@@ -259,7 +255,7 @@ const ChangeInterest = () => {
               className="select-button"
               onClick={addInterests}
             >
-              설정완료
+              수정완료
             </Button>
           </div>
         </div>
@@ -290,7 +286,7 @@ const SmallMenu = styled.div`
   height: 54.06em;
   background: #200040;
   border-radius: 50px;
-  top: 9.44em;
+  top: 7em;
   left: 35%;
   .cirle-left {
     position: absolute;

@@ -8,10 +8,12 @@ import {
   StarFilledIcon,
   StarIcon,
   PlusButtonIcon,
-} from './common/Icon';
-import { currentUserInfoState, currentUserInfoFetchState } from '../state/atom';
-
-import FullModalContainer from '../containers/FullModalContainer';
+} from '../common/Icon';
+import {
+  currentUserInfoState,
+  currentUserInfoFetchState,
+} from '../../state/atom';
+import FullModalContainer from '../../containers/FullModalContainer';
 
 const MyPage = () => {
   const [currentUserInfo, setCurrentUserInfo] =
