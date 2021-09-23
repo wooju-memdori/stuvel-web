@@ -7,19 +7,16 @@ import { useSetRecoilState } from 'recoil';
 import 'antd/dist/antd.css';
 
 import axios from '../../utils/axios';
-import { forceUserListUpdateState } from '../../state/follow';
+import { forceUserListUpdate } from '../../state/follow';
 
 import { ChatSmallIcon, PlusIcon } from '../common/Icon';
 
 export default function UserList({ list }) {
-  const userListUpdates = useSetRecoilState(forceUserListUpdateState);
-
-  const forceUpdate = () =>
-    userListUpdates((n) => {
-      return n + 1;
-    });
+  const userListUpdate = useSetRecoilState(forceUserListUpdate);
+  const forceUpdate = () => userListUpdate((n) => n + 1);
 
   const onClickFollow = (id) => () => {
+    console.log('onClickFollow');
     axios
       .post(`${process.env.REACT_APP_API_URL}/follow/${id}`)
       .then(() => {
@@ -34,7 +31,7 @@ export default function UserList({ list }) {
     axios
       .delete(`${process.env.REACT_APP_API_URL}/follow/${id}`)
       .then(() => {
-        forceUpdate();
+        forceUpdate(id);
       })
       .catch((error) => {
         alert(error);
@@ -69,9 +66,7 @@ export default function UserList({ list }) {
           />
           <PlusIcon
             style={{ marginRight: '1em' }}
-            onClick={() => {
-              onClickFollow(item.id);
-            }}
+            onClick={onClickFollow(item.id)}
           />
           <ChatSmallIcon style={{ marginRight: '0.8em' }} />
           <Popover
