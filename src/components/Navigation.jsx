@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { Layout, Menu } from 'antd';
 import styled from 'styled-components';
 import {
@@ -7,7 +7,6 @@ import {
   roomIdState,
   currentNavbarComponent,
 } from '../state/atom';
-import { forceUserListUpdateState } from '../state/follow';
 import {
   LogowithDotIcon,
   SettingsIcon,
@@ -21,11 +20,6 @@ import NavbarMenuContainer from '../containers/NavbarMenuContainer';
 const Navigation = ({ onCollapse }) => {
   const collapsed = useRecoilValue(collapsedState);
   const roomId = useRecoilValue(roomIdState);
-  const userListUpdates = useSetRecoilState(forceUserListUpdateState);
-  const forceUpdate = () =>
-    userListUpdates((n) => {
-      return n + 1;
-    });
 
   const [currentHeader, setCurrentHeader] = useRecoilState(
     currentNavbarComponent,
@@ -66,10 +60,7 @@ const Navigation = ({ onCollapse }) => {
           <Menu.Item
             key="Social"
             className={currentHeader === 'Social' ? 'active' : ''}
-            onClick={({ key }) => {
-              forceUpdate();
-              onModalShow(key);
-            }}
+            onClick={({ key }) => onModalShow(key)}
           >
             <FriendsIcon />
             <span>Social</span>
