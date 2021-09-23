@@ -15,6 +15,7 @@ const LoggedOut = () => {
 
   // 로그인 버튼 누르면 실행
   const onLogin = async (values) => {
+    console.log('로그인');
     axios
       .post(`/users/login`, values)
       .then((response) => {
@@ -23,9 +24,18 @@ const LoggedOut = () => {
         } else if (response.data.message === '올바르지 않은 비밀번호입니다.') {
           setLoginResult('올바르지 않은 비밀번호입니다.');
         } else {
+          const now = new Date();
+          const accessExpiredTime = now.setSeconds(now.getSeconds() + 10);
+          // const refreshExpiredTime = now.setDates(now.getDates() + 14);
           window.sessionStorage.setItem(
             'userInfo',
-            JSON.stringify({ accessToken: response.data.accessToken }),
+            JSON.stringify({
+              accessToken: response.data.accessToken,
+              // 13분뒤 accessToken 만료
+              expiresAt: accessExpiredTime,
+              // refreshToken: response.data.refreshToken,
+              // refreshTokenExpiresAt: refreshExpiredTime,
+            }),
           );
           window.location.replace('/');
         }
