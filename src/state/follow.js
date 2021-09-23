@@ -1,29 +1,25 @@
-import { atom, selectorFamily } from 'recoil';
+import { atom, selector } from 'recoil';
 import axios from '../utils/axios';
 
-export const forceUserListUpdateState = atom({
-  key: 'forceUserListUpdateState',
+export const forceUserListUpdate = atom({
+  key: 'forceUserListUpdate',
   default: 0,
 });
 
-export const followersState = selectorFamily({
+export const followersState = selector({
   key: 'followersState',
-  get:
-    ({ get }) =>
-    async () => {
-      get(forceUserListUpdateState);
-      const response = await axios.get(`/followers`);
-      return response.data.data;
-    },
+  get: async ({ get }) => {
+    get(forceUserListUpdate);
+    const response = await axios.get(`/followers`);
+    return response.data.data;
+  },
 });
 
-export const followingsState = selectorFamily({
-  key: 'followersState',
-  get:
-    ({ get }) =>
-    async () => {
-      get(forceUserListUpdateState);
-      const response = await axios.get(`/followings`);
-      return response.data.data;
-    },
+export const followingsState = selector({
+  key: 'followingsState',
+  get: async ({ get }) => {
+    get(forceUserListUpdate);
+    const response = await axios.get(`/followings`);
+    return response.data.data;
+  },
 });
