@@ -18,7 +18,7 @@ export default function Social() {
     <Container>
       <SocialSearch />
       {followers && followings && (
-        <Tabs>
+        <StyledTabs>
           <TabPane tab={`팔로워(${followers.length}명)`} key="1">
             <SocialList list={followers} />
           </TabPane>
@@ -28,7 +28,7 @@ export default function Social() {
           <TabPane tab="나와 비행한 여행자" key="3">
             Coming Soon
           </TabPane>
-        </Tabs>
+        </StyledTabs>
       )}
     </Container>
   );
@@ -36,4 +36,11 @@ export default function Social() {
 
 const Container = styled.div`
   padding: 0 1rem 0 1rem;
+`;
+
+const StyledTabs = styled(Tabs)`
+  .ant-tabs-ink-bar {
+    height: 0.2rem !important;
+    border-radius: 3rem;
+  }
 `;
