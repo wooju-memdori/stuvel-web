@@ -6,6 +6,11 @@ export const forceUserListUpdate = atom({
   default: 0,
 });
 
+export const searchKeywordState = atom({
+  key: 'searchKeywordState',
+  default: null,
+});
+
 export const followersState = selector({
   key: 'followersState',
   get: async ({ get }) => {
