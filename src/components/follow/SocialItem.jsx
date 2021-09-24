@@ -8,7 +8,7 @@ import { forceUserListUpdate } from '../../state/follow';
 
 import SocialItemMeta from './SocialItemMeta';
 import SocialPopover from './SocialPopover';
-import { ChatSmallIcon, PlusIcon } from '../common/Icon';
+import { ChatSmallIcon, PlusIcon } from './Icons';
 
 export default function SocialItem({ item }) {
   const userListUpdate = useSetRecoilState(forceUserListUpdate);
