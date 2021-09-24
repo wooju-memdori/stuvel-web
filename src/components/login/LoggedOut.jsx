@@ -24,17 +24,12 @@ const LoggedOut = () => {
         } else if (response.data.message === '올바르지 않은 비밀번호입니다.') {
           setLoginResult('올바르지 않은 비밀번호입니다.');
         } else {
-          const now = new Date();
-          const accessExpiredTime = now.setSeconds(now.getSeconds() + 10);
-          // const refreshExpiredTime = now.setDates(now.getDates() + 14);
           window.sessionStorage.setItem(
             'userInfo',
             JSON.stringify({
               accessToken: response.data.accessToken,
-              // 13분뒤 accessToken 만료
-              expiresAt: accessExpiredTime,
-              // refreshToken: response.data.refreshToken,
-              // refreshTokenExpiresAt: refreshExpiredTime,
+              // 13분 뒤부터 accessToken 재발급
+              expiresAt: new Date().getTime() + 1000 * 60 * 13,
             }),
           );
           window.location.replace('/');
