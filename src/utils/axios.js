@@ -12,16 +12,12 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   async (config) => {
     const userInfo = window.sessionStorage.getItem('userInfo');
+
     if (!userInfo) {
       return config;
     }
 
-    let {
-      accessToken,
-      expiresAt,
-      // refreshToken,
-      // refreshTokenExpiresAt,
-    } = JSON.parse(userInfo);
+    let { accessToken, expiresAt } = JSON.parse(userInfo);
 
     // accessToken 토큰 만료일 경우 (refreshToken 아직 유효)
     if (
@@ -29,22 +25,30 @@ axiosInstance.interceptors.request.use(
       new Date(expiresAt) - new Date().getTime() <=
       0
     ) {
-      const { accessToken: newAccessToken } = await axios.post(
+      console.log('acessToken 연장');
+      const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/users/silent-refresh`,
-      ).body;
-      accessToken = newAccessToken;
+        {},
+        { withCredentials: true },
+      );
+      accessToken = response.data.accessToken;
       const now = new Date();
-      expiresAt = now.setSeconds(now.getSeconds() + 10);
+      // 13분 뒤부터 accessToken 재발급
+      expiresAt = now.getTime() + 1000 * 60 * 13;
       window.sessionStorage.setItem(
         'userInfo',
         JSON.stringify({
           accessToken,
-          // 13분뒤 accessToken 만료
           expiresAt,
-          // refreshToken,
-          // refreshTokenExpiresAt,
         }),
       );
+      const newConfig = config;
+      newConfig.headers = {
+        Authorization: `Bearer ${accessToken}`,
+        Accept: 'application/json',
+      };
+      console.log(newConfig.headers);
+      return newConfig;
     }
     const newConfig = config;
     newConfig.headers = {
