@@ -4,7 +4,7 @@ import { UserOutlined } from '@ant-design/icons';
 import { number, shape, string, bool } from 'prop-types';
 import styled from 'styled-components';
 
-export default function UserProfile({ item }) {
+export default function SocialProfile({ item }) {
   return (
     <List.Item.Meta
       style={{ color: 'white' }}
@@ -49,7 +49,7 @@ const StyledAvatar = styled(Avatar)`
   }
 `;
 
-UserProfile.propTypes = {
+SocialProfile.propTypes = {
   item: shape({
     id: number,
     nickname: string,

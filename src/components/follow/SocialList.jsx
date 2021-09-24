@@ -3,19 +3,19 @@ import { List } from 'antd';
 import { arrayOf } from 'prop-types';
 import 'antd/dist/antd.css';
 
-import UserItem from './UserItem';
+import SocialItem from './SocialItem';
 
-export default function UserList({ list }) {
+export default function SocialList({ list }) {
   return (
     <List
       split={false}
       itemLayout="horizontal"
       dataSource={list}
-      renderItem={(item) => <UserItem item={item} />}
+      renderItem={(item) => <SocialItem item={item} />}
     />
   );
 }
 
-UserList.propTypes = {
+SocialList.propTypes = {
   list: arrayOf(Object).isRequired,
 };
