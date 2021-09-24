@@ -28,10 +28,12 @@ export default function SocialItem({ item }) {
   return (
     <List.Item>
       <SocialItemMeta item={item} />
-      <PlusIcon
-        style={{ marginRight: '1em' }}
-        onClick={onClickFollow(item.id)}
-      />
+      {!item.following && (
+        <PlusIcon
+          style={{ marginRight: '1em' }}
+          onClick={onClickFollow(item.id)}
+        />
+      )}
       <ChatSmallIcon style={{ marginRight: '0.8em' }} />
       <SocialPopover item={item} userListRefresh={userListRefresh} />
     </List.Item>

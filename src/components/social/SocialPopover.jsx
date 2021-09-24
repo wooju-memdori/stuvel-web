@@ -24,12 +24,14 @@ export default function SocialPopover({ item, userListRefresh }) {
       content={
         <List split={false} size="small">
           {item.roomId && <List.Item>비행 따라가기</List.Item>}
-          <List.Item
-            onClick={onClickUnfollow(item.id)}
-            style={{ cursor: 'pointer' }}
-          >
-            언팔로우
-          </List.Item>
+          {item.following && (
+            <List.Item
+              onClick={onClickUnfollow(item.id)}
+              style={{ cursor: 'pointer' }}
+            >
+              언팔로우
+            </List.Item>
+          )}
           <List.Item>차단</List.Item>
           <List.Item>신고</List.Item>
           <List.Item>초대</List.Item>
