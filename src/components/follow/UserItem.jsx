@@ -1,13 +1,13 @@
 import React from 'react';
-import { List, Avatar, Badge, Popover } from 'antd';
-import { UserOutlined, EllipsisOutlined } from '@ant-design/icons';
+import { List, Popover } from 'antd';
+import { EllipsisOutlined } from '@ant-design/icons';
 import { number, shape, string, bool } from 'prop-types';
-import styled from 'styled-components';
 import { useSetRecoilState } from 'recoil';
 
 import axios from '../../utils/axios';
 import { forceUserListUpdate } from '../../state/follow';
 
+import UserProfile from './UserProfile';
 import { ChatSmallIcon, PlusIcon } from '../common/Icon';
 
 export default function UserListItem({ item }) {
@@ -38,25 +38,7 @@ export default function UserListItem({ item }) {
 
   return (
     <List.Item>
-      <List.Item.Meta
-        style={{ color: 'white' }}
-        avatar={
-          <Badge
-            dot
-            offset={[-7, 45]}
-            style={{
-              width: '0.9em',
-              height: '0.9em',
-              background: '#FB95FD',
-              zIndex: 2,
-            }}
-          >
-            <StyledAvatar src={item.image} icon={<UserOutlined />} />
-          </Badge>
-        }
-        title={item.nickname}
-        description={item.id === 2 ? `A-384B 행성에서 공부중` : '오프라인'}
-      />
+      <UserProfile item={item} />
       <PlusIcon
         style={{ marginRight: '1em' }}
         onClick={onClickFollow(item.id)}
@@ -86,27 +68,6 @@ export default function UserListItem({ item }) {
     </List.Item>
   );
 }
-
-const StyledAvatar = styled(Avatar)`
-  & {
-    width: 3em;
-    height: 3em;
-    border: 3px solid #d300ff;
-    position: relative;
-    padding: 4px;
-  }
-  &:after {
-    content: ' ';
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 4px solid #290054;
-    border-radius: 30px;
-  }
-`;
 
 UserListItem.propTypes = {
   item: shape({
