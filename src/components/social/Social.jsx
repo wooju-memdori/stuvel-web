@@ -1,6 +1,8 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { Tabs } from 'antd';
+import styled from 'styled-components';
+
 import SocialList from './SocialList';
 import SocialSearch from './SocialSearch';
 
@@ -13,7 +15,7 @@ export default function Social() {
   const followings = useRecoilValue(followingsState);
 
   return (
-    <>
+    <Container>
       <SocialSearch />
       {followers && followings && (
         <Tabs>
@@ -28,6 +30,10 @@ export default function Social() {
           </TabPane>
         </Tabs>
       )}
-    </>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  padding: 0 1rem 0 1rem;
+`;

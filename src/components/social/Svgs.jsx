@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const SearchSvg = () => (
-  <svg width="26" height="26" viewBox="0 0 28 28" fill="none">
+  <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
     <path
       d="M17.1662 24.4602C18.1684 24.4602 18.9809 23.6584 18.9809 22.6694C18.9809 21.6803 18.1684 20.8785 17.1662 20.8785C16.164 20.8785 15.3516 21.6803 15.3516 22.6694C15.3516 23.6584 16.164 24.4602 17.1662 24.4602Z"
       fill="#FB95FD"
