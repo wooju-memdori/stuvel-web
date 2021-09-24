@@ -6,7 +6,7 @@ import { useSetRecoilState } from 'recoil';
 import axios from '../../utils/axios';
 import { forceUserListUpdate } from '../../state/follow';
 
-import SocialProfile from './SocialProfile';
+import SocialItemMeta from './SocialItemMeta';
 import SocialPopover from './SocialPopover';
 import { ChatSmallIcon, PlusIcon } from '../common/Icon';
 
@@ -27,7 +27,7 @@ export default function SocialItem({ item }) {
 
   return (
     <List.Item>
-      <SocialProfile item={item} />
+      <SocialItemMeta item={item} />
       <PlusIcon
         style={{ marginRight: '1em' }}
         onClick={onClickFollow(item.id)}

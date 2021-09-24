@@ -1,30 +1,23 @@
 import React from 'react';
-import { List, Avatar, Badge } from 'antd';
+import { Avatar, Badge } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { number, shape, string, bool } from 'prop-types';
 import styled from 'styled-components';
 
 export default function SocialProfile({ item }) {
   return (
-    <List.Item.Meta
-      style={{ color: 'white' }}
-      avatar={
-        <Badge
-          dot
-          offset={[-7, 45]}
-          style={{
-            width: '0.9em',
-            height: '0.9em',
-            background: '#FB95FD',
-            zIndex: 2,
-          }}
-        >
-          <StyledAvatar src={item.image} icon={<UserOutlined />} />
-        </Badge>
-      }
-      title={item.nickname}
-      description={item.id === 2 ? `A-384B 행성에서 공부중` : '오프라인'}
-    />
+    <Badge
+      dot
+      offset={[-7, 45]}
+      style={{
+        width: '0.9em',
+        height: '0.9em',
+        background: '#FB95FD',
+        zIndex: 2,
+      }}
+    >
+      <StyledAvatar src={item.image} icon={<UserOutlined />} />
+    </Badge>
   );
 }
 
