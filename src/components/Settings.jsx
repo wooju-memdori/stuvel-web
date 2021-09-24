@@ -77,6 +77,18 @@ const Settings = () => {
     }, 2000);
   }, [password]);
 
+  const onLogOut = useCallback(() => {
+    axios
+      .delete('/users/logout')
+      .then(() => {
+        sessionStorage.removeItem('userInfo');
+        window.location.replace('/');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <>
       {currentUserInfo && (
@@ -203,8 +215,17 @@ const Settings = () => {
             <h2>차단 관리</h2>
           </EachSettingsContainer>
           <EachSettingsContainer>
-            <h1>로그아웃</h1>
-            <h1>회원탈퇴</h1>
+            <div
+              role="button"
+              tabIndex={0}
+              onKeyDown={onLogOut}
+              onClick={onLogOut}
+            >
+              <h1>로그아웃</h1>
+            </div>
+            <h1>
+              <span>회원탈퇴</span>
+            </h1>
           </EachSettingsContainer>
         </SettingsContainer>
       )}
