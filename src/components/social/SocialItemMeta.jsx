@@ -10,7 +10,7 @@ export default function SocialItemMeta({ item }) {
       style={{ color: 'white' }}
       avatar={<SocialProfile item={item} />}
       title={item.nickname}
-      description={item.id === 2 ? `A-384B 행성에서 공부중` : '오프라인'}
+      description={item.roomId ? `${item.roomId} 행성에서 공부중` : '오프라인'}
     />
   );
 }
