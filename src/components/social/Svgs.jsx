@@ -1,5 +1,22 @@
 import React from 'react';
 
+export const SearchSvg = () => (
+  <svg width="26" height="26" viewBox="0 0 28 28" fill="none">
+    <path
+      d="M17.1662 24.4602C18.1684 24.4602 18.9809 23.6584 18.9809 22.6694C18.9809 21.6803 18.1684 20.8785 17.1662 20.8785C16.164 20.8785 15.3516 21.6803 15.3516 22.6694C15.3516 23.6584 16.164 24.4602 17.1662 24.4602Z"
+      fill="#FB95FD"
+    />
+    <path
+      d="M28 28L20.6928 20.3575C22.641 18.411 23.8487 15.7337 23.8487 12.7809C23.8487 6.82746 18.957 2 12.9244 2C6.89169 2 2 6.82746 2 12.7809C2 18.7344 6.89169 23.5619 12.9244 23.5619C13.0154 23.5619 13.1004 23.5619 13.1914 23.5559"
+      stroke="white"
+      strokeWidth="2.54545"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 export const PlusSvg = () => (
   <svg width="25" height="25" viewBox="0 0 25 25" fill="none">
     <rect
