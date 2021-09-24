@@ -1,7 +1,6 @@
 import React from 'react';
 import { List } from 'antd';
 import { arrayOf } from 'prop-types';
-import 'antd/dist/antd.css';
 
 import SocialItem from './SocialItem';
 
