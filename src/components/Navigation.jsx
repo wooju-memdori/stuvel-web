@@ -20,6 +20,7 @@ import NavbarMenuContainer from '../containers/NavbarMenuContainer';
 const Navigation = ({ onCollapse }) => {
   const collapsed = useRecoilValue(collapsedState);
   const roomId = useRecoilValue(roomIdState);
+
   const [currentHeader, setCurrentHeader] = useRecoilState(
     currentNavbarComponent,
   );
