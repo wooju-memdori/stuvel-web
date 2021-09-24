@@ -69,27 +69,4 @@ axiosInstance.interceptors.request.use(
   },
 );
 
-// axiosInstance.interceptors.response.use(
-//   (response) => {
-//     return response;
-//   },
-//   async (error) => {
-//     const originalRequest = error.config;
-//     if (error.response.status === 401 && !originalRequest.retry) {
-//       console.log('토큰 만료');
-//       originalRequest.retry = true;
-//       const sessionObj = window.sessionStorage.getItem('userInfo');
-//       const userInfo = sessionObj ? JSON.parse(sessionObj) : null;
-//       const { accessToken } = await axios.post('/users/silent-refresh').body;
-//       if (userInfo) {
-//         originalRequest.headers.Authorization = `Bearer ${accessToken}`;
-//         userInfo.accessToken = accessToken;
-//         window.sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
-//       }
-//       return axios(originalRequest);
-//     }
-//     return Promise.reject(error);
-//   },
-// );
-
 export default axiosInstance;
