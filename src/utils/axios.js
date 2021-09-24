@@ -26,11 +26,18 @@ axiosInstance.interceptors.request.use(
       0
     ) {
       console.log('acessToken 연장');
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/users/silent-refresh`,
-        {},
-        { withCredentials: true },
-      );
+      const response = await axios
+        .post(
+          `${process.env.REACT_APP_API_URL}/users/silent-refresh`,
+          {},
+          { withCredentials: true },
+        )
+        .catch((err) => {
+          if (err.response.status === 401) {
+            sessionStorage.removeItem('userInfo');
+            window.location.replace('/');
+          }
+        });
       accessToken = response.data.accessToken;
       const now = new Date();
       // 13분 뒤부터 accessToken 재발급
