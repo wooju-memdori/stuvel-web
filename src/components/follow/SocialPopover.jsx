@@ -5,7 +5,7 @@ import { number, shape, string, bool, func } from 'prop-types';
 
 import axios from '../../utils/axios';
 
-export default function UserPopover({ item, userListRefresh }) {
+export default function SocialPopover({ item, userListRefresh }) {
   const onClickUnfollow = (id) => () => {
     axios
       .delete(`${process.env.REACT_APP_API_URL}/follow/${id}`)
@@ -42,7 +42,7 @@ export default function UserPopover({ item, userListRefresh }) {
   );
 }
 
-UserPopover.propTypes = {
+SocialPopover.propTypes = {
   item: shape({
     id: number,
     nickname: string,

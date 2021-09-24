@@ -6,11 +6,11 @@ import { useSetRecoilState } from 'recoil';
 import axios from '../../utils/axios';
 import { forceUserListUpdate } from '../../state/follow';
 
-import UserProfile from './UserProfile';
-import UserPopover from './UserPopover';
+import SocialProfile from './SocialProfile';
+import SocialPopover from './SocialPopover';
 import { ChatSmallIcon, PlusIcon } from '../common/Icon';
 
-export default function UserListItem({ item }) {
+export default function SocialItem({ item }) {
   const userListUpdate = useSetRecoilState(forceUserListUpdate);
   const userListRefresh = () => userListUpdate((n) => n + 1);
 
@@ -27,18 +27,18 @@ export default function UserListItem({ item }) {
 
   return (
     <List.Item>
-      <UserProfile item={item} />
+      <SocialProfile item={item} />
       <PlusIcon
         style={{ marginRight: '1em' }}
         onClick={onClickFollow(item.id)}
       />
       <ChatSmallIcon style={{ marginRight: '0.8em' }} />
-      <UserPopover item={item} userListRefresh={userListRefresh} />
+      <SocialPopover item={item} userListRefresh={userListRefresh} />
     </List.Item>
   );
 }
 
-UserListItem.propTypes = {
+SocialItem.propTypes = {
   item: shape({
     id: number,
     nickname: string,
