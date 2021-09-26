@@ -16,10 +16,13 @@ const Settings = () => {
     currentUserInfo ? currentUserInfo.nickname : '',
   );
   const [isLoading, setIsLoading] = useState(false);
+  const [nicknameChangeSuccess, setNicknameChangeSuccess] = useState(null);
 
   const [prevPassword, onChangePrevPassword, setPrevPassword] = useInput('');
-  const [passwordCheck, onChangePasswordCheck, setPasswordCheck] = useInput('');
-  const [password, onChangePassword, setPassword] = useInput('');
+  const [password, setPassword] = useState('');
+  const [passwordCheck, setPasswordCheck] = useState('');
+  const [passwordError, setPasswordError] = useState(null);
+  const [passwordChangeSuccess, setPasswordChangeSuccess] = useState(null);
 
   let newUserInfo;
   useEffect(() => {
@@ -46,34 +49,99 @@ const Settings = () => {
     }
   }, [currentUserFetchInfo]);
 
-  const onSubmitData = async (values) => {
+  const onSubmitNicknameData = async (values) => {
     try {
-      const response = await axios.patch(`/users`, values);
+      const response = await axios.patch(`/users/nickname`, values);
       newUserInfo = {
         ...currentUserInfo,
         nickname: response.data.nickname,
       };
       setCurrentUserInfo(newUserInfo);
+      if (response.status === 200) setNicknameChangeSuccess(true);
+      else setNicknameChangeSuccess(false);
+      setTimeout(() => {
+        setNicknameChangeSuccess(null);
+      }, 3000);
     } catch (error) {
       console.log(error);
+      setNicknameChangeSuccess(false);
+      setTimeout(() => {
+        setNicknameChangeSuccess(null);
+      }, 3000);
     }
   };
 
   const onSubmitNickname = useCallback(() => {
-    onSubmitData({
+    onSubmitNicknameData({
       nickname,
     });
   }, [nickname]);
 
-  const onSubmitPassword = useCallback(() => {
-    // onSubmitData({
-    //   password,
-    // });
+  const passwordValidation = (e) => {
+    setPasswordCheck(e.target.value);
+    // 비밀번호 유효성 검사
+    const regExp =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/;
+    if (regExp.test(e.target.value) === false) {
+      setPasswordChangeSuccess(false);
+      setPasswordError('대문자, 소문자, 숫자, 특수문자를 포함해주세요.');
+    } else {
+      setPasswordChangeSuccess(null);
+      setPasswordError(null);
+    }
+  };
 
+  const passwordCheckValidation = (e) => {
+    setPassword(e.target.value);
+    if (!(passwordCheck === e.target.value)) {
+      setPasswordChangeSuccess(false);
+      setPasswordError('비밀번호가 일치하지 않습니다.');
+    } else {
+      setPasswordChangeSuccess(null);
+      setPasswordError('');
+    }
+  };
+
+  const onSubmitPasswordData = async () => {
+    try {
+      if (password !== passwordCheck) {
+        setPasswordChangeSuccess(false);
+        setPasswordError('새 비밀번호가 일치하지 않습니다.');
+        return;
+      }
+      const response = await axios.patch(`/users/password`, {
+        email: currentUserInfo.email,
+        newPassword: password,
+        password: prevPassword,
+      });
+      if (response.status === 200) {
+        setPasswordChangeSuccess(true);
+        setPasswordError(null);
+      } else {
+        setPasswordChangeSuccess(false);
+        setPasswordError(response.data);
+      }
+      setTimeout(() => {
+        setPasswordChangeSuccess(null);
+      }, 3000);
+    } catch (error) {
+      console.error(error.response.data);
+      setPasswordChangeSuccess(false);
+      setPasswordError(error.response.data);
+      setTimeout(() => {
+        setPasswordChangeSuccess(null);
+      }, 3000);
+    }
+  };
+
+  const onSubmitPassword = useCallback(() => {
+    onSubmitPasswordData();
     setTimeout(() => {
       setPasswordCheck('');
       setPrevPassword('');
       setPassword('');
+      setPasswordChangeSuccess(null);
+      setPasswordError(null);
     }, 2000);
   }, [password]);
 
@@ -99,7 +167,6 @@ const Settings = () => {
               <span className="field">아이디</span>
               <span>{currentUserInfo.email}</span>
             </h2>
-            {/* <h2>프로필변경</h2> */}
             <div id="nickname">
               <h2>
                 <span className="field">닉네임변경</span>
@@ -118,6 +185,13 @@ const Settings = () => {
                   수정하기
                 </Button>
               </Form>
+
+              {nicknameChangeSuccess && (
+                <SuccessMessage>닉네임 변경에 성공하였습니다.</SuccessMessage>
+              )}
+              {nicknameChangeSuccess === false && (
+                <ErrorMessage>닉네임 변경에 실패하였습니다.</ErrorMessage>
+              )}
             </div>
             <div id="pw">
               <h2>
@@ -135,13 +209,13 @@ const Settings = () => {
                     placeholder="새 비밀번호 입력"
                     value={passwordCheck}
                     type="password"
-                    onChange={onChangePasswordCheck}
+                    onChange={passwordValidation}
                   />
                   <Input
                     placeholder="비밀번호 확인"
                     value={password}
                     type="password"
-                    onChange={onChangePassword}
+                    onChange={passwordCheckValidation}
                   />
                 </div>
                 <div>
@@ -150,6 +224,13 @@ const Settings = () => {
                   </Button>
                 </div>
               </Form>
+              {passwordChangeSuccess && (
+                <SuccessMessage>비밀번호 변경에 성공하였습니다.</SuccessMessage>
+              )}
+
+              {passwordChangeSuccess === false && (
+                <ErrorMessage>{passwordError}</ErrorMessage>
+              )}
             </div>
           </EachSettingsContainer>
           <EachSettingsContainer>
@@ -235,6 +316,16 @@ const Settings = () => {
 
 export default Settings;
 
+const SuccessMessage = styled.div`
+  color: green;
+  font-size: 0.75rem;
+`;
+
+const ErrorMessage = styled.div`
+  color: red;
+  font-size: 0.75rem;
+`;
+
 const SettingsContainer = styled.div`
   margin-right: 1rem;
   padding-bottom: 1rem;
@@ -268,21 +359,21 @@ const EachSettingsContainer = styled.div`
     span {
       display: inline-block;
     }
-
     .field {
       color: #d4d4d4;
     }
   }
-
   &:nth-child(1) {
     margin-top: 0.125rem;
   }
-
   &:not(:last-child) {
     border-bottom: 10px solid rgba(255, 255, 255, 0.2);
   }
   &:last-child {
     margin-top: 2.5rem;
+    h1 span {
+      cursor: pointer;
+    }
     h1:nth-child(1) {
       color: #ff0000;
     }
