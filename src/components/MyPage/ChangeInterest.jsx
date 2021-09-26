@@ -4,13 +4,12 @@ import { Button, Checkbox } from 'antd';
 import styled from 'styled-components';
 import axios from '../../utils/axios';
 import { currentUserInfoState } from '../../state/atom';
+import { LeftBackgroundIcon, RightBackgroundIcon } from '../common/Icon';
 import {
   UnionSvgIcon,
   PurpleCircleSvgIcon,
   WhiteCircleSvgIcon,
-  LeftBackgroundIcon,
-  RightBackgroundIcon,
-} from '../common/Icon';
+} from '../signup/SignUpIcon';
 import interestTable from './interestTable';
 
 const ChangeInterest = ({ onClose }) => {

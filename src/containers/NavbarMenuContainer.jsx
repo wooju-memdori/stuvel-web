@@ -3,7 +3,7 @@ import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { currentNavbarComponent } from '../state/atom';
-import MyPage from '../components/MyPage/MyPage';
+import MyPage from '../components/myPage/MyPage';
 import Settings from '../components/Settings';
 import Chat from '../components/Chat/Chat';
 import { CloseButtonIcon } from '../components/common/Icon';
