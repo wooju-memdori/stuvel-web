@@ -1,26 +1,24 @@
 // Based on the example on https://www.npmjs.com/package/react-easy-crop
 // https://codesandbox.io/s/y09komm059
 import React, { useState, useMemo, useRef, useCallback } from 'react';
-import { useRecoilState } from 'recoil';
+// import { useRecoilState } from 'recoil';
 import Cropper from 'react-easy-crop';
 import styled from 'styled-components';
-
 import useInput from '../../utils/useInput';
+// import { currentUserInfoState } from '../../state/atom';
 
-import { currentUserInfoState } from '../../state/atom';
-
-import { getCroppedImg } from './canvasUtils';
+import getCroppedImg from './canvasUtils';
 
 const ProfileImageUpdate = () => {
   // const [currentUserInfo, setCurrentUserInfo] =
   //   useRecoilState(currentUserInfoState);
 
-  const currentUserInfo = useRecoilState(currentUserInfoState)[0];
+  // const currentUserInfo = useRecoilState(currentUserInfoState)[0];
   const [imageSrc, setImageSrc] = useState(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useInput(1.0);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-  const [croppedImage, setCroppedImage] = useState(currentUserInfo.image);
+  const [croppedImage, setCroppedImage] = useState(null);
   const [imageTitle, setImageTitle] = useState(null);
 
   // 파일 업로드 창 숨기기 위함
@@ -96,9 +94,9 @@ const ProfileImageUpdate = () => {
   return (
     <>
       <h2 style={headerStyle}>
-        고양님에 대해
+        프로필사진을
         <br />
-        수정할까요?
+        올려주세요. (완성 안 됨 - 아직 하지 말아주세요!)
       </h2>
       <div>
         {!croppedImage ? (

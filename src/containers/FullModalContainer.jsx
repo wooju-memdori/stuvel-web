@@ -14,7 +14,7 @@ const FullModalContainer = ({ onClose }) => {
           </button>
         </Header>
         <Content>
-          <ChangeInterest />
+          <ChangeInterest onClose={onClose} />
         </Content>
       </LayoutContainer>
     </>
