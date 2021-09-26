@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useRecoilState } from 'recoil';
 import { Button, Checkbox } from 'antd';
 import styled from 'styled-components';
 import axios from '../../utils/axios';
+import { currentUserInfoState } from '../../state/atom';
 import {
   UnionSvgIcon,
   PurpleCircleSvgIcon,
@@ -9,14 +11,28 @@ import {
   LeftBackgroundIcon,
   RightBackgroundIcon,
 } from '../common/Icon';
+import interestTable from './interestTable';
 
-const ChangeInterest = () => {
+const ChangeInterest = ({ onClose }) => {
   const [interests, setInterests] = useState([]);
+  const [currentUserInfo, setCurrentUserInfo] =
+    useRecoilState(currentUserInfoState);
+
   const addInterests = async () => {
     try {
       console.log(`here: ${interests}`);
       const response = await axios.patch('/users/interests', interests);
+      setCurrentUserInfo({
+        ...currentUserInfo,
+        tag: interests.map((tag) => ({
+          Tag: {
+            id: +tag,
+            name: interestTable[+tag - 1],
+          },
+        })),
+      });
       alert('관심사 변경에 성공하였습니다.');
+      onClose();
       console.log(`there: ${response}`);
     } catch (err) {
       console.error(err);

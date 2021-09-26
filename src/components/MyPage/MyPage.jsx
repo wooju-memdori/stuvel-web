@@ -13,26 +13,25 @@ import {
   currentUserInfoState,
   currentUserInfoFetchState,
 } from '../../state/atom';
+import ProfileImageUpdate from './ProfileImageUpdate';
 import FullModalContainer from '../../containers/FullModalContainer';
 
 const MyPage = () => {
   const [currentUserInfo, setCurrentUserInfo] =
     useRecoilState(currentUserInfoState);
-
   const currentUserFetchInfo = useRecoilValueLoadable(
     currentUserInfoFetchState(),
   );
 
-  // const sampleUser = {
-  //   tags: ['History', 'Fun'],
-  // };
-
   const [openTagsChoice, setOpenTagChoice] = useState(false);
+  const [profileUpdate, setProfileUpdate] = useState(false);
 
+  const onProfileImageClick = useCallback(() => {
+    setProfileUpdate(!profileUpdate);
+  });
   const onModalShow = useCallback(() => {
     setOpenTagChoice(true);
   }, []);
-
   const onModalClose = useCallback(() => {
     setOpenTagChoice(false);
   }, []);
@@ -60,6 +59,7 @@ const MyPage = () => {
   return (
     <>
       {openTagsChoice && <FullModalContainer onClose={onModalClose} />}
+      {profileUpdate && <ProfileImageUpdate />}
       {currentUserInfo && (
         <Profile>
           <div id="top">
@@ -68,9 +68,10 @@ const MyPage = () => {
                 style={{
                   backgroundImage: `url(${currentUserInfo.image})`,
                 }}
+                onClick={onProfileImageClick}
               />
             ) : (
-              <ProfileImage>
+              <ProfileImage onClick={onProfileImageClick}>
                 <DefaultProfileIcon />
               </ProfileImage>
             )}
@@ -148,8 +149,8 @@ const MyPage = () => {
             </h1>
             {currentUserInfo.tag &&
               currentUserInfo.tag.map((tag) => (
-                <button type="button" key={tag}>
-                  {tag}
+                <button type="button" key={tag.Tag.name}>
+                  {tag.Tag.name}
                 </button>
               ))}
           </InterestTags>
@@ -177,6 +178,7 @@ const ProfileImage = styled.div`
   height: 138px;
   margin-top: 0.75rem;
   border-radius: 50%;
+  cursor: pointer;
   background-size: cover;
 `;
 
@@ -214,6 +216,7 @@ const InfoDetails = styled.div`
     }
   }
 `;
+
 const InterestTags = styled.div`
   margin-top: 3rem;
   h1 {

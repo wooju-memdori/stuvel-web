@@ -11,7 +11,9 @@ const createImage = (url) =>
  * @param {File} image - Image File url
  * @param {Object} pixelCrop - pixelCrop Object provided by react-easy-crop
  */
-export async function getCroppedImg(imageSrc, pixelCrop, rotation = 0) {
+// eslint-disable-next-line import/prefer-default-export
+// eslint-disable-next-line no-unused-vars
+export default async function getCroppedImg(imageSrc, pixelCrop, rotation = 0) {
   const image = await createImage(imageSrc);
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
