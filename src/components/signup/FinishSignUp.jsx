@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { Button } from 'antd';
 import {
   BigLogoIcon,
-  PurpleCircleSvgIcon,
   LeftBackgroundIcon,
   RightBackgroundIcon,
-} from './common/Icon';
+} from '../common/Icon';
+import { PurpleCircleSvgIcon } from './SignUpIcon';
 
 const FinishSignUp = () => {
   const moveHome = () => {

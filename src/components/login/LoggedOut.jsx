@@ -15,6 +15,7 @@ const LoggedOut = () => {
 
   // 로그인 버튼 누르면 실행
   const onLogin = async (values) => {
+    console.log('로그인');
     axios
       .post(`/users/login`, values)
       .then((response) => {
@@ -25,7 +26,11 @@ const LoggedOut = () => {
         } else {
           window.sessionStorage.setItem(
             'userInfo',
-            JSON.stringify({ accessToken: response.data.accessToken }),
+            JSON.stringify({
+              accessToken: response.data.accessToken,
+              // 13분 뒤부터 accessToken 재발급
+              expiresAt: new Date().getTime() + 1000 * 60 * 13,
+            }),
           );
           window.location.replace('/');
         }

@@ -2,9 +2,9 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { signUpProcessState } from '../state/atom';
-import ChooseOption from '../components/ChooseOption';
-import ChooseRequired from '../components/ChooseRequired';
-import FinishSignUp from '../components/FinishSignUp';
+import ChooseOption from '../components/signup/ChooseOption';
+import ChooseRequired from '../components/signup/ChooseRequired';
+import FinishSignUp from '../components/signup/FinishSignUp';
 
 const SignUpContainer = () => {
     const signUpProcess = useRecoilValue(signUpProcessState);

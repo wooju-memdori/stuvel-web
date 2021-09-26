@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import { Form, Input, Button } from 'antd';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
-import { signUpProcessState, userInfoState } from '../state/atom';
+import { signUpProcessState, userInfoState } from '../../state/atom';
 import {
   BigLogoIcon,
   LeftBackgroundIcon,
   RightBackgroundIcon,
-} from './common/Icon';
+} from '../common/Icon';
 
 const ChooseRequired = () => {
   const setRequiredOrOption = useRecoilState(signUpProcessState)[1];
