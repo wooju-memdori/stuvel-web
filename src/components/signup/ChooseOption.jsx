@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { genderOrInterestState } from '../state/atom';
+import { genderOrInterestState } from '../../state/atom';
 import ChooseGender from './ChooseGender';
 import ChooseInterest from './ChooseInterest';
 

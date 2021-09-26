@@ -146,8 +146,15 @@ const Settings = () => {
   }, [password]);
 
   const onLogOut = useCallback(() => {
-    sessionStorage.removeItem('userInfo');
-    window.location.replace('/');
+    axios
+      .delete('/users/logout')
+      .then(() => {
+        sessionStorage.removeItem('userInfo');
+        window.location.replace('/');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (
@@ -295,9 +302,7 @@ const Settings = () => {
               onKeyDown={onLogOut}
               onClick={onLogOut}
             >
-              <h1>
-                <span>로그아웃</span>
-              </h1>
+              <h1>로그아웃</h1>
             </div>
             <h1>
               <span>회원탈퇴</span>
