@@ -268,7 +268,7 @@ const LeftBackgroundSvg = () => (
   <svg
     width="43.764em"
     height="25.616em"
-    viewBox="0 0 43.764em 25.616em"
+    viewBox="0 0 43.764 25.616"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >

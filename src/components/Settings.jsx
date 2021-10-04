@@ -302,7 +302,9 @@ const Settings = () => {
               onKeyDown={onLogOut}
               onClick={onLogOut}
             >
-              <h1>로그아웃</h1>
+              <h1>
+                <span>로그아웃</span>
+              </h1>
             </div>
             <h1>
               <span>회원탈퇴</span>
