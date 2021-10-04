@@ -1,27 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import ChangeInterest from '../components/myPage/ChangeInterest';
 import { CloseButtonIcon } from '../components/common/Icon';
 
-const FullModalContainer = ({ onClose }) => {
+const FullModalContainer = ({ children, onClose }) => {
   return (
-    <>
-      <LayoutContainer>
-        <Header>
-          <button type="button" onClick={onClose} onKeyDown={onClose}>
-            <CloseButtonIcon />
-          </button>
-        </Header>
-        <Content>
-          <ChangeInterest onClose={onClose} />
-        </Content>
-      </LayoutContainer>
-    </>
+    <LayoutContainer>
+      <Header>
+        <button type="button" onClick={onClose} onKeyDown={onClose}>
+          <CloseButtonIcon />
+        </button>
+      </Header>
+      <Content>
+        {/* {React.cloneElement(children, {})} */}
+        {children}
+
+        {/* <ChangeInterest onClose={onClose} /> */}
+      </Content>
+    </LayoutContainer>
   );
 };
 
 FullModalContainer.propTypes = {
+  children: PropTypes.node.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 

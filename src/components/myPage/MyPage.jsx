@@ -5,8 +5,6 @@ import {
   MaleIcon,
   FemaleIcon,
   DefaultProfileIcon,
-  StarFilledIcon,
-  StarIcon,
   PlusButtonIcon,
 } from '../common/Icon';
 import {
@@ -14,7 +12,8 @@ import {
   currentUserInfoFetchState,
 } from '../../state/atom';
 import ProfileImageUpdate from './ProfileImageUpdate';
-import FullModalContainer from '../../containers/FullModalContainer';
+import ChangeInterest from './ChangeInterest';
+import StarIcons from './StarIcons';
 
 const MyPage = () => {
   const [currentUserInfo, setCurrentUserInfo] =
@@ -27,13 +26,14 @@ const MyPage = () => {
   const [profileUpdate, setProfileUpdate] = useState(false);
 
   const onProfileImageClick = useCallback(() => {
-    setProfileUpdate(!profileUpdate);
+    setProfileUpdate(true);
   });
   const onModalShow = useCallback(() => {
     setOpenTagChoice(true);
   }, []);
   const onModalClose = useCallback(() => {
     setOpenTagChoice(false);
+    setProfileUpdate(false);
   }, []);
 
   useEffect(() => {
@@ -58,8 +58,8 @@ const MyPage = () => {
 
   return (
     <>
-      {openTagsChoice && <FullModalContainer onClose={onModalClose} />}
-      {profileUpdate && <ProfileImageUpdate />}
+      {openTagsChoice && <ChangeInterest onClose={onModalClose} />}
+      {profileUpdate && <ProfileImageUpdate onClose={onModalClose} />}
       {currentUserInfo && (
         <Profile>
           <div id="top">
@@ -89,55 +89,7 @@ const MyPage = () => {
               <div id="score">
                 <span className="field">Score</span>
                 <span>
-                  {
-                    {
-                      5: (
-                        <>
-                          <StarFilledIcon />
-                          <StarFilledIcon />
-                          <StarFilledIcon />
-                          <StarFilledIcon />
-                          <StarFilledIcon />
-                        </>
-                      ),
-                      4: (
-                        <>
-                          <StarFilledIcon />
-                          <StarFilledIcon />
-                          <StarFilledIcon />
-                          <StarFilledIcon />
-                          <StarIcon />
-                        </>
-                      ),
-                      3: (
-                        <>
-                          <StarFilledIcon />
-                          <StarFilledIcon />
-                          <StarFilledIcon />
-                          <StarIcon />
-                          <StarIcon />
-                        </>
-                      ),
-                      2: (
-                        <>
-                          <StarFilledIcon />
-                          <StarFilledIcon />
-                          <StarIcon />
-                          <StarIcon />
-                          <StarIcon />
-                        </>
-                      ),
-                      1: (
-                        <>
-                          <StarFilledIcon />
-                          <StarIcon />
-                          <StarIcon />
-                          <StarIcon />
-                          <StarIcon />
-                        </>
-                      ),
-                    }[currentUserInfo.mobumScore]
-                  }
+                  <StarIcons mobumScore={currentUserInfo.mobumScore} />
                 </span>
               </div>
             </InfoDetails>
@@ -178,8 +130,12 @@ const ProfileImage = styled.div`
   height: 138px;
   margin-top: 0.75rem;
   border-radius: 50%;
-  cursor: pointer;
   background-size: cover;
+  cursor: pointer;
+  transition: 0.8s;
+  &:hover {
+    transform: translateY(-5px);
+  }
 `;
 
 const InfoDetails = styled.div`
