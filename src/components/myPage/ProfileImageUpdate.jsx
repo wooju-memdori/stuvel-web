@@ -1,24 +1,25 @@
 // Based on the example on https://www.npmjs.com/package/react-easy-crop
 // https://codesandbox.io/s/y09komm059
 import React, { useState, useMemo, useRef, useCallback } from 'react';
-// import { useRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
+import PropTypes from 'prop-types';
 import Cropper from 'react-easy-crop';
 import styled from 'styled-components';
+import axios from '../../utils/axios';
 import useInput from '../../utils/useInput';
-// import { currentUserInfoState } from '../../state/atom';
-
+import { currentUserInfoState } from '../../state/atom';
+import FullModalContainer from '../../containers/FullModalContainer';
 import getCroppedImg from './canvasUtils';
 
-const ProfileImageUpdate = () => {
-  // const [currentUserInfo, setCurrentUserInfo] =
-  //   useRecoilState(currentUserInfoState);
-
-  // const currentUserInfo = useRecoilState(currentUserInfoState)[0];
+const ProfileImageUpdate = ({ onClose }) => {
+  const [currentUserInfo, setCurrentUserInfo] =
+    useRecoilState(currentUserInfoState);
   const [imageSrc, setImageSrc] = useState(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useInput(1.0);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-  const [croppedImage, setCroppedImage] = useState(null);
+  const [croppedImage, setCroppedImage] = useState(currentUserInfo.image);
+  // const [prevCroppedImage, setPrevCroppedImage] = useState(null);
   const [imageTitle, setImageTitle] = useState(null);
 
   // 파일 업로드 창 숨기기 위함
@@ -32,11 +33,11 @@ const ProfileImageUpdate = () => {
 
   const showCroppedImage = useCallback(async () => {
     try {
+      // setPrevCroppedImage(croppedImage);
       const [toSave, blobURL] = await getCroppedImg(
         imageSrc,
         croppedAreaPixels,
       );
-      // console.log('donee', { blobURL });
       setCroppedImage(blobURL);
       const croppedImageFile = await fetch(toSave)
         .then((r) => r.blob())
@@ -44,12 +45,15 @@ const ProfileImageUpdate = () => {
           (blobFile) => new File([blobFile], imageTitle, { type: 'image/png' }),
         );
 
-      console.log(croppedImageFile);
+      const imageFormData = new FormData();
+      imageFormData.append('image', croppedImageFile);
 
-      // dispatch({
-      //   type: SET_CURRENT_IMAGE,
-      //   data: croppedImageFile,
-      // });
+      const response = await axios.patch(`/users/profileimage`, imageFormData);
+      setCurrentUserInfo({
+        ...currentUserInfo,
+        image: response.data,
+      });
+      console.log('response ::: ', response);
     } catch (e) {
       console.error(e);
     }
@@ -63,13 +67,6 @@ const ProfileImageUpdate = () => {
     // });
   }, []);
 
-  // useEffect(() =>{
-  //     setCroppedImage(currentCat.photo);
-  //     dispatch({
-  //         type: SET_CURRENT_IMAGE,
-  //         data: currentCat.photo,
-  //     });
-  // }, []);
   const readFile = (file) =>
     new Promise((resolve) => {
       const reader = new FileReader();
@@ -87,16 +84,22 @@ const ProfileImageUpdate = () => {
   };
 
   const headerStyle = useMemo(
-    () => ({ fontWeight: 'bold', paddingTop: '30px', lineHeight: '1.5' }),
+    () => ({
+      fontWeight: 'bold',
+      fontSize: '2.5rem',
+      paddingTop: '30px',
+      textAlign: 'center',
+      lineHeight: '1.5',
+    }),
     [],
   );
 
   return (
-    <>
+    <FullModalContainer onClose={onClose}>
       <h2 style={headerStyle}>
         프로필사진을
         <br />
-        올려주세요. (완성 안 됨 - 아직 하지 말아주세요!)
+        올려주세요.
       </h2>
       <div>
         {!croppedImage ? (
@@ -104,6 +107,7 @@ const ProfileImageUpdate = () => {
             <CropperContainer>
               <Cropper
                 image={imageSrc}
+                cropShape="round"
                 crop={crop}
                 zoom={zoom}
                 aspect={1 / 1}
@@ -136,10 +140,10 @@ const ProfileImageUpdate = () => {
               />
               <CenterWrapper>
                 <ImageUploadButtons onClick={onClickImageUpload}>
-                  upload
+                  사진 선택
                 </ImageUploadButtons>
                 <ImageUploadButtons onClick={showCroppedImage}>
-                  check
+                  확인
                 </ImageUploadButtons>
               </CenterWrapper>
             </InnerGlobal>
@@ -148,43 +152,48 @@ const ProfileImageUpdate = () => {
           <div>
             <div
               style={{
-                borderRadius: '10px',
-                width: '200px',
-                height: '200px',
+                borderRadius: '50%',
+                width: '40vh',
+                height: '40vh',
                 backgroundSize: 'cover',
                 backgroundImage: `url(${croppedImage})`,
                 margin: '0 auto',
-                marginTop: '1rem',
+                marginTop: '3rem',
+
+                marginBottom: '3rem',
               }}
             />
             <InnerGlobal>
               <ImageUploadButtons onClick={resetCroppedImage}>
-                undo
+                다시 설정
               </ImageUploadButtons>
             </InnerGlobal>
           </div>
         )}
       </div>
-    </>
+    </FullModalContainer>
   );
+};
+
+ProfileImageUpdate.propTypes = {
+  onClose: PropTypes.func.isRequired,
 };
 
 export default ProfileImageUpdate;
 const InnerGlobal = styled.div`
-  width: 80%;
+  width: 50%;
   margin: 0 auto;
   margin-bottom: 0.25rem;
   display: flex;
   justify-content: space-between;
 `;
-
 const ImageUploadButtons = styled.button`
   flex: 1;
   padding: 1rem;
   border-radius: 10px;
   font-size: 1rem;
   font-weight: bold;
-  background-color: ${({ theme }) => theme.orange};
+  background-color: #d300ff;
   border: none;
   cursor: pointer;
   color: white;
@@ -207,13 +216,17 @@ const CenterWrapper = styled.div`
 
 const CropperContainer = styled.div`
   margin-top: 1rem;
-  height: 200px;
+  min-height: 50vh;
   position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const SliderContainer = styled.div`
   input[type='range'] {
-    max-width: 50%;
+    width: 100%;
     padding: 1rem;
     margin: 0.5rem;
   }
