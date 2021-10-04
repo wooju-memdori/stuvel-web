@@ -44,12 +44,11 @@ const ProfileImageUpdate = ({ onClose }) => {
         .then(
           (blobFile) => new File([blobFile], imageTitle, { type: 'image/png' }),
         );
-      console.log(croppedImageFile);
 
       const imageFormData = new FormData();
       imageFormData.append('image', croppedImageFile);
 
-      const response = await axios.post(`/users/profileimage`, imageFormData);
+      const response = await axios.patch(`/users/profileimage`, imageFormData);
       setCurrentUserInfo({
         ...currentUserInfo,
         image: response.data,
