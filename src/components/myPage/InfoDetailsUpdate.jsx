@@ -17,6 +17,10 @@ const InfoDetails = () => {
     currentUserInfo ? currentUserInfo.nickname : '',
   );
 
+  const [description, onChangeDescription] = useInput(
+    currentUserInfo ? currentUserInfo.description : '',
+  );
+
   const [nicknameChangeSuccess, setNicknameChangeSuccess] = useState(null);
 
   let newUserInfo;
@@ -77,6 +81,9 @@ const InfoDetails = () => {
           <StarIcons mobumScore={currentUserInfo.mobumScore} />
         </span>
       </div>
+      <Form>
+        <Input value={description} onChange={onChangeDescription} />
+      </Form>
     </InfoDetailsWrapper>
   );
 };
