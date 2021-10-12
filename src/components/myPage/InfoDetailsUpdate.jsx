@@ -11,78 +11,80 @@ import StarIcons from './StarIcons';
 const InfoDetails = () => {
   const [currentUserInfo, setCurrentUserInfo] =
     useRecoilState(currentUserInfoState);
-
   // const [nickname, onChangeNickname, setNickname] = useInput(
   const [nickname, onChangeNickname] = useInput(
     currentUserInfo ? currentUserInfo.nickname : '',
   );
-
   const [description, onChangeDescription] = useInput(
     currentUserInfo ? currentUserInfo.description : '',
   );
-
-  const [nicknameChangeSuccess, setNicknameChangeSuccess] = useState(null);
+  const [personalInfoChangeSuccess, setPersonalInfoChangeSuccess] =
+    useState(null);
 
   let newUserInfo;
-  const onSubmitNicknameData = async (values) => {
+  const onSubmitNicknameandDescData = async () => {
     try {
-      const response = await axios.patch(`/users/nickname`, values);
+      const requestData = {
+        nickname,
+        description,
+      };
+      const response = await axios.patch(`/users/personal-info`, requestData);
       newUserInfo = {
         ...currentUserInfo,
         nickname: response.data.nickname,
+        description: response.data.description,
       };
       setCurrentUserInfo(newUserInfo);
-      if (response.status === 200) setNicknameChangeSuccess(true);
-      else setNicknameChangeSuccess(false);
+      if (response.status === 200) setPersonalInfoChangeSuccess(true);
+      else setPersonalInfoChangeSuccess(false);
       setTimeout(() => {
-        setNicknameChangeSuccess(null);
+        setPersonalInfoChangeSuccess(null);
       }, 3000);
     } catch (error) {
       console.log(error);
-      setNicknameChangeSuccess(false);
+      setPersonalInfoChangeSuccess(false);
       setTimeout(() => {
-        setNicknameChangeSuccess(null);
+        setPersonalInfoChangeSuccess(null);
       }, 3000);
     }
   };
 
-  const onSubmitNickname = useCallback(() => {
-    onSubmitNicknameData({
+  const onSubmitNicknameandDesc = useCallback(() => {
+    onSubmitNicknameandDescData({
       nickname,
+      description,
     });
-  }, [nickname]);
+  }, [nickname, description]);
+
   return (
     <InfoDetailsWrapper>
       <Form>
+        <Input value={nickname} onChange={onChangeNickname} />
+        <div id="gender">
+          <span className="field">gender</span>{' '}
+          {currentUserInfo.gender === 0 ? <MaleIcon /> : <FemaleIcon />}
+        </div>
+        <div id="score">
+          <span className="field">Score</span>
+          <span>
+            <StarIcons mobumScore={currentUserInfo.mobumScore} />
+          </span>
+        </div>
         <Input
-          value={nickname}
-          onChange={onChangeNickname}
-          onSubmit={onSubmitNickname}
+          value={description}
+          maxLength={20}
+          placeholder="소개글을 입력해주세요 (최대 20자)."
+          onChange={onChangeDescription}
         />
-        <Button htmlType="submit" onClick={onSubmitNickname}>
+        {personalInfoChangeSuccess && (
+          <SuccessMessage>정보 변경에 성공하였습니다.</SuccessMessage>
+        )}
+        {personalInfoChangeSuccess === false && (
+          <ErrorMessage>정보 변경에 실패하였습니다.</ErrorMessage>
+        )}
+        <Button htmlType="submit" onClick={onSubmitNicknameandDesc}>
           수정하기
         </Button>
-      </Form>
-
-      {nicknameChangeSuccess && (
-        <SuccessMessage>닉네임 변경에 성공하였습니다.</SuccessMessage>
-      )}
-      {nicknameChangeSuccess === false && (
-        <ErrorMessage>닉네임 변경에 실패하였습니다.</ErrorMessage>
-      )}
-
-      <div id="gender">
-        <span className="field">gender</span>{' '}
-        {currentUserInfo.gender === 0 ? <MaleIcon /> : <FemaleIcon />}
-      </div>
-      <div id="score">
-        <span className="field">Score</span>
-        <span>
-          <StarIcons mobumScore={currentUserInfo.mobumScore} />
-        </span>
-      </div>
-      <Form>
-        <Input value={description} onChange={onChangeDescription} />
       </Form>
     </InfoDetailsWrapper>
   );
