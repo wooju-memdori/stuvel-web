@@ -28,6 +28,12 @@ const InfoDetails = () => {
           <StarIcons mobumScore={currentUserInfo.mobumScore} />
         </span>
       </div>
+      <div
+        id="description"
+        // className={currentUserInfo.description.length > 6 ? 'small' : ''}
+      >
+        {currentUserInfo.description}
+      </div>
     </InfoDetailsWrapper>
   );
 };
@@ -66,5 +72,8 @@ const InfoDetailsWrapper = styled.div`
       display: inline-block;
       width: 4rem;
     }
+  }
+  #description {
+    font-size: 1rem;
   }
 `;
