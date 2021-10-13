@@ -12,11 +12,7 @@ const Settings = () => {
   const currentUserFetchInfo = useRecoilValueLoadable(
     currentUserInfoFetchState(),
   );
-  const [nickname, onChangeNickname, setNickname] = useInput(
-    currentUserInfo ? currentUserInfo.nickname : '',
-  );
   const [isLoading, setIsLoading] = useState(false);
-  const [nicknameChangeSuccess, setNicknameChangeSuccess] = useState(null);
 
   const [prevPassword, onChangePrevPassword, setPrevPassword] = useInput('');
   const [password, setPassword] = useState('');
@@ -24,14 +20,12 @@ const Settings = () => {
   const [passwordError, setPasswordError] = useState(null);
   const [passwordChangeSuccess, setPasswordChangeSuccess] = useState(null);
 
-  let newUserInfo;
   useEffect(() => {
     // 회원의 ID, 패스워드 확인 위해 정보 불러옴
     if (!currentUserInfo) {
       switch (currentUserFetchInfo.state) {
         case 'hasValue':
           setCurrentUserInfo(currentUserFetchInfo.contents);
-          setNickname(currentUserFetchInfo.contents.nickname);
           setIsLoading(false);
           break;
         case 'hasError':
@@ -48,34 +42,6 @@ const Settings = () => {
       }
     }
   }, [currentUserFetchInfo]);
-
-  const onSubmitNicknameData = async (values) => {
-    try {
-      const response = await axios.patch(`/users/nickname`, values);
-      newUserInfo = {
-        ...currentUserInfo,
-        nickname: response.data.nickname,
-      };
-      setCurrentUserInfo(newUserInfo);
-      if (response.status === 200) setNicknameChangeSuccess(true);
-      else setNicknameChangeSuccess(false);
-      setTimeout(() => {
-        setNicknameChangeSuccess(null);
-      }, 3000);
-    } catch (error) {
-      console.log(error);
-      setNicknameChangeSuccess(false);
-      setTimeout(() => {
-        setNicknameChangeSuccess(null);
-      }, 3000);
-    }
-  };
-
-  const onSubmitNickname = useCallback(() => {
-    onSubmitNicknameData({
-      nickname,
-    });
-  }, [nickname]);
 
   const passwordValidation = (e) => {
     setPasswordCheck(e.target.value);
@@ -167,32 +133,6 @@ const Settings = () => {
               <span className="field">아이디</span>
               <span>{currentUserInfo.email}</span>
             </h2>
-            <div id="nickname">
-              <h2>
-                <span className="field">닉네임변경</span>
-              </h2>
-              <Form>
-                <Input
-                  value={nickname}
-                  onChange={onChangeNickname}
-                  onSubmit={onSubmitNickname}
-                />
-                <Button
-                  htmlType="submit"
-                  loading={isLoading}
-                  onClick={onSubmitNickname}
-                >
-                  수정하기
-                </Button>
-              </Form>
-
-              {nicknameChangeSuccess && (
-                <SuccessMessage>닉네임 변경에 성공하였습니다.</SuccessMessage>
-              )}
-              {nicknameChangeSuccess === false && (
-                <ErrorMessage>닉네임 변경에 실패하였습니다.</ErrorMessage>
-              )}
-            </div>
             <div id="pw">
               <h2>
                 <span className="field">비밀번호 변경</span>
@@ -219,7 +159,11 @@ const Settings = () => {
                   />
                 </div>
                 <div>
-                  <Button htmlType="submit" onClick={onSubmitPassword}>
+                  <Button
+                    htmlType="submit"
+                    loading={isLoading}
+                    onClick={onSubmitPassword}
+                  >
                     수정하기
                   </Button>
                 </div>

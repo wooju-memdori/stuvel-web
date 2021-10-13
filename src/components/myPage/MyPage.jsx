@@ -64,10 +64,12 @@ const MyPage = () => {
   return (
     <>
       {openTagsChoice && <ChangeInterest onClose={onModalClose} />}
-
       {profileImageUpdate && <ProfileImageUpdate onClose={onModalClose} />}
       {currentUserInfo && (
         <Profile>
+          <Button id="edit-button" onClick={onProfileUpdateClick}>
+            {profileUpdate ? '✖' : '🖊'}
+          </Button>
           <div id="top">
             {currentUserInfo.image ? (
               <ProfileImage
@@ -82,8 +84,6 @@ const MyPage = () => {
               </ProfileImage>
             )}
             {profileUpdate ? <InfoDetailsUpdate /> : <InfoDetails />}
-
-            <Button onClick={onProfileUpdateClick}>수정</Button>
           </div>
           <InterestTags>
             <h1>
@@ -110,6 +110,12 @@ const Profile = styled.div`
   color: #e5e5e5;
   display: flex;
   flex-direction: column;
+  #edit-button {
+    position: absolute;
+    right: 1.5rem;
+    width: 3rem;
+    margin: 0.25rem;
+  }
   #top {
     display: flex;
     flex-direction: row;
@@ -117,7 +123,7 @@ const Profile = styled.div`
 `;
 
 const ProfileImage = styled.div`
-  width: 138px;
+  min-width: 138px;
   height: 138px;
   margin-top: 0.75rem;
   border-radius: 50%;
