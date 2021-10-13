@@ -8,7 +8,7 @@ import { MaleIcon, FemaleIcon } from '../common/Icon';
 import { currentUserInfoState } from '../../state/atom';
 import StarIcons from './StarIcons';
 
-const InfoDetails = () => {
+const InfoDetailsUpdate = () => {
   const [currentUserInfo, setCurrentUserInfo] =
     useRecoilState(currentUserInfoState);
   // const [nickname, onChangeNickname, setNickname] = useInput(
@@ -59,7 +59,7 @@ const InfoDetails = () => {
   return (
     <InfoDetailsWrapper>
       <Form>
-        <Input value={nickname} onChange={onChangeNickname} />
+        <Input id="nickname" value={nickname} onChange={onChangeNickname} />
         <div id="gender">
           <span className="field">gender</span>{' '}
           {currentUserInfo.gender === 0 ? <MaleIcon /> : <FemaleIcon />}
@@ -71,6 +71,7 @@ const InfoDetails = () => {
           </span>
         </div>
         <Input
+          id="description"
           value={description}
           maxLength={20}
           placeholder="소개글을 입력해주세요 (최대 20자)."
@@ -89,12 +90,17 @@ const InfoDetails = () => {
     </InfoDetailsWrapper>
   );
 };
-
-export default InfoDetails;
+export default InfoDetailsUpdate;
 
 const InfoDetailsWrapper = styled.div`
   margin-left: 2.5rem;
   font-size: 1rem;
+  input {
+    border: none;
+    border-bottom: 1px solid white;
+    border-radius: 0;
+    width: 70%;
+  }
   #nickname {
     font-size: 2rem;
     font-weight: bold;
@@ -119,11 +125,16 @@ const InfoDetailsWrapper = styled.div`
   }
   #gender,
   #score {
+    font-size: 1rem;
     padding-bottom: 1rem;
     .field {
       display: inline-block;
       width: 4rem;
     }
+  }
+  button {
+    margin-top: 1rem;
+    display: block;
   }
 `;
 const SuccessMessage = styled.div`
