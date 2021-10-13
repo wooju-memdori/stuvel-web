@@ -1,19 +1,18 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useRecoilState, useRecoilValueLoadable } from 'recoil';
 import styled from 'styled-components';
-import {
-  MaleIcon,
-  FemaleIcon,
-  DefaultProfileIcon,
-  PlusButtonIcon,
-} from '../common/Icon';
+
+import { Button } from 'antd';
+import { DefaultProfileIcon, PlusButtonIcon } from '../common/Icon';
+import ProfileImageUpdate from './ProfileImageUpdate';
+import InfoDetails from './InfoDetails';
+
+import InfoDetailsUpdate from './InfoDetailsUpdate';
+import ChangeInterest from './ChangeInterest';
 import {
   currentUserInfoState,
   currentUserInfoFetchState,
 } from '../../state/atom';
-import ProfileImageUpdate from './ProfileImageUpdate';
-import ChangeInterest from './ChangeInterest';
-import StarIcons from './StarIcons';
 
 const MyPage = () => {
   const [currentUserInfo, setCurrentUserInfo] =
@@ -23,17 +22,23 @@ const MyPage = () => {
   );
 
   const [openTagsChoice, setOpenTagChoice] = useState(false);
+  const [profileImageUpdate, setProfileImageUpdate] = useState(false);
+
   const [profileUpdate, setProfileUpdate] = useState(false);
 
   const onProfileImageClick = useCallback(() => {
-    setProfileUpdate(true);
+    setProfileImageUpdate(true);
+  });
+
+  const onProfileUpdateClick = useCallback(() => {
+    setProfileUpdate(!profileUpdate);
   });
   const onModalShow = useCallback(() => {
     setOpenTagChoice(true);
   }, []);
   const onModalClose = useCallback(() => {
     setOpenTagChoice(false);
-    setProfileUpdate(false);
+    setProfileImageUpdate(false);
   }, []);
 
   useEffect(() => {
@@ -59,9 +64,12 @@ const MyPage = () => {
   return (
     <>
       {openTagsChoice && <ChangeInterest onClose={onModalClose} />}
-      {profileUpdate && <ProfileImageUpdate onClose={onModalClose} />}
+      {profileImageUpdate && <ProfileImageUpdate onClose={onModalClose} />}
       {currentUserInfo && (
         <Profile>
+          <Button id="edit-button" onClick={onProfileUpdateClick}>
+            {profileUpdate ? '✖' : '🖊'}
+          </Button>
           <div id="top">
             {currentUserInfo.image ? (
               <ProfileImage
@@ -75,24 +83,7 @@ const MyPage = () => {
                 <DefaultProfileIcon />
               </ProfileImage>
             )}
-            <InfoDetails>
-              <div
-                id="nickname"
-                // className={currentUserInfo.nickname.length > 6 ? 'small' : ''}
-              >
-                {currentUserInfo.nickname}
-              </div>
-              <div id="gender">
-                <span className="field">gender</span>{' '}
-                {currentUserInfo.gender === 0 ? <MaleIcon /> : <FemaleIcon />}
-              </div>
-              <div id="score">
-                <span className="field">Score</span>
-                <span>
-                  <StarIcons mobumScore={currentUserInfo.mobumScore} />
-                </span>
-              </div>
-            </InfoDetails>
+            {profileUpdate ? <InfoDetailsUpdate /> : <InfoDetails />}
           </div>
           <InterestTags>
             <h1>
@@ -119,6 +110,12 @@ const Profile = styled.div`
   color: #e5e5e5;
   display: flex;
   flex-direction: column;
+  #edit-button {
+    position: absolute;
+    right: 1.5rem;
+    width: 3rem;
+    margin: 0.25rem;
+  }
   #top {
     display: flex;
     flex-direction: row;
@@ -126,7 +123,7 @@ const Profile = styled.div`
 `;
 
 const ProfileImage = styled.div`
-  width: 138px;
+  min-width: 138px;
   height: 138px;
   margin-top: 0.75rem;
   border-radius: 50%;
@@ -135,41 +132,6 @@ const ProfileImage = styled.div`
   transition: 0.8s;
   &:hover {
     transform: translateY(-5px);
-  }
-`;
-
-const InfoDetails = styled.div`
-  margin-left: 2.5rem;
-  font-size: 1rem;
-  #nickname {
-    font-size: 2rem;
-    font-weight: bold;
-    padding-bottom: 0.5rem;
-    word-wrap: break-word;
-    &.small {
-      font-size: 1.25rem;
-    }
-  }
-  #score {
-    svg {
-      padding-right: 0.25rem;
-      margin: 0;
-    }
-  }
-  #gender {
-    .anticon {
-      position: relative;
-      left: -5px;
-      bottom: -6px;
-    }
-  }
-  #gender,
-  #score {
-    padding-bottom: 1rem;
-    .field {
-      display: inline-block;
-      width: 4rem;
-    }
   }
 `;
 
