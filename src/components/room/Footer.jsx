@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import { Layout, message, Button } from 'antd';
+import { Layout, message } from 'antd';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { func, string } from 'prop-types';
@@ -71,16 +71,6 @@ const Footer = ({ handleMyCam, handleMyMic, toggleScreenShare, roomId }) => {
           <p>나가기</p>
         </div>
       </TextAlignCentered>
-      <Button onClick={handleMyCam}>
-        {camStatus ? 'Disable Cam' : 'Enable Cam'}
-      </Button>
-      <Button onClick={handleMyMic}>
-        {micStatus ? 'Disable Mic' : 'Enable Mic'}
-      </Button>
-      <Button onClick={toggleScreenShare}>
-        {displayStream ? 'Stop Screen Share' : 'Share Screen'}
-      </Button>
-      <Button onClick={copy}>Invite Link</Button>
     </Layout.Footer>
   );
 };
