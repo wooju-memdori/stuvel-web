@@ -7,7 +7,7 @@ import { Form, Input, Select, Button } from 'antd';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import axios from '../../utils/axios';
-import { signUpProcessState } from '../../state/atom';
+import { signUpProcessState, userInfoState } from '../../state/atom';
 import {
   BigLogoIcon,
   LeftBackgroundIcon,
@@ -18,13 +18,15 @@ const { Option } = Select;
 
 const ChooseRequired = () => {
   const setRequiredOrOption = useRecoilState(signUpProcessState)[1];
+  const setUserInfo = useRecoilState(userInfoState)[1];
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
-    console.log(values);
+    
     axios
       .get(`/users/duplicate-email/${values.email}`)
       .then((response) => {
+        setUserInfo(values);
         setRequiredOrOption('option');
       })
       .catch((error) => {
