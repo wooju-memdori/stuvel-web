@@ -1,71 +1,42 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable no-useless-escape */
 import React, { useState } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Select, Button } from 'antd';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
-import { signUpProcessState, userInfoState } from '../../state/atom';
+import axios from '../../utils/axios';
+import { signUpProcessState } from '../../state/atom';
 import {
   BigLogoIcon,
   LeftBackgroundIcon,
   RightBackgroundIcon,
 } from '../common/Icon';
 
+const { Option } = Select;
+
 const ChooseRequired = () => {
   const setRequiredOrOption = useRecoilState(signUpProcessState)[1];
-  const setUserInfo = useRecoilState(userInfoState)[1];
-  const [alertText, setAlertText] = useState();
-  const [firstPwd, setFirstPwd] = useState();
-  const [standard, setStandard] = useState();
-  const [lastPwd] = useState();
+  const [form] = Form.useForm();
 
   const onFinish = (values) => {
-    console.log('성공으로 연결');
-    console.log(values.firstPwd);
-
-    const userDefaultInfo = {
-      nickname: values.nickname,
-      email: values.email,
-      password: firstPwd,
-    };
-
-    console.log('------');
-    console.log(userDefaultInfo);
-    setUserInfo(userDefaultInfo);
-    setRequiredOrOption('option');
+    console.log(values);
+    axios
+      .post(`/users/signup`, values)
+      .then((response) => {
+        setRequiredOrOption('option');
+      })
+      .catch((error) => {
+        if (error.response.status === 409) {
+          alert('이미 존재하는 이메일입니다.');
+        } else {
+          alert('서버의 문제가 발생하여 회원가입에 실패했습니다. 다시 시도해주세요.');
+        }
+      });
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log('에러로 연결');
-    console.log(errorInfo.firstPwd);
-    console.log(firstPwd);
-    console.log('Failed:', errorInfo);
-  };
-
-  const orginPwd = (e) => {
-    setFirstPwd(e.target.value);
-    // 비밀번호 유효성 검사
-    const regExp =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/;
-    console.log('비밀번호 유효성 검사 :: ', regExp.test(e.target.value));
-    if (regExp.test(e.target.value) === false) {
-      setStandard('대문자, 소문자, 숫자, 특수문자를 포함해주세요.');
-    } else {
-      setStandard('');
-    }
-  };
-
-  const pwdCheck = (e) => {
-    const pwdInfo = {
-      firstPwd,
-      lastPwd,
-    };
-    console.log(pwdInfo);
-    if (!(firstPwd === e.target.value)) {
-      setAlertText('비밀번호가 일치하지 않습니다.');
-    } else {
-      setAlertText('');
-    }
-  };
+  const [autoCompleteResult, setAutoCompleteResult] = useState([]);
 
   return (
     <Background>
@@ -73,85 +44,98 @@ const ChooseRequired = () => {
       <RightBackgroundIcon className="background-right" />
       <SignUpForm>
         <BigLogoIcon id="logo" />
-        <div>
-          <Form
-            name="sign-up-form"
-            colon="false"
-            labelCol={{
-              span: 6,
-            }}
-            wrapperCol={{
-              span: 16,
-            }}
-            initialValues={{
-              remember: true,
-            }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-          >
+        <div id="signup-form">
+          <div id="label-col">
+            <p>닉네임</p>
+            <p>이메일</p>
+            <p>비밀번호</p>
+            <p>비밀번호 확인</p>
+          </div>
+          <Form id="inputs" form={form} name="register" onFinish={onFinish}>
             <Form.Item
-              size="middle"
-              label="닉네임"
-              labelAlign="left"
               name="nickname"
               rules={[
                 {
                   required: true,
+                  message: '닉네임을 입력해주세요.',
+                  whitespace: true,
+                },
+                {
+                  max: 20,
+                  message: '20자 이하로 입력해주세요.',
+                  whitespace: true,
                 },
               ]}
             >
-              <Input className="input" />
+              <Input />
             </Form.Item>
 
             <Form.Item
-              labelAlign="left"
-              label="이메일"
               name="email"
               rules={[
                 {
+                  type: 'email',
+                  message: '유효한 이메일이 아닙니다.',
+                },
+                {
                   required: true,
+                  message: '이메일을 입력해주세요.',
                 },
               ]}
             >
-              <Input
-                className="input diffPwd"
-                placeholder="이메일을 입력해주세요"
-              />
-            </Form.Item>
-
-            <Form.Item label="비밀번호" labelAlign="left" name="firstPwd">
-              <Input.Password
-                className="input"
-                placeholder="(대문자, 소문자, 특수문자 조합 8자 이상)"
-                value={firstPwd}
-                onChange={orginPwd}
-              />
-              <p className="check-text check-text-position">{standard}</p>
-            </Form.Item>
-
-            <Form.Item label="비밀번호 확인" labelAlign="left" name="pwdCheck">
-              <Input.Password
-                className="input diffPwd"
-                placeholder="비밀번호 확인을 입력해주세요"
-                value={lastPwd}
-                onChange={pwdCheck}
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              />
-              <p className="check-text">{alertText}</p>
+              <Input />
             </Form.Item>
 
             <Form.Item
-              className="input"
-              wrapperCol={{
-                offset: 8,
-                span: 16,
-              }}
+              name="password"
+              className="password"
+              rules={[
+                {
+                  type: 'string',
+                  pattern:
+                    '^(?=.*[a-z])(?=.*[A-Z])(?=.*[$@$!%*?&])[A-Za-z0-9$@$!%*?&]{8,}$',
+                  message: '알파벳 대소문자, 특수문자(8글자 이상, 띄어쓰기 제외)를 포함해주세요!',
+                },
+                {
+                  required: true,
+                  message: '비밀번호를 입력해주세요.',
+                },
+              ]}
+              hasFeedback
             >
-              <Button type="primary" htmlType="submit" className="button">
+              <Input.Password />
+            </Form.Item>
+
+            <Form.Item
+              name="confirm"
+              className="password"
+              dependencies={['password']}
+              hasFeedback
+              rules={[
+                {
+                  required: true,
+                  message: '비밀번호가 일치하지 않습니다.',
+                },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue('password') === value) {
+                      return Promise.resolve();
+                    }
+
+                    return Promise.reject(
+                      new Error(
+                        '비밀번호가 일치하지 않습니다.',
+                      ),
+                    );
+                  },
+                }),
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
+
+            <Form.Item>
+              <Button id="signup-button" type="primary" htmlType="submit">
                 가입하기
               </Button>
             </Form.Item>
@@ -165,68 +149,43 @@ const ChooseRequired = () => {
 const SignUpForm = styled.div`
   max-width: 31.25em;
   width: 25.714em;
-  height: 36.143em;
+  height: 40em;
   position: absolute;
+  left: 50%;
   top: 50%;
-  left: 38%;
-  margin-top: -18.0715em;
+  margin-left: -12.875em;
+  margin-top: -25em;
   #logo {
     position: absolute;
-    top: -33%;
-    left: 60%;
+    top: 0%;
+    left: 50%;
     margin-left: -4.9125em;
   }
-  .input {
-    top: -9%;
-    height: 2.88em;
-    width: 22.5em;
-    margin-left: 16%;
-    margin-bottom: 1em;
-  }
-  .diffPwd {
-    margin-bottom: 1.5em;
-  }
-  .button {
-    margin-left: -16%;
-    width: 22.5em;
-    height: 3.13em;
-  }
-  .check-text {
+  #signup-form {
     position: absolute;
-    top: 4.2em;
-    left: 3.8em;
-    font-family: Roboto;
-    font-size: 0.75em;
-    color: #d45667;
+    bottom: 0%;
+    width: 100%;
   }
-  .check-text-position {
+  #label-col {
     position: absolute;
-    width: 14em;
-    top: 4em;
-    left: 3.8em;
-    font-family: Roboto;
-    font-size: 0.75em;
-    color: #d45667;
+    left: -30%;
+    p {
+      margin-top: 0.8em;
+      margin-bottom: 3.6em;
+    }
   }
-  #sign-up-form {
-    .ant-form-item-has-error {
-      .ant-form-item-control {
-        .ant-form-item-explain-error {
-          visibility : hidden;
-        }
-      }
-    }
-    .ant-form-item {
-      .ant-form-item-label {
-        label {
-          ::after {
-            content:none;
-          }
-          ::before {
-            content:none;
-          }
-      }
-    }
+  #inputs {
+    width: 100%;
+  }
+  input {
+    height: 3.286em;
+  }
+  .password input {
+    height: 2.55em;
+  }
+  #signup-button {
+    width: 100%;
+    height: 3.571em;
   }
 `;
 
