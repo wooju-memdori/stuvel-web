@@ -67,7 +67,7 @@ const ChooseRequired = () => {
                 },
               ]}
             >
-              <Input />
+              <Input placeholder="닉네임을 입력해주세요" />
             </Form.Item>
 
             <Form.Item
@@ -83,7 +83,7 @@ const ChooseRequired = () => {
                 },
               ]}
             >
-              <Input />
+              <Input placeholder="이메일을 입력해주세요"/>
             </Form.Item>
 
             <Form.Item
@@ -103,7 +103,7 @@ const ChooseRequired = () => {
               ]}
               hasFeedback
             >
-              <Input.Password />
+              <Input.Password placeholder="(대문자, 소문자, 특수문자 조함 8글자 이상)" />
             </Form.Item>
 
             <Form.Item
@@ -131,7 +131,7 @@ const ChooseRequired = () => {
                 }),
               ]}
             >
-              <Input.Password />
+              <Input.Password placeholder="비밀번호 확인" />
             </Form.Item>
 
             <Form.Item>
