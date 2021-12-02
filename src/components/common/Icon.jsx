@@ -266,9 +266,9 @@ const FriendsSvg = () => (
 
 const LeftBackgroundSvg = () => (
   <svg
-    width="43.764em"
-    height="25.616em"
-    viewBox="0 0 43.764 25.616"
+    width="578"
+    height="359"
+    viewBox="0 0 578 359"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >

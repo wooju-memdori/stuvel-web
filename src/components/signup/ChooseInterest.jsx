@@ -12,24 +12,31 @@ import {
 } from './SignUpIcon';
 
 const ChooseInterest = () => {
-  const [interests, setInterests] = useState();
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const [interests, setInterests] = useState([]);
+  const userInfo = useRecoilState(userInfoState)[0];
   const setSignUpProcess = useRecoilState(signUpProcessState)[1];
 
-  const addInterests = () => {
-    const newUserInfo = {
-      ...userInfo,
-      tag: interests,
-    };
-    console.log(userInfo);
-    setUserInfo(newUserInfo);
-    console.info(newUserInfo);
+  const addInterests = async () => {
+    try {
+      await axios.post('/users/signup', {
+        ...userInfo,
+        tag: interests,
+      });
+      setSignUpProcess('finish');
+    } catch (err) {
+      console.error(err);
+      alert('서버 오류로 인해 회원 가입에 실패했습니다. 다시 시도해주세요.');
+    }
   };
 
-  const onChange = (checkedValues) => {
-    console.warn(checkedValues);
-    setInterests(checkedValues);
-    addInterests();
+  const onClick = (e) => {
+    const uniqueInterests = new Set([...interests]);
+    if (e.target.checked) {
+      uniqueInterests.add(e.target.value);
+    } else {
+      uniqueInterests.delete(e.target.value);
+    }
+    setInterests(Array.from(uniqueInterests));
   };
 
   const Knowledge = [
@@ -188,61 +195,61 @@ const ChooseInterest = () => {
               <Checkbox.Group
                 className="check"
                 options={Knowledge}
-                onChange={onChange}
+                onClick={onClick}
               />
               <p className="font">Wellness</p>
               <Checkbox.Group
                 className="check"
                 options={Wellness}
-                onChange={onChange}
+                onClick={onClick}
               />
               <p className="font">Tech</p>
               <Checkbox.Group
                 className="check"
                 options={Tech}
-                onChange={onChange}
+                onClick={onClick}
               />
               <p className="font">Languages</p>
               <Checkbox.Group
                 className="check"
                 options={Languages}
-                onChange={onChange}
+                onClick={onClick}
               />
               <p className="font">Entertainment</p>
               <Checkbox.Group
                 className="check"
                 options={Entertainment}
-                onChange={onChange}
+                onClick={onClick}
               />
               <p className="font">Life</p>
               <Checkbox.Group
                 className="check"
                 options={Life}
-                onChange={onChange}
+                onClick={onClick}
               />
               <p className="font">Sports</p>
               <Checkbox.Group
                 className="check"
                 options={Sports}
-                onChange={onChange}
+                onClick={onClick}
               />
               <p className="font">Arts</p>
               <Checkbox.Group
                 className="check"
                 options={Arts}
-                onChange={onChange}
+                onClick={onClick}
               />
-              <p className="font">WorldAffairs</p>
+              <p className="font">World Affairs</p>
               <Checkbox.Group
                 className="check"
                 options={WorldAffairs}
-                onChange={onChange}
+                onClick={onClick}
               />
               <p className="font">MBTI</p>
               <Checkbox.Group
                 className="check"
                 options={MBTI}
-                onChange={onChange}
+                onClick={onClick}
               />
             </InterestMenu>
           </div>
@@ -250,13 +257,7 @@ const ChooseInterest = () => {
             <Button
               type="primary"
               className="select-button"
-              onClick={() => {
-                console.log(userInfo);
-                axios.post('/users/signup', userInfo).then((response) => {
-                  console.log(response.data);
-                  setSignUpProcess('finish');
-                });
-              }}
+              onClick={addInterests}
             >
               설정완료
             </Button>
