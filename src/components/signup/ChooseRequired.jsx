@@ -23,15 +23,13 @@ const ChooseRequired = () => {
   const onFinish = (values) => {
     console.log(values);
     axios
-      .post(`/users/signup`, values)
+      .get(`/users/duplicate-email/${values.email}`)
       .then((response) => {
         setRequiredOrOption('option');
       })
       .catch((error) => {
         if (error.response.status === 409) {
           alert('이미 존재하는 이메일입니다.');
-        } else {
-          alert('서버의 문제가 발생하여 회원가입에 실패했습니다. 다시 시도해주세요.');
         }
       });
   };

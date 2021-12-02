@@ -41,8 +41,6 @@ const ChooseGender = () => {
         <UnionSvgIcon className="union-icon" />
         <div>
           <p className="text">
-            회원가입이 완료되었습니다!
-            <br />
             여행자님의 성별을 선택해주세요
           </p>
           <form className="form">
